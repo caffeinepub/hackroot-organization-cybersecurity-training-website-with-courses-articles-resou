@@ -1,0 +1,443 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Hackroot Organization — Cybersecurity Training & Resources (Frontend)",
+  "requirements": [
+    {
+      "id": "REQ-1",
+      "summary": "Add site-wide routing and persistent navigation for Home, Courses, Articles, Resources, About, Contact, and Certificate Verification; show the provided site title and Home tagline.",
+      "acceptanceCriteria": [
+        "A persistent header/nav provides links to all listed pages",
+        "Each nav link routes to a distinct page without reload",
+        "The Home page visibly includes the provided title and tagline text"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "create",
+          "description": "Create the app shell with client-side routing and a persistent layout (header + main + footer). Wire routes for Home, Courses, Articles, Resources, About, Contact, and Certificate Verification pages."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "create",
+          "description": "Create a persistent header with navigation links to all required top-level pages and a compact brand/title area for consistent site identity."
+        },
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "create",
+          "description": "Create a persistent footer container (links and social icons will be finalized under REQ-12)."
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "create",
+          "description": "Create the Home page and render the provided site title text “Hackroot Organization— Cybersecurity Training & Resources” and the provided tagline on the page."
+        },
+        {
+          "path": "frontend/src/pages/CoursesPage.tsx",
+          "operation": "create",
+          "description": "Create the Courses page route target and base layout container (course grid content completed under REQ-6)."
+        },
+        {
+          "path": "frontend/src/pages/ArticlesPage.tsx",
+          "operation": "create",
+          "description": "Create the Articles page route target and base layout container (blog list completed under REQ-7)."
+        },
+        {
+          "path": "frontend/src/pages/ResourcesPage.tsx",
+          "operation": "create",
+          "description": "Create the Resources page route target and base layout container (category content completed under REQ-8)."
+        },
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "create",
+          "description": "Create the About page route target and base layout container (content completed under REQ-9)."
+        },
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "create",
+          "description": "Create the Contact page route target and base layout container (form completed under REQ-10)."
+        },
+        {
+          "path": "frontend/src/pages/CertificateVerificationPage.tsx",
+          "operation": "create",
+          "description": "Create the Certificate Verification page route target and base layout container (verification UI completed under REQ-11)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-2",
+      "summary": "Build the Home hero section with the provided headline/subheadline, CTA buttons to Courses/Articles, and a dark tech background with subtle animated code-line accents.",
+      "acceptanceCriteria": [
+        "Hero displays the exact headline and subheadline text",
+        "CTA buttons are prominent, accessible, and navigate to the correct pages",
+        "Hero background is dark, tech-themed, and includes subtle animation (non-distracting)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Implement the hero section using the exact provided headline and subheadline, and add two primary CTAs labeled “Explore Courses” and “Read Articles” that navigate to the Courses and Articles routes. Use the generated hero background image at frontend/public/assets/generated/hero-bg.dim_1920x1080.png and apply a subtle animated overlay for code-line accents."
+        },
+        {
+          "path": "frontend/src/components/HeroCodeLines.tsx",
+          "operation": "create",
+          "description": "Create a lightweight decorative component to render subtle animated code-line accents over the hero background (CSS-driven, non-distracting)."
+        },
+        {
+          "path": "frontend/src/index.css",
+          "operation": "create",
+          "description": "Create global styles/Tailwind layers for the dark tech theme and add reusable animation keyframes/classes to support the hero’s subtle code-line accent effects."
+        }
+      ]
+    },
+    {
+      "id": "REQ-3",
+      "summary": "Add a Featured Courses section on Home with five course tiles (title + short description) and a “View All Courses” button routing to Courses.",
+      "acceptanceCriteria": [
+        "Five course cards/tiles are displayed with titles and short descriptions",
+        "A “View All Courses” control navigates to the Courses page",
+        "Course cards have hover/focus states consistent with the site theme"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add a Featured Courses section with five course tiles (Ethical Hacking, Penetration Testing, Bug Bounty Hunting, Security Research, Certification Prep), each with title and short description, plus a “View All Courses” control routing to the Courses page. Use shadcn-ui card/button building blocks by composing from frontend/src/components/ui (do not edit them). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/data/courses.ts",
+          "operation": "create",
+          "description": "Create a shared initial course data module including the five featured topics and their short descriptions for reuse on Home and Courses pages."
+        }
+      ]
+    },
+    {
+      "id": "REQ-4",
+      "summary": "Add a “Meet the Founder” section on Home with the provided founder name/role/description and a circular portrait image.",
+      "acceptanceCriteria": [
+        "Section displays the exact founder name, role, and description text",
+        "A portrait image is rendered in a circular frame and is responsive",
+        "Layout works on mobile and desktop"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add a “Meet the Founder” section using the exact provided text (Name “Almadad Ali”, Role “Cybersecurity Expert & Educator”, and description). Render the portrait from frontend/public/assets/generated/founder-portrait.dim_800x800.png in a circular frame with responsive layout."
+        }
+      ]
+    },
+    {
+      "id": "REQ-5",
+      "summary": "Add the “Free Ethical Hacking Toolkit” Home section listing four categories, with disclaimer and a CTA to Resources.",
+      "acceptanceCriteria": [
+        "Toolkit section lists the four categories clearly",
+        "“Explore Toolkit” routes to Resources",
+        "Legal note is visible and styled as a disclaimer"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add the “Free Ethical Hacking Toolkit” section listing Reconnaissance Tools, Scanners, Exploitation Utilities, and Cryptography Tools. Add a CTA labeled “Explore Toolkit” routing to Resources and display the disclaimer text exactly: “Tools are for educational and authorized testing only.”"
+        }
+      ]
+    },
+    {
+      "id": "REQ-6",
+      "summary": "Implement the Courses page as a responsive grid of course cards showing title, description, skill level, duration, and an Enroll button, including at least the five featured topics.",
+      "acceptanceCriteria": [
+        "Courses page renders a grid/list of course cards with all required fields",
+        "Each card has an “Enroll” button with a consistent UI state (even if it is non-functional initially)",
+        "Courses page is responsive and readable on mobile"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CoursesPage.tsx",
+          "operation": "modify",
+          "description": "Implement the course cards/grid layout and render initial course content (at minimum the five featured course topics). Each card must show Title, Description, Skill level, Duration, and an “Enroll” button (non-functional). Use shadcn-ui card/button components by composing from frontend/src/components/ui (do not edit them). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/data/courses.ts",
+          "operation": "modify",
+          "description": "Expand the shared course data to include required fields for Courses page rendering (skill level and duration) while preserving the five featured topics."
+        }
+      ]
+    },
+    {
+      "id": "REQ-7",
+      "summary": "Implement the Articles page as a blog list with featured image, headline, preview, and “Read More” that routes to a detail/placeholder view.",
+      "acceptanceCriteria": [
+        "Articles page shows multiple article cards/rows with image + headline + preview + CTA",
+        "Each “Read More” CTA has a defined behavior (route to an article detail view or a placeholder detail page)",
+        "Images are optimized for consistent aspect ratio and layout stability"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ArticlesPage.tsx",
+          "operation": "modify",
+          "description": "Implement a blog-style list rendering multiple article entries with featured images, headlines, preview text, and a “Read More” CTA that navigates to an article detail route. Use featured images from: frontend/public/assets/generated/article-cyber-tips.dim_1200x675.png, frontend/public/assets/generated/article-hacking-fundamentals.dim_1200x675.png, frontend/public/assets/generated/article-research-trends.dim_1200x675.png. Use shadcn-ui card/button components by composing from frontend/src/components/ui (do not edit them). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/pages/ArticleDetailPage.tsx",
+          "operation": "create",
+          "description": "Create an article detail (or placeholder detail) page to satisfy “Read More” navigation, rendering headline/content for known initial topics and a safe fallback for unknown slugs."
+        },
+        {
+          "path": "frontend/src/data/articles.ts",
+          "operation": "create",
+          "description": "Create initial article data covering: cybersecurity tips, hacking fundamentals, and security research trends, including slug, headline, preview text, and a reference to the required generated image asset."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Register the article detail route (for example, a parameterized route) and ensure “Read More” CTAs navigate to it without page reload."
+        }
+      ]
+    },
+    {
+      "id": "REQ-8",
+      "summary": "Implement the Resources page with four categories (Toolkits, Cheat sheets, Security utilities, External learning resources) using icons/graphics for differentiation.",
+      "acceptanceCriteria": [
+        "Resources page contains the four specified categories",
+        "Each category has an icon/graphic and a short descriptive blurb",
+        "Page layout remains accessible (contrast, keyboard focus, headings)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ResourcesPage.tsx",
+          "operation": "modify",
+          "description": "Implement the Resources page sections for Toolkits, Cheat sheets, Security utilities, and External learning resources with clear headings, short blurbs, and icons/graphics. Use generated icon assets for category visuals: frontend/public/assets/generated/icon-tools.dim_256x256.png, frontend/public/assets/generated/icon-code-brackets.dim_256x256.png, frontend/public/assets/generated/icon-lock.dim_256x256.png, frontend/public/assets/generated/icon-laptop.dim_256x256.png (and/or frontend/public/assets/generated/icon-shield.dim_256x256.png) to visually differentiate categories."
+        }
+      ]
+    },
+    {
+      "id": "REQ-9",
+      "summary": "Implement the About page with the provided mission/vision sentence plus structured sections for story, values, founder expertise, and optional testimonials.",
+      "acceptanceCriteria": [
+        "About page includes the exact mission/vision sentence",
+        "Company story, values, and founder expertise sections are visible and structured with headings",
+        "If testimonials are included, they are clearly labeled as testimonials and visually consistent"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/AboutPage.tsx",
+          "operation": "modify",
+          "description": "Implement About page content with the exact mission/vision sentence: “Empower learners to become cybersecurity professionals through practical training and community support.” Add structured sections with headings for company story, vision & values, founder’s expertise, and an optional testimonials section with clearly labeled placeholder testimonials."
+        }
+      ]
+    },
+    {
+      "id": "REQ-10",
+      "summary": "Implement the Contact page with an inquiry form, visible support email, social links, and accessible client-side validation with a clear success state.",
+      "acceptanceCriteria": [
+        "Contact page displays the email address exactly as provided",
+        "Form validates required fields client-side and shows accessible error messages",
+        "Submitting the form stores the inquiry (or shows a clear success state tied to a backend call)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/ContactPage.tsx",
+          "operation": "modify",
+          "description": "Implement the inquiry form fields (name, email, subject, message), show the email address exactly “support/contact@example.com”, include social links, and add accessible client-side validation states and messages. On submit, store the inquiry locally (e.g., browser storage) and show a clear success state (no external email services). Use shadcn-ui input/textarea/button components by composing from frontend/src/components/ui (do not edit them). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/lib/validation.ts",
+          "operation": "create",
+          "description": "Add shared form validation helpers for required fields and email formatting to keep Contact form validation consistent and accessible."
+        }
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "summary": "Implement the Certificate Verification page UI with a certificate code input, backend verification call, and clear Valid/Invalid result states.",
+      "acceptanceCriteria": [
+        "Certificate Verification page exists and is reachable from navigation",
+        "User can input a certificate code and submit",
+        "UI displays a deterministic result for known sample certificate codes and an Invalid result for unknown codes",
+        "Backend exposes a query-style method to verify a certificate code without requiring authentication"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/CertificateVerificationPage.tsx",
+          "operation": "modify",
+          "description": "Implement the certificate verification form (certificate ID/code input + submit). Use the existing actor via the existing hook to call the backend verifyCertificate capability and render clear result states (Valid/Invalid), including loading and error handling for the call. Use shadcn-ui input/button components by composing from frontend/src/components/ui (do not edit them). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/lib/certificates.ts",
+          "operation": "create",
+          "description": "Add small UI helper utilities (e.g., input normalization and deterministic mapping for known sample codes in the UI copy/help text) to support consistent verification UX while relying on the backend for actual validity."
+        }
+      ]
+    },
+    {
+      "id": "REQ-12",
+      "summary": "Add a global footer with quick links, social icons, Terms & Conditions and Privacy Policy links, and required copyright text.",
+      "acceptanceCriteria": [
+        "Footer appears site-wide (all pages) and contains all specified elements",
+        "Social icons are visually consistent and accessible (aria-labels)",
+        "Terms & Conditions and Privacy Policy links route to pages or placeholders that render content"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "modify",
+          "description": "Implement the footer content: quick links (Home, Courses, Articles, Resources, About, Contact), social media icons (YouTube, Instagram, LinkedIn, Telegram, Twitter) with accessible labels, Terms & Conditions link, Privacy Policy link, and copyright text exactly “Copyright © Year CyberMindspace”. Use generated icon assets for consistent neon/tech style where appropriate (e.g., frontend/public/assets/generated/icon-shield.dim_256x256.png, frontend/public/assets/generated/icon-lock.dim_256x256.png)."
+        },
+        {
+          "path": "frontend/src/pages/TermsPage.tsx",
+          "operation": "create",
+          "description": "Create a Terms & Conditions placeholder page that renders readable placeholder content and headings."
+        },
+        {
+          "path": "frontend/src/pages/PrivacyPage.tsx",
+          "operation": "create",
+          "description": "Create a Privacy Policy placeholder page that renders readable placeholder content and headings."
+        },
+        {
+          "path": "frontend/src/App.tsx",
+          "operation": "modify",
+          "description": "Wire footer links by registering routes for Terms & Conditions and Privacy Policy placeholder pages and ensuring they are navigable from the site-wide footer."
+        }
+      ]
+    },
+    {
+      "id": "REQ-13",
+      "summary": "Apply a consistent modern cybersecurity theme using the specified palette, motifs, textures, and subtle hover animations across the site.",
+      "acceptanceCriteria": [
+        "All primary UI surfaces use the specified palette with readable contrast",
+        "Buttons/cards have consistent hover/focus styles site-wide",
+        "Icons/motifs are used throughout without cluttering readability"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/index.css",
+          "operation": "modify",
+          "description": "Define global CSS variables and Tailwind base styles to reflect the palette (Primary #0A1A2F, Accent #1F51FF, Highlight #00FFAB, light gray/white text). Add consistent focus/hover styles and subtle transitions for buttons/cards, and background textures/motifs (matrix/circuit feel) without harming readability."
+        },
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Apply consistent tech-themed styling, spacing, and accessible focus states for navigation links and header surfaces to match the global theme."
+        },
+        {
+          "path": "frontend/src/components/SiteFooter.tsx",
+          "operation": "modify",
+          "description": "Apply consistent theme styling and accessible focus/hover states for footer links and social icons to match the global theme."
+        }
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "summary": "Set global SEO metadata (title, meta description, keywords) consistently across the app.",
+      "acceptanceCriteria": [
+        "The app sets the document title to the provided SEO title",
+        "Meta description and keywords are present in the rendered document head",
+        "Metadata remains consistent across routes (or is set globally if per-route is not implemented)"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/index.html",
+          "operation": "modify",
+          "description": "Update the document <title> to “Cybersecurity Courses & Ethical Hacking Training | CyberMindspace” and add meta tags for description (“Join CyberMindspace for hands-on cybersecurity training, ethical hacking courses, real-world tools, and expert resources. Learn, practice, and advance your cyber skills.”) and keywords (“cybersecurity training, ethical hacking courses, penetration testing, cybersecurity resources, security toolkit”)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-15",
+      "summary": "Add required generated static image assets under frontend/public/assets/generated and render them in the UI where specified.",
+      "acceptanceCriteria": [
+        "Generated images are present under `frontend/public/assets/generated` and are referenced by the UI",
+        "Images are sized appropriately (no obvious stretching/pixelation) and are responsive",
+        "Hero background uses a static image layer plus CSS/animation overlays for “code lines”"
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/public/assets/generated/hero-bg.dim_1920x1080.png",
+          "operation": "create",
+          "description": "Add the generated hero background image asset (dark circuit-board / tech grid) at the exact path for use on the Home hero."
+        },
+        {
+          "path": "frontend/public/assets/generated/founder-portrait.dim_800x800.png",
+          "operation": "create",
+          "description": "Add the generated founder portrait illustration asset at the exact path for use in the Home “Meet the Founder” section."
+        },
+        {
+          "path": "frontend/public/assets/generated/course-ethical-hacking.dim_1200x675.png",
+          "operation": "create",
+          "description": "Add the generated course thumbnail asset for Ethical Hacking at the exact path for use in course surfaces."
+        },
+        {
+          "path": "frontend/public/assets/generated/course-penetration-testing.dim_1200x675.png",
+          "operation": "create",
+          "description": "Add the generated course thumbnail asset for Penetration Testing at the exact path for use in course surfaces."
+        },
+        {
+          "path": "frontend/public/assets/generated/course-bug-bounty.dim_1200x675.png",
+          "operation": "create",
+          "description": "Add the generated course thumbnail asset for Bug Bounty at the exact path for use in course surfaces."
+        },
+        {
+          "path": "frontend/public/assets/generated/course-security-research.dim_1200x675.png",
+          "operation": "create",
+          "description": "Add the generated course thumbnail asset for Security Research at the exact path for use in course surfaces."
+        },
+        {
+          "path": "frontend/public/assets/generated/course-cert-prep.dim_1200x675.png",
+          "operation": "create",
+          "description": "Add the generated course thumbnail asset for Certification Prep at the exact path for use in course surfaces."
+        },
+        {
+          "path": "frontend/public/assets/generated/article-cyber-tips.dim_1200x675.png",
+          "operation": "create",
+          "description": "Add the generated article featured image asset (cybersecurity tips theme) at the exact path for use on the Articles list."
+        },
+        {
+          "path": "frontend/public/assets/generated/article-hacking-fundamentals.dim_1200x675.png",
+          "operation": "create",
+          "description": "Add the generated article featured image asset (hacking fundamentals theme) at the exact path for use on the Articles list."
+        },
+        {
+          "path": "frontend/public/assets/generated/article-research-trends.dim_1200x675.png",
+          "operation": "create",
+          "description": "Add the generated article featured image asset (security research trends theme) at the exact path for use on the Articles list."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-shield.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated shield icon asset at the exact path for use across Resources/footer motif surfaces."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-lock.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated lock icon asset at the exact path for use across Resources/footer motif surfaces."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-laptop.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated laptop icon asset at the exact path for use across Resources/footer motif surfaces."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-code-brackets.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated code brackets icon asset at the exact path for use across Resources/footer motif surfaces."
+        },
+        {
+          "path": "frontend/public/assets/generated/icon-tools.dim_256x256.png",
+          "operation": "create",
+          "description": "Add the generated tools icon asset at the exact path for use across Resources/footer motif surfaces."
+        },
+        {
+          "path": "frontend/src/pages/CoursesPage.tsx",
+          "operation": "modify",
+          "description": "Reference and render the generated course thumbnail images from frontend/public/assets/generated (course-ethical-hacking.dim_1200x675.png, course-penetration-testing.dim_1200x675.png, course-bug-bounty.dim_1200x675.png, course-security-research.dim_1200x675.png, course-cert-prep.dim_1200x675.png) in the Courses cards with consistent aspect ratio handling to maintain layout stability."
+        },
+        {
+          "path": "frontend/src/pages/ArticlesPage.tsx",
+          "operation": "modify",
+          "description": "Ensure article cards render the required generated featured images (article-cyber-tips.dim_1200x675.png, article-hacking-fundamentals.dim_1200x675.png, article-research-trends.dim_1200x675.png) with consistent aspect ratio and non-jumping layout."
+        }
+      ]
+    }
+  ]
+}

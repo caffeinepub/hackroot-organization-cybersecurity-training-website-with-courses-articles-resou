@@ -1,0 +1,22 @@
+{
+  "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes (Home, Courses, Articles, Resources, About, Contact, Certificate Verification, Terms, Privacy) with a persistent layout including header and footer.",
+  "frontend/src/components/SiteHeader.tsx": "Persistent site header with navigation links to all pages, responsive mobile menu, and Hackroot Organization branding with shield icon.",
+  "frontend/src/components/SiteFooter.tsx": "Site-wide footer with quick links, social media icons, legal links (Terms & Privacy), and copyright notice with caffeine.ai attribution.",
+  "frontend/src/components/HeroCodeLines.tsx": "Decorative component rendering animated code snippets that float across the hero section background for tech aesthetic.",
+  "frontend/src/pages/HomePage.tsx": "Home page featuring hero section with headline/CTAs, featured courses grid, founder profile section, and ethical hacking toolkit categories.",
+  "frontend/src/pages/CoursesPage.tsx": "Courses listing page displaying all training programs in a responsive grid with course images, descriptions, skill levels, duration, and enroll buttons.",
+  "frontend/src/pages/ArticlesPage.tsx": "Articles/blog listing page showing cybersecurity articles with featured images, previews, and \"Read More\" CTAs routing to article details.",
+  "frontend/src/pages/ArticleDetailPage.tsx": "Individual article detail page displaying full article content with metadata (date, author) and back navigation to articles list.",
+  "frontend/src/pages/ResourcesPage.tsx": "Resources page showcasing four categories (Toolkits, Cheat Sheets, Security Utilities, External Resources) with icons and descriptions, plus responsible use disclaimer.",
+  "frontend/src/pages/AboutPage.tsx": "About page with mission statement, company story, core values grid, founder expertise section, and student testimonials.",
+  "frontend/src/pages/ContactPage.tsx": "Contact page with inquiry form (name, email, subject, message), client-side validation, local storage submission, email display, and social links.",
+  "frontend/src/pages/CertificateVerificationPage.tsx": "Certificate verification page with input form that calls backend verifyCertificate method and displays valid/invalid results with visual feedback.",
+  "frontend/src/pages/TermsPage.tsx": "Terms & Conditions page with structured sections covering acceptance, use of services, intellectual property, user conduct, liability, and changes to terms.",
+  "frontend/src/pages/PrivacyPage.tsx": "Privacy Policy page detailing information collection, usage, sharing, security measures, user rights, cookies, and contact information.",
+  "frontend/src/data/courses.ts": "Shared course data module defining the five featured courses (Ethical Hacking, Penetration Testing, Bug Bounty, Security Research, Certification Prep) with all metadata.",
+  "frontend/src/data/articles.ts": "Article data module containing three initial articles (cybersecurity tips, hacking fundamentals, security research trends) with full content and metadata.",
+  "frontend/src/lib/validation.ts": "Form validation utility functions for required field and email format validation used in the contact form.",
+  "frontend/src/index.css": "Global styles with cybersecurity-themed OKLCH color system and component classes rewritten to avoid @apply with opacity modifiers, using direct CSS properties instead for compatibility.",
+  "frontend/index.html": "HTML entry point with SEO metadata (title, description, keywords) for cybersecurity training platform.",
+  "frontend/tailwind.config.js": "Tailwind configuration extended with custom cybersecurity color tokens (cyber-primary, cyber-accent, cyber-highlight) supporting opacity modifiers, plus float animation keyframes for hero code lines."
+}

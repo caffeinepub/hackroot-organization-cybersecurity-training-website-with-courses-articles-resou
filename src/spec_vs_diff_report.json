@@ -1,0 +1,84 @@
+{
+  "kind": "spec_vs_diff_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-04T15:04:26.134Z",
+  "summary": "Core app shell and routing were added with header/footer and pages for Home, Courses, Articles (with detail), Contact, and Certificate Verification. Backend gained a certificate verification query method, but certificates are not seeded so verification cannot return deterministic Valid results for sample codes. Global SEO metadata is not evidenced in the diff. Some implemented items (certificate admin methods, Internet Identity plumbing) were not requested.",
+  "missing_requirements": [
+    {
+      "id": "REQ-1",
+      "requirement": "Ensure the site title displays as “Hackroot Organization— Cybersecurity Training & Resources” and the tagline is available on the Home page.",
+      "reason": "The header brand text shown is “Hackroot Organization” with a secondary line “Cybersecurity Training”; the exact required title string is not present in the provided diff evidence, and the Home page tagline text is not evidenced in the shown HomePage content (truncated).",
+      "evidence": [
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/pages/HomePage.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-11",
+      "requirement": "UI displays a deterministic result for known sample certificate codes and an Invalid result for unknown codes; backend should provide minimal sample data to support known codes.",
+      "reason": "The backend certificate map is initialized empty and no sample certificates are added; therefore verifyCertificate will always return false unless addCertificate is called elsewhere (not evidenced).",
+      "evidence": [
+        "backend/main.mo",
+        "frontend/src/pages/CertificateVerificationPage.tsx (truncated)"
+      ]
+    },
+    {
+      "id": "REQ-14",
+      "requirement": "Set global SEO metadata (document title, meta description, and keywords) to the provided values.",
+      "reason": "No evidence in the diff shows setting document.title or injecting meta description/keywords in the document head.",
+      "evidence": [
+        "frontend/src/App.tsx",
+        "frontend/src/main.tsx"
+      ]
+    }
+  ],
+  "hallucinated_features": [
+    {
+      "description": "Backend certificate administration methods (addCertificate/removeCertificate) with caller traps.",
+      "reason": "The BuildRequest only specifies a backend query method to verify certificate codes; admin-style mutation methods were not requested.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Internet Identity authentication plumbing (InternetIdentityProvider/useInternetIdentity/useActor) used across the app.",
+      "reason": "Authentication was not required for this build (and certificate verification explicitly must not require authentication). The diff adds II integration scaffolding beyond the requested scope.",
+      "evidence": [
+        "frontend/src/main.tsx",
+        "frontend/src/hooks/useInternetIdentity.ts (truncated)",
+        "frontend/src/hooks/useActor.ts"
+      ]
+    }
+  ],
+  "confidence": 0.66,
+  "changed_files": [
+    "all_files_summary.json",
+    "backend/main.mo",
+    "frontend-file-summaries.txt",
+    "frontend/index.css",
+    "frontend/index.html",
+    "frontend/src/App.tsx",
+    "frontend/src/components/HeroCodeLines.tsx",
+    "frontend/src/components/SiteFooter.tsx",
+    "frontend/src/components/SiteHeader.tsx",
+    "frontend/src/data/articles.ts",
+    "frontend/src/data/courses.ts",
+    "frontend/src/hooks/useActor.ts",
+    "frontend/src/hooks/useInternetIdentity.ts",
+    "frontend/src/index.css",
+    "frontend/src/lib/validation.ts",
+    "frontend/src/main.tsx",
+    "frontend/src/pages/AboutPage.tsx",
+    "frontend/src/pages/ArticleDetailPage.tsx",
+    "frontend/src/pages/ArticlesPage.tsx",
+    "frontend/src/pages/CertificateVerificationPage.tsx",
+    "frontend/src/pages/ContactPage.tsx",
+    "frontend/src/pages/CoursesPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
+    "frontend/src/pages/PrivacyPage.tsx",
+    "frontend/src/pages/ResourcesPage.tsx",
+    "frontend/src/pages/TermsPage.tsx",
+    "frontend/tailwind.config.js",
+    "project_state.json"
+  ]
+}

@@ -1,0 +1,126 @@
+import { RouterProvider, createRouter, createRoute, createRootRoute, Outlet } from '@tanstack/react-router';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ThemeProvider } from 'next-themes';
+import SiteHeader from './components/SiteHeader';
+import SiteFooter from './components/SiteFooter';
+import HomePage from './pages/HomePage';
+import CoursesPage from './pages/CoursesPage';
+import ArticlesPage from './pages/ArticlesPage';
+import ArticleDetailPage from './pages/ArticleDetailPage';
+import ResourcesPage from './pages/ResourcesPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import CertificateVerificationPage from './pages/CertificateVerificationPage';
+import TermsPage from './pages/TermsPage';
+import PrivacyPage from './pages/PrivacyPage';
+import { Toaster } from '@/components/ui/sonner';
+
+const queryClient = new QueryClient();
+
+function Layout() {
+  return (
+    <div className="flex min-h-screen flex-col">
+      <SiteHeader />
+      <main className="flex-1">
+        <Outlet />
+      </main>
+      <SiteFooter />
+      <Toaster />
+    </div>
+  );
+}
+
+const rootRoute = createRootRoute({
+  component: Layout,
+});
+
+const indexRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/',
+  component: HomePage,
+});
+
+const coursesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/courses',
+  component: CoursesPage,
+});
+
+const articlesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/articles',
+  component: ArticlesPage,
+});
+
+const articleDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/articles/$slug',
+  component: ArticleDetailPage,
+});
+
+const resourcesRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/resources',
+  component: ResourcesPage,
+});
+
+const aboutRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/about',
+  component: AboutPage,
+});
+
+const contactRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/contact',
+  component: ContactPage,
+});
+
+const certificateRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/certificate-verification',
+  component: CertificateVerificationPage,
+});
+
+const termsRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/terms',
+  component: TermsPage,
+});
+
+const privacyRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/privacy',
+  component: PrivacyPage,
+});
+
+const routeTree = rootRoute.addChildren([
+  indexRoute,
+  coursesRoute,
+  articlesRoute,
+  articleDetailRoute,
+  resourcesRoute,
+  aboutRoute,
+  contactRoute,
+  certificateRoute,
+  termsRoute,
+  privacyRoute,
+]);
+
+const router = createRouter({ routeTree });
+
+declare module '@tanstack/react-router' {
+  interface Register {
+    router: typeof router;
+  }
+}
+
+export default function App() {
+  return (
+    <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </ThemeProvider>
+  );
+}

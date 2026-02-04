@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.5rem;
+        
+        /* Light mode colors - cybersecurity theme */
+        --background: 0.98 0 0;
+        --foreground: 0.15 0 0;
+        --card: 1 0 0;
+        --card-foreground: 0.15 0 0;
+        --popover: 1 0 0;
+        --popover-foreground: 0.15 0 0;
+        --primary: 0.25 0.08 240;
+        --primary-foreground: 0.98 0 0;
+        --secondary: 0.95 0 0;
+        --secondary-foreground: 0.15 0 0;
+        --muted: 0.95 0 0;
+        --muted-foreground: 0.50 0 0;
+        --accent: 0.95 0 0;
+        --accent-foreground: 0.15 0 0;
+        --destructive: 0.55 0.22 25;
+        --destructive-foreground: 0.98 0 0;
+        --border: 0.90 0 0;
+        --input: 0.90 0 0;
+        --ring: 0.50 0.15 240;
+        
+        /* Custom cybersecurity colors */
+        --cyber-primary: 0.15 0.12 240;
+        --cyber-accent: 0.55 0.25 250;
+        --cyber-highlight: 0.75 0.18 160;
+    }
+
+    .dark {
+        /* Dark mode - cybersecurity theme with dark blue primary */
+        --background: 0.12 0.05 240;
+        --foreground: 0.95 0 0;
+        --card: 0.18 0.05 240;
+        --card-foreground: 0.95 0 0;
+        --popover: 0.15 0.05 240;
+        --popover-foreground: 0.95 0 0;
+        --primary: 0.85 0 0;
+        --primary-foreground: 0.15 0 0;
+        --secondary: 0.22 0.05 240;
+        --secondary-foreground: 0.95 0 0;
+        --muted: 0.22 0.05 240;
+        --muted-foreground: 0.60 0 0;
+        --accent: 0.28 0.05 240;
+        --accent-foreground: 0.95 0 0;
+        --destructive: 0.55 0.22 25;
+        --destructive-foreground: 0.95 0 0;
+        --border: 0.95 0 0 / 10%;
+        --input: 0.95 0 0 / 15%;
+        --ring: 0.55 0.25 250;
+        
+        /* Custom cybersecurity colors for dark mode */
+        --cyber-primary: 0.15 0.12 240;
+        --cyber-accent: 0.60 0.28 250;
+        --cyber-highlight: 0.75 0.20 160;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-background text-foreground;
+        font-feature-settings: "rlig" 1, "calt" 1;
+    }
+}
+
+@layer components {
+    /* Cyber-themed button styles */
+    .cyber-button {
+        background-color: oklch(var(--cyber-accent));
+        color: white;
+        transition: all 0.2s;
+        box-shadow: 0 0 20px rgba(31, 81, 255, 0.3);
+    }
+    
+    .cyber-button:hover {
+        background-color: oklch(var(--cyber-accent) / 0.9);
+        box-shadow: 0 0 30px rgba(31, 81, 255, 0.5);
+    }
+    
+    .cyber-button-outline {
+        border-color: oklch(var(--cyber-accent));
+        color: oklch(var(--cyber-accent));
+        transition: all 0.2s;
+    }
+    
+    .cyber-button-outline:hover {
+        background-color: oklch(var(--cyber-accent) / 0.1);
+    }
+    
+    /* Cyber-themed card styles */
+    .cyber-card {
+        border-color: oklch(var(--border) / 0.4);
+        background-color: oklch(var(--card));
+        backdrop-filter: blur(8px);
+        transition: all 0.2s;
+    }
+    
+    .cyber-card:hover {
+        box-shadow: 0 0 20px rgba(31, 81, 255, 0.1);
+    }
+    
+    /* Navigation link styles */
+    .nav-link {
+        color: oklch(var(--muted-foreground));
+        transition: color 0.2s;
+    }
+    
+    .nav-link:hover {
+        color: oklch(var(--foreground));
+    }
+    
+    /* Code line animations for hero */
+    .code-line {
+        position: absolute;
+        font-size: 0.75rem;
+        font-family: ui-monospace, monospace;
+        color: oklch(var(--cyber-accent) / 0.3);
+        animation: float 20s ease-in-out infinite;
+    }
+    
+    .code-line-1 {
+        top: 20%;
+        left: 10%;
+        animation-delay: 0s;
+    }
+    
+    .code-line-2 {
+        top: 60%;
+        right: 15%;
+        animation-delay: 5s;
+    }
+    
+    .code-line-3 {
+        bottom: 25%;
+        left: 20%;
+        animation-delay: 10s;
+    }
+}
+
+/* Smooth scrolling */
+html {
+    scroll-behavior: smooth;
+}
+
+/* Focus visible styles for accessibility */
+*:focus-visible {
+    outline: none;
+    box-shadow: 0 0 0 2px oklch(var(--background)), 0 0 0 4px oklch(var(--ring));
+}
