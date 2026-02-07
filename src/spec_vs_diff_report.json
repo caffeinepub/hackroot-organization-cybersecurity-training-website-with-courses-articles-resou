@@ -1,24 +1,34 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-07T04:59:10.825Z",
-  "summary": "REQ-14/15/16 appear implemented in the modified Courses and Course Detail pages: Enroll Now navigates to /courses/$courseId, INR formatting is used, an invalid courseId shows a Course Not Found state with Back to Courses, and descriptions are rendered without obvious truncation/clamping with responsive layouts. However, additional unrequested global “cyber-themed” styling utilities/classes were added in index.css (and related references), which are not part of the BuildRequest.",
-  "missing_requirements": [],
-  "hallucinated_features": [
+  "generatedAt": "2026-02-07T05:12:11.831Z",
+  "summary": "REQ-17 is partially evidenced: both SiteFooter.tsx and ContactPage.tsx show the YouTube/Instagram/LinkedIn/Telegram hrefs updated from placeholders to the provided real URLs. However, the diff is truncated at the anchor tag rendering, so it’s not fully verifiable that all external links open in a new tab with rel=\"noopener noreferrer\" in both locations, nor that no remaining \"#\" hrefs exist for those four icons in the rendered output.",
+  "missing_requirements": [
     {
-      "description": "Added/expanded global “cybersecurity theme” styling and component utility classes (e.g., cyber-button, cyber-card, nav-link, code-line animations) not requested by REQ-14/15/16.",
-      "reason": "BuildRequest is limited to course navigation + responsive layout + no truncation + INR formatting; it does not request a site-wide theme overhaul or new animated/utility classes.",
+      "id": "REQ-17",
+      "requirement": "All external social links open in a new tab and include rel=\"noopener noreferrer\" (footer Connect section and Contact page Follow Us section).",
+      "reason": "In SiteFooter.tsx the <a> tag is truncated at `target=\"_blank` so `rel=\"noopener noreferrer\"` cannot be confirmed; ContactPage.tsx rendering of the social icons is also truncated so target/rel attributes can’t be verified from the provided diff summary.",
       "evidence": [
-        "frontend/src/index.css (adds cyber-themed color tokens and classes: .cyber-button, .cyber-card, .nav-link, .code-line, etc.)"
+        "frontend/src/components/SiteFooter.tsx (truncated at anchor tag: `target=\"_blank`...)",
+        "frontend/src/pages/ContactPage.tsx (rendering section truncated; social links usage not shown)"
+      ]
+    },
+    {
+      "id": "REQ-17",
+      "requirement": "No social icon uses \"#\" for the four provided networks after the change (wherever Connect/social icons are rendered).",
+      "reason": "The arrays shown use correct URLs for the four networks, but because both files are truncated before the full render, it’s not possible to verify there aren’t additional occurrences of those icons still using \"#\" elsewhere in the same components/pages.",
+      "evidence": [
+        "frontend/src/components/SiteFooter.tsx (file truncated; only one socialLinks array segment shown)",
+        "frontend/src/pages/ContactPage.tsx (file truncated; only one socialLinks array segment shown)"
       ]
     }
   ],
-  "confidence": 0.74,
+  "hallucinated_features": [],
+  "confidence": 0.62,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/index.css",
-    "frontend/src/pages/CourseDetailPage.tsx",
-    "frontend/src/pages/CoursesPage.tsx",
+    "frontend/src/components/SiteFooter.tsx",
+    "frontend/src/pages/ContactPage.tsx",
     "project_state.json"
   ]
 }

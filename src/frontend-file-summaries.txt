@@ -1,7 +1,7 @@
 {
   "frontend/src/App.tsx": "Main application component with TanStack Router setup, defining all routes including the new /courses/$courseId detail route, with persistent layout including header and footer.",
   "frontend/src/components/SiteHeader.tsx": "Persistent site header with Hackroot Organization logo image replacing the Shield icon, navigation links including Gallery, with active state styling and responsive mobile menu.",
-  "frontend/src/components/SiteFooter.tsx": "Site-wide footer with Hackroot Organization logo in brand section alongside company name, quick links including Gallery, social media icons, legal links, and copyright notice with caffeine.ai attribution.",
+  "frontend/src/components/SiteFooter.tsx": "Site-wide footer with Hackroot Organization logo, quick links including Gallery, updated social media icons with real URLs (YouTube, LinkedIn, Instagram, Telegram) that open in new tabs, legal links, and copyright notice with caffeine.ai attribution.",
   "frontend/src/components/HeroCodeLines.tsx": "Decorative component rendering animated code snippets that float across the hero section background for tech aesthetic.",
   "frontend/src/pages/HomePage.tsx": "Home page featuring hero section, new carousel showcasing training programs with course images, featured courses grid, founder profile section, and ethical hacking toolkit categories.",
   "frontend/src/pages/CoursesPage.tsx": "Courses listing page displaying all training programs in a responsive grid with course images, full untruncated descriptions, skill levels, duration, INR prices, and enroll buttons that navigate to course detail pages using TanStack Router.",
@@ -9,7 +9,7 @@
   "frontend/src/pages/ArticleDetailPage.tsx": "Individual article detail page displaying full article content with metadata (date, author) and back navigation to articles list.",
   "frontend/src/pages/ResourcesPage.tsx": "Resources page showcasing four categories (Toolkits, Cheat Sheets, Security Utilities, External Resources) with icons and descriptions, plus responsible use disclaimer.",
   "frontend/src/pages/AboutPage.tsx": "About page with mission statement, new carousel highlighting founder/mission/curriculum with article images, company story, core values grid, founder expertise section, and student testimonials.",
-  "frontend/src/pages/ContactPage.tsx": "Contact page with inquiry form (name, email, subject, message), client-side validation, local storage submission, email display, and social links.",
+  "frontend/src/pages/ContactPage.tsx": "Contact page with inquiry form (name, email, subject, message), client-side validation, local storage submission, email display, and updated social links with real URLs (YouTube, LinkedIn, Instagram, Telegram) that open in new tabs.",
   "frontend/src/pages/CertificateVerificationPage.tsx": "Certificate verification page with input form that calls backend verifyCertificate method and displays valid/invalid results with visual feedback.",
   "frontend/src/pages/TermsPage.tsx": "Terms & Conditions page with structured sections covering acceptance, use of services, intellectual property, user conduct, liability, and changes to terms.",
   "frontend/src/pages/PrivacyPage.tsx": "Privacy Policy page detailing information collection, usage, sharing, security measures, user rights, cookies, and contact information.",

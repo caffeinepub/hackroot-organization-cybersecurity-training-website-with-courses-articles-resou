@@ -1,53 +1,26 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-07T04:59:10.828Z",
+  "generatedAt": "2026-02-07T05:12:11.833Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 1,
+    "implemented": 1,
     "items": [
       {
-        "id": "REQ-14",
-        "summary": "Ensure the Courses page \"Enroll Now\" action always navigates to the selected course’s full detail view at /courses/$courseId and that the detail view displays the course price formatted in Indian Rupees (INR).",
+        "id": "REQ-17",
+        "summary": "Update the site \"Connect\" social icon links to use the provided URLs (YouTube, LinkedIn, Instagram, Telegram) instead of placeholder \"#\" links wherever the \"Connect\"/social icons are rendered (including the footer \"Connect\" section and the Contact page \"Follow Us\" section).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/pages/CourseDetailPage.tsx",
-          "frontend/src/lib/currency.ts"
+          "frontend/src/components/SiteFooter.tsx",
+          "frontend/src/pages/ContactPage.tsx"
         ],
         "matchedFiles": [
-          "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/pages/CourseDetailPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-15",
-        "summary": "Update the Course Detail page layout to be fully responsive with a medium-density reading experience and ensure the full course description is always visible (no truncation/clamping or hidden overflow).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/CourseDetailPage.tsx",
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/CourseDetailPage.tsx",
-          "frontend/src/index.css"
-        ]
-      },
-      {
-        "id": "REQ-16",
-        "summary": "Ensure the course description shown on the Courses page cards is not visually hidden/truncated and remains readable across responsive breakpoints.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/index.css"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/index.css"
+          "frontend/src/components/SiteFooter.tsx",
+          "frontend/src/pages/ContactPage.tsx"
         ]
       }
     ]
@@ -57,9 +30,8 @@
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/index.css",
-    "frontend/src/pages/CourseDetailPage.tsx",
-    "frontend/src/pages/CoursesPage.tsx",
+    "frontend/src/components/SiteFooter.tsx",
+    "frontend/src/pages/ContactPage.tsx",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

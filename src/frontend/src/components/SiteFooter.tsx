@@ -14,10 +14,10 @@ export default function SiteFooter() {
   ];
 
   const socialLinks = [
-    { icon: SiYoutube, label: 'YouTube', href: '#' },
-    { icon: SiInstagram, label: 'Instagram', href: '#' },
-    { icon: SiLinkedin, label: 'LinkedIn', href: '#' },
-    { icon: SiTelegram, label: 'Telegram', href: '#' },
+    { icon: SiYoutube, label: 'YouTube', href: 'https://youtube.com/@hackrootorg2.0?si=SCyY3YuqXwv9OusU' },
+    { icon: SiInstagram, label: 'Instagram', href: 'https://www.instagram.com/hackrootorg.in?igsh=ZHpwemQzbDFza2I3' },
+    { icon: SiLinkedin, label: 'LinkedIn', href: 'https://www.linkedin.com/in/bablu-kumar-8bb7b3257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app' },
+    { icon: SiTelegram, label: 'Telegram', href: 'https://t.me/hackrootorg' },
     { icon: SiX, label: 'X (Twitter)', href: '#' },
   ];
 
@@ -90,6 +90,8 @@ export default function SiteFooter() {
                   <a
                     key={social.label}
                     href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     aria-label={social.label}
                     className="flex h-9 w-9 items-center justify-center rounded-md border border-border/40 text-muted-foreground transition-colors hover:border-cyber-accent hover:text-cyber-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >

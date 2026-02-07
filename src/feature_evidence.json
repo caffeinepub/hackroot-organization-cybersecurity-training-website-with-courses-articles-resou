@@ -2,11 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-ensure-the-courses-page-enroll-now-action-always-navigates-to-the-selected-course-s-full-detail-view-at-courses-courseid-and-that-the-detail-view-displays-the-course-price-formatted-in-indian-rupees-inr",
-      "featureTitle": "Ensure the Courses page \"Enroll Now\" action always navigates to the selected course’s full detail view at /courses/$courseId and that the detail view displays the course price formatted in Indian Rupees (INR).",
+      "featureId": "feature-update-the-site-connect-social-icon-links-to-use-the-provided-urls-youtube-linkedin-instagram-telegram-instead-of-placeholder-links-wherever-the-connect-social-icons-are-rendered-including-the-footer-connect-section-and-the-contact-page-follow-us-section",
+      "featureTitle": "Update the site \"Connect\" social icon links to use the provided URLs (YouTube, LinkedIn, Instagram, Telegram) instead of placeholder \"#\" links wherever the \"Connect\"/social icons are rendered (including the footer \"Connect\" section and the Contact page \"Follow Us\" section).",
       "files": [
-        "frontend/src/pages/CourseDetailPage.tsx",
-        "frontend/src/pages/CoursesPage.tsx"
+        "frontend/src/components/SiteFooter.tsx",
+        "frontend/src/pages/ContactPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,45 +16,7 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-14"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-update-the-course-detail-page-layout-to-be-fully-responsive-with-a-medium-density-reading-experience-and-ensure-the-full-course-description-is-always-visible-no-truncation-clamping-or-hidden-overflow",
-      "featureTitle": "Update the Course Detail page layout to be fully responsive with a medium-density reading experience and ensure the full course description is always visible (no truncation/clamping or hidden overflow).",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/CourseDetailPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-15"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-ensure-the-course-description-shown-on-the-courses-page-cards-is-not-visually-hidden-truncated-and-remains-readable-across-responsive-breakpoints",
-      "featureTitle": "Ensure the course description shown on the Courses page cards is not visually hidden/truncated and remains readable across responsive breakpoints.",
-      "files": [
-        "frontend/src/index.css",
-        "frontend/src/pages/CoursesPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-16"
+        "REQ-17"
       ],
       "confidence": "high"
     }

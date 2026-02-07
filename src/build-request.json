@@ -1,84 +1,37 @@
 {
   "kind": "build_request",
-  "title": "Ensure course details open from Enroll Now and show full description with INR price in a responsive medium layout",
+  "title": "Add YouTube, LinkedIn, Instagram, and Telegram links to the Connect section",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-14",
-      "text": "Ensure the Courses page \"Enroll Now\" action always navigates to the selected course’s full detail view at /courses/$courseId and that the detail view displays the course price formatted in Indian Rupees (INR).",
+      "id": "REQ-17",
+      "text": "Update the site \"Connect\" social icon links to use the provided URLs (YouTube, LinkedIn, Instagram, Telegram) instead of placeholder \"#\" links wherever the \"Connect\"/social icons are rendered (including the footer \"Connect\" section and the Contact page \"Follow Us\" section).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-6"
         ],
         "quotes": [
-          "in courses section there teh enroll  now option when usere click on it then course full detail open and course prise sho in rupees"
+          "https://youtube.com/@hackrootorg2.0?si=SCyY3YuqXwv9OusU  , https://www.linkedin.com/in/bablu-kumar-8bb7b3257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app  ,  https://www.instagram.com/hackrootorg.in?igsh=ZHpwemQzbDFza2I3   , https://t.me/hackrootorg  add links  in Connect"
         ]
       },
       "acceptanceCriteria": [
-        "From the Courses page, clicking \"Enroll Now\" on any course opens that course’s detail page (URL matches /courses/<courseId>).",
-        "The Course Detail page displays the selected course’s price using INR formatting (₹ and Indian digit grouping), consistent with the Courses list.",
-        "If an invalid courseId is visited, a user-friendly \"Course Not Found\" state is shown with a working \"Back to Courses\" action."
-      ]
-    },
-    {
-      "id": "REQ-15",
-      "text": "Update the Course Detail page layout to be fully responsive with a medium-density reading experience and ensure the full course description is always visible (no truncation/clamping or hidden overflow).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "responsive and size midiam and discription show no any one hide"
-        ]
-      },
-      "acceptanceCriteria": [
-        "On mobile and tablet widths, the Course Detail page content stacks cleanly without overlapping or horizontal scrolling.",
-        "The course description text on the Course Detail page renders fully without line-clamp, truncation, or hidden overflow (all text remains readable).",
-        "Typography and spacing on the Course Detail page feel “medium” density (not oversized like a hero, not cramped like small print), including the description and key metadata blocks."
-      ]
-    },
-    {
-      "id": "REQ-16",
-      "text": "Ensure the course description shown on the Courses page cards is not visually hidden/truncated and remains readable across responsive breakpoints.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-1"
-        ],
-        "quotes": [
-          "discription show no any one hide"
-        ]
-      },
-      "acceptanceCriteria": [
-        "On the Courses page, each course card’s description is fully readable (no ellipsis truncation or CSS line-clamp).",
-        "The course card layout remains responsive and visually consistent even when descriptions vary in length.",
-        "No course card content (price, buttons, metadata) is pushed off-screen or becomes inaccessible due to longer descriptions."
+        "In the footer \"Connect\" section (frontend/src/components/SiteFooter.tsx), the YouTube icon links to https://youtube.com/@hackrootorg2.0?si=SCyY3YuqXwv9OusU, the LinkedIn icon links to https://www.linkedin.com/in/bablu-kumar-8bb7b3257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app, the Instagram icon links to https://www.instagram.com/hackrootorg.in?igsh=ZHpwemQzbDFza2I3, and the Telegram icon links to https://t.me/hackrootorg.",
+        "On the Contact page \"Follow Us\" section (frontend/src/pages/ContactPage.tsx), the same four icons link to the same provided URLs.",
+        "All external social links open in a new tab and include rel=\"noopener noreferrer\".",
+        "No social icon uses \"#\" for the four provided networks after the change."
       ]
     }
   ],
   "constraints": [
-    "Do not modify files under frontend/src/components/ui (shadcn/ui components are read-only); adjust styling/behavior by composing or via page/component-level classNames only.",
-    "Keep backend unchanged (no new Motoko methods or state migrations) since this request is UI behavior/presentation only.",
-    "Use English for any user-facing text."
+    "Do not modify any files under frontend/src/components/ui or any other frontend immutablePaths listed in SYSTEM_CONTEXT."
   ],
   "nonGoals": [
-    "Adding a real enrollment workflow (forms, payments, confirmations) beyond navigating to the course detail view.",
-    "Changing course content copy or creating new courses."
+    "Adding new social networks not provided by the user.",
+    "Changing site navigation structure, routes, or backend canister logic."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

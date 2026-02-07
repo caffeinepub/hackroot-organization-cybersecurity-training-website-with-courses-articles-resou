@@ -1,73 +1,27 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Course detail navigation, INR pricing consistency, and responsive medium-density course layouts",
+  "title": "Replace placeholder Connect social icon URLs (footer + contact page)",
   "requirements": [
     {
-      "id": "REQ-14",
-      "summary": "Make Courses page Enroll Now reliably navigate to /courses/$courseId and ensure INR price formatting with a friendly not-found state.",
+      "id": "REQ-17",
+      "summary": "Replace placeholder \"#\" Connect social icon links with the provided YouTube, LinkedIn, Instagram, and Telegram URLs wherever rendered (footer and Contact page Follow Us).",
       "acceptanceCriteria": [
-        "From the Courses page, clicking \"Enroll Now\" on any course opens that course’s detail page (URL matches /courses/<courseId>).",
-        "The Course Detail page displays the selected course’s price using INR formatting (₹ and Indian digit grouping), consistent with the Courses list.",
-        "If an invalid courseId is visited, a user-friendly \"Course Not Found\" state is shown with a working \"Back to Courses\" action."
+        "In the footer \"Connect\" section (frontend/src/components/SiteFooter.tsx), the YouTube icon links to https://youtube.com/@hackrootorg2.0?si=SCyY3YuqXwv9OusU, the LinkedIn icon links to https://www.linkedin.com/in/bablu-kumar-8bb7b3257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app, the Instagram icon links to https://www.instagram.com/hackrootorg.in?igsh=ZHpwemQzbDFza2I3, and the Telegram icon links to https://t.me/hackrootorg.",
+        "On the Contact page \"Follow Us\" section (frontend/src/pages/ContactPage.tsx), the same four icons link to the same provided URLs.",
+        "All external social links open in a new tab and include rel=\"noopener noreferrer\".",
+        "No social icon uses \"#\" for the four provided networks after the change."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/pages/CoursesPage.tsx",
+          "path": "frontend/src/components/SiteFooter.tsx",
           "operation": "modify",
-          "description": "Ensure the \"Enroll Now\" action uses TanStack Router navigation/linking to /courses/$courseId with the selected course.id (no stale/incorrect IDs), and keep price display using formatINR. Use shadcn-ui Button/Card composition (do not modify files under frontend/src/components/ui). Verify the component's usage instructions before implementing."
+          "description": "Update the footer Connect socialLinks entries for YouTube/LinkedIn/Instagram/Telegram to the provided URLs (no \"#\"), and ensure their rendered <a> tags include target=\"_blank\" and rel=\"noopener noreferrer\" for external navigation."
         },
         {
-          "path": "frontend/src/pages/CourseDetailPage.tsx",
+          "path": "frontend/src/pages/ContactPage.tsx",
           "operation": "modify",
-          "description": "Confirm the detail page reads courseId from the route params, formats price via formatINR, and presents a user-friendly \"Course Not Found\" state with a working \"Back to Courses\" action. Use shadcn-ui Card/Button for the not-found UI without editing read-only ui components. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/lib/currency.ts",
-          "operation": "modify",
-          "description": "Verify INR formatting behavior (₹ symbol + en-IN digit grouping) remains consistent for both course list and detail; adjust only if needed to match acceptance criteria."
-        }
-      ]
-    },
-    {
-      "id": "REQ-15",
-      "summary": "Refine Course Detail page to a fully responsive, medium-density reading layout with full, untruncated description text.",
-      "acceptanceCriteria": [
-        "On mobile and tablet widths, the Course Detail page content stacks cleanly without overlapping or horizontal scrolling.",
-        "The course description text on the Course Detail page renders fully without line-clamp, truncation, or hidden overflow (all text remains readable).",
-        "Typography and spacing on the Course Detail page feel “medium” density (not oversized like a hero, not cramped like small print), including the description and key metadata blocks."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/CourseDetailPage.tsx",
-          "operation": "modify",
-          "description": "Adjust layout classes to improve responsiveness (clean stacking on small/medium screens, prevent horizontal overflow) and tune typography/spacing to a medium-density reading experience. Ensure description rendering uses styles that never clamp/truncate or hide overflow. Keep changes at page-level via classNames/composition using shadcn-ui Card/Badge/Button (ui components are read-only). Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "If necessary to enforce non-truncation and medium-density typography consistently on the Course Detail page, add or adjust project-level utility classes/styles in this global entry point (without touching shadcn/ui source)."
-        }
-      ]
-    },
-    {
-      "id": "REQ-16",
-      "summary": "Ensure Courses page card descriptions are fully readable (no truncation) across breakpoints while maintaining a stable responsive card layout.",
-      "acceptanceCriteria": [
-        "On the Courses page, each course card’s description is fully readable (no ellipsis truncation or CSS line-clamp).",
-        "The course card layout remains responsive and visually consistent even when descriptions vary in length.",
-        "No course card content (price, buttons, metadata) is pushed off-screen or becomes inaccessible due to longer descriptions."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/src/pages/CoursesPage.tsx",
-          "operation": "modify",
-          "description": "Replace/avoid any potentially truncating CardDescription usage for course descriptions by rendering description text with explicit non-clamping styles (e.g., normal whitespace and no line-clamp) while keeping the card responsive and ensuring the CTA/price remain accessible. Continue composing with shadcn-ui Card/Button/Badge without modifying read-only ui component files. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/src/index.css",
-          "operation": "modify",
-          "description": "If the existing card description styling applies truncation via shared styles, introduce a safe override utility/class (used only by the Courses page) to guarantee descriptions remain fully visible across responsive breakpoints."
+          "description": "Update the Contact page Follow Us socialLinks entries for YouTube/LinkedIn/Instagram/Telegram to the provided URLs (no \"#\"), and ensure their rendered <a> tags include target=\"_blank\" and rel=\"noopener noreferrer\" for external navigation."
         }
       ]
     }
