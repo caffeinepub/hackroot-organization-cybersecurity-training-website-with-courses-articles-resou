@@ -1,125 +1,309 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 3,
-  "summary": "Build a modern, dark/blue tech-themed cybersecurity education website for \"Hackroot Organization\" (cybersecurity training & resources) with key pages (Home, Courses, Articles, Resources, About, Contact, Certificate Verification), featured homepage sections (courses, founder, toolkit), and SEO metadata.",
+  "projectStateVersion": 15,
+  "summary": "ICP dapp scaffolded with a Motoko backend and a React (Vite + Tailwind + shadcn/ui) frontend featuring marketing pages, courses/articles content, Internet Identity auth hooks, and certificate verification UI.",
+  "architectural_notes": [
+    "Frontend uses React + Vite with Tailwind and shadcn/ui component primitives.",
+    "Internet Identity authentication is encapsulated in reusable hooks (useInternetIdentity/useActor).",
+    "ICP canister configuration included for backend and frontend (canister.yaml + DID bindings).",
+    "Build-template includes scripts for pruning/resizing images and a standardized deployment workflow."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "generatedImages": [
+    {
+      "filename": "frontend/public/assets/generated/article-cyber-tips.dim_1200x675.png",
+      "description": "Generated article image (dimmed)",
+      "targetWidth": 1200,
+      "targetHeight": 675
+    },
+    {
+      "filename": "frontend/public/assets/generated/article-hacking-fundamentals.dim_1200x675.png",
+      "description": "Generated article image (dimmed)",
+      "targetWidth": 1200,
+      "targetHeight": 675
+    },
+    {
+      "filename": "frontend/public/assets/generated/article-research-trends.dim_1200x675.png",
+      "description": "Generated article image (dimmed)",
+      "targetWidth": 1200,
+      "targetHeight": 675
+    },
+    {
+      "filename": "frontend/public/assets/generated/course-bug-bounty.dim_1200x675.png",
+      "description": "Generated course image (dimmed)",
+      "targetWidth": 1200,
+      "targetHeight": 675
+    },
+    {
+      "filename": "frontend/public/assets/generated/course-cert-prep.dim_1200x675.png",
+      "description": "Generated course image (dimmed)",
+      "targetWidth": 1200,
+      "targetHeight": 675
+    },
+    {
+      "filename": "frontend/public/assets/generated/course-ethical-hacking.dim_1200x675.png",
+      "description": "Generated course image (dimmed)",
+      "targetWidth": 1200,
+      "targetHeight": 675
+    },
+    {
+      "filename": "frontend/public/assets/generated/course-penetration-testing.dim_1200x675.png",
+      "description": "Generated course image (dimmed)",
+      "targetWidth": 1200,
+      "targetHeight": 675
+    },
+    {
+      "filename": "frontend/public/assets/generated/course-security-research.dim_1200x675.png",
+      "description": "Generated course image (dimmed)",
+      "targetWidth": 1200,
+      "targetHeight": 675
+    },
+    {
+      "filename": "frontend/public/assets/generated/founder-portrait.dim_800x800.png",
+      "description": "Generated founder portrait (dimmed)",
+      "targetWidth": 800,
+      "targetHeight": 800
+    },
+    {
+      "filename": "frontend/public/assets/generated/hero-bg.dim_1920x1080.png",
+      "description": "Generated hero background (dimmed)",
+      "targetWidth": 1920,
+      "targetHeight": 1080
+    },
+    {
+      "filename": "frontend/public/assets/generated/icon-code-brackets.dim_256x256.png",
+      "description": "Generated icon (code brackets)",
+      "targetWidth": 256,
+      "targetHeight": 256
+    },
+    {
+      "filename": "frontend/public/assets/generated/icon-laptop.dim_256x256.png",
+      "description": "Generated icon (laptop)",
+      "targetWidth": 256,
+      "targetHeight": 256
+    },
+    {
+      "filename": "frontend/public/assets/generated/icon-lock.dim_256x256.png",
+      "description": "Generated icon (lock)",
+      "targetWidth": 256,
+      "targetHeight": 256
+    },
+    {
+      "filename": "frontend/public/assets/generated/icon-shield.dim_256x256.png",
+      "description": "Generated icon (shield)",
+      "targetWidth": 256,
+      "targetHeight": 256
+    },
+    {
+      "filename": "frontend/public/assets/generated/icon-tools.dim_256x256.png",
+      "description": "Generated icon (tools)",
+      "targetWidth": 256,
+      "targetHeight": 256
+    }
+  ],
   "existing_features": [
     {
-      "id": "feature-implement-the-site-wide-navigation-and-routing-with-top-level-pages-home-courses-articles-resources-about-contact-and-certificate-verification-ensure-the-site-title-displays-as-hackroot-organization-cybersecurity-training-resources-and-the-tagline-is-available-on-the-home-page",
-      "title": "Implement the site-wide navigation and routing with top-level pages: Home, Courses, Articles, Resources, About, Contact, and Certificate Verification. Ensure the site title displays as “Hackroot Organization— Cybersecurity Training & Resources” and the tagline is available on the Home page.",
+      "id": "IF-1",
+      "title": "Motoko backend canister scaffold",
+      "synonyms": [
+        "ICP backend",
+        "backend canister"
+      ],
+      "description": "Backend canister implemented in Motoko with DID bindings and canister configuration included for local/build-template deployment.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-2",
+      "title": "React (Vite) + Tailwind frontend scaffold",
+      "synonyms": [
+        "frontend app",
+        "Vite React app"
+      ],
+      "description": "Frontend app bootstrapped with Vite/React, Tailwind styling, routing/pages, and shared layout (header/footer).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-3",
+      "title": "shadcn/ui component library integrated",
+      "synonyms": [
+        "UI kit",
+        "shadcn components"
+      ],
+      "description": "shadcn/ui component set added (buttons, dialogs, forms, navigation, etc.) with project configuration and utilities.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-4",
+      "title": "Site pages and content sections",
+      "synonyms": [
+        "marketing pages",
+        "static pages"
+      ],
+      "description": "Pages implemented: Home, About, Courses, Articles, Article Detail, Resources, Contact, Privacy, Terms, and Certificate Verification.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-5",
+      "title": "Courses and articles data modules",
+      "synonyms": [
+        "content data"
+      ],
+      "description": "Structured data sources for courses and articles provided via frontend data modules with corresponding UI pages.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-6",
+      "title": "Internet Identity authentication hooks",
+      "synonyms": [
+        "II login",
+        "Internet Identity"
+      ],
+      "description": "Hooks for Internet Identity integration and actor creation included (useInternetIdentity, useActor) with validation helpers.",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "IF-7",
+      "title": "Asset generation pipeline and generated images",
+      "synonyms": [
+        "image pipeline",
+        "generated assets"
+      ],
+      "description": "Scripts and generated image assets added for consistent resized/dimmed marketing imagery (hero, icons, course/article images).",
+      "reqIds": [],
+      "version": 1
+    },
+    {
+      "id": "feature-create-a-new-gallery-page-that-displays-a-responsive-grid-of-images",
+      "title": "Create a new Gallery page that displays a responsive grid of images.",
       "reqIds": [
         "REQ-1"
       ],
       "version": 1
     },
     {
-      "id": "feature-build-the-home-page-hero-section-with-the-provided-headline-and-subheadline-and-two-primary-cta-buttons-labeled-explore-courses-routes-to-courses-and-read-articles-routes-to-articles-use-a-dark-tech-grid-circuit-board-style-background-with-animated-code-line-accents",
-      "title": "Build the Home page hero section with the provided headline and subheadline, and two primary CTA buttons labeled “Explore Courses” (routes to Courses) and “Read Articles” (routes to Articles). Use a dark tech grid/circuit-board style background with animated code-line accents.",
+      "id": "feature-populate-the-gallery-page-with-a-curated-set-of-existing-generated-images-already-in-the-project-so-the-grid-has-content-immediately",
+      "title": "Populate the Gallery page with a curated set of existing generated images already in the project so the grid has content immediately.",
       "reqIds": [
         "REQ-2"
       ],
       "version": 1
     },
     {
-      "id": "feature-create-a-featured-courses-section-on-the-home-page-showcasing-these-programs-ethical-hacking-penetration-testing-bug-bounty-hunting-security-research-certification-prep-each-item-must-include-a-title-and-short-description-and-the-section-must-include-a-view-all-courses-button-that-routes-to-the-courses-page",
-      "title": "Create a Featured Courses section on the Home page showcasing these programs: Ethical Hacking, Penetration Testing, Bug Bounty Hunting, Security Research, Certification Prep. Each item must include a title and short description, and the section must include a “View All Courses” button that routes to the Courses page.",
+      "id": "feature-add-routing-so-the-gallery-page-is-accessible-at-gallery",
+      "title": "Add routing so the Gallery page is accessible at /gallery.",
       "reqIds": [
         "REQ-3"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-a-meet-the-founder-section-on-the-home-page-for-name-almadad-ali-role-cybersecurity-expert-educator-and-the-provided-description-include-a-circular-portrait-image-and-a-short-bio-layout-consistent-with-the-site-theme",
-      "title": "Add a “Meet the Founder” section on the Home page for: Name “Almadad Ali”, Role “Cybersecurity Expert & Educator”, and the provided description. Include a circular portrait image and a short bio layout consistent with the site theme.",
+      "id": "feature-add-a-gallery-navigation-link-in-the-site-header-and-footer-quick-links",
+      "title": "Add a “Gallery” navigation link in the site header and footer quick links.",
       "reqIds": [
         "REQ-4"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-a-home-page-section-titled-free-ethical-hacking-toolkit-that-introduces-categories-reconnaissance-tools-scanners-exploitation-utilities-cryptography-tools-include-a-cta-labeled-explore-toolkit-that-routes-to-the-resources-page-and-display-the-legal-note-tools-are-for-educational-and-authorized-testing-only",
-      "title": "Add a Home page section titled “Free Ethical Hacking Toolkit” that introduces categories: Reconnaissance Tools, Scanners, Exploitation Utilities, Cryptography Tools. Include a CTA labeled “Explore Toolkit” that routes to the Resources page and display the legal note: “Tools are for educational and authorized testing only.”",
+      "id": "feature-add-the-uploaded-logo-image-as-a-static-asset-in-the-frontend-and-use-it-as-the-primary-brand-mark-in-the-site-header-replacing-the-current-shield-icon-while-preserving-the-existing-site-name-and-tagline-text",
+      "title": "Add the uploaded logo image as a static asset in the frontend and use it as the primary brand mark in the site header (replacing the current Shield icon) while preserving the existing site name and tagline text.",
       "reqIds": [
         "REQ-5"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-courses-page-as-a-cards-grid-layout-listing-training-modules-each-course-card-must-show-title-description-skill-level-beginner-to-advanced-duration-and-an-enroll-button-populate-the-page-with-initial-content-that-includes-at-minimum-the-five-featured-course-topics-from-the-home-page",
-      "title": "Implement the Courses page as a cards/grid layout listing training modules. Each course card must show: Title, Description, Skill level (Beginner to Advanced), Duration, and an “Enroll” button. Populate the page with initial content that includes (at minimum) the five featured course topics from the Home page.",
+      "id": "feature-update-the-site-footer-brand-section-to-include-the-same-logo-next-to-above-the-hackroot-organization-brand-text-styled-consistently-with-the-existing-footer-typography-and-spacing",
+      "title": "Update the site footer brand section to include the same logo next to/above the \"Hackroot Organization\" brand text, styled consistently with the existing footer typography and spacing.",
       "reqIds": [
         "REQ-6"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-articles-page-in-a-blog-format-each-article-entry-must-display-a-featured-image-headline-short-preview-text-and-a-read-more-cta-include-initial-article-topics-covering-cybersecurity-tips-hacking-fundamentals-and-security-research-trends",
-      "title": "Implement the Articles page in a blog format. Each article entry must display a featured image, headline, short preview text, and a “Read More” CTA. Include initial article topics covering: cybersecurity tips, hacking fundamentals, and security research trends.",
+      "id": "feature-add-favicon-app-icon-assets-derived-from-the-uploaded-logo-and-update-frontend-index-html-to-reference-the-favicon-so-browser-tabs-display-the-logo",
+      "title": "Add favicon/app icon assets derived from the uploaded logo and update frontend/index.html to reference the favicon so browser tabs display the logo.",
       "reqIds": [
         "REQ-7"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-resources-page-highlighting-toolkits-cheat-sheets-security-utilities-and-external-learning-resources-use-icons-graphics-to-visually-differentiate-each-category-and-provide-clear-structure-for-learners",
-      "title": "Implement the Resources page highlighting: Toolkits, Cheat sheets, Security utilities, and External learning resources. Use icons/graphics to visually differentiate each category and provide clear structure for learners.",
+      "id": "feature-create-a-reusable-responsive-carousel-component-that-supports-multiple-slides-where-each-slide-contains-an-image-and-accompanying-text-content",
+      "title": "Create a reusable, responsive carousel component that supports multiple slides where each slide contains an image and accompanying text content.",
       "reqIds": [
         "REQ-8"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-about-page-with-mission-statement-and-vision-empower-learners-to-become-cybersecurity-professionals-through-practical-training-and-community-support-include-sections-for-company-story-vision-values-founder-s-expertise-and-an-optional-testimonials-section-can-be-present-with-placeholder-testimonials",
-      "title": "Implement the About page with mission statement and vision: “Empower learners to become cybersecurity professionals through practical training and community support.” Include sections for company story, vision & values, founder’s expertise, and an optional testimonials section (can be present with placeholder testimonials).",
+      "id": "feature-add-a-text-image-carousel-section-to-the-home-page-using-existing-generated-images-as-slide-backgrounds-illustrations-and-english-user-facing-copy",
+      "title": "Add a text+image carousel section to the Home page using existing generated images as slide backgrounds/illustrations and English user-facing copy.",
       "reqIds": [
         "REQ-9"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-contact-page-with-an-inquiry-form-name-email-subject-message-display-the-email-address-support-contact-example-com-and-include-social-links-style-the-form-with-secure-tech-themed-input-visuals-and-clear-validation-states",
-      "title": "Implement the Contact page with an inquiry form (name, email, subject, message), display the email address “support/contact@example.com”, and include social links. Style the form with secure/tech-themed input visuals and clear validation states.",
+      "id": "feature-add-a-text-image-carousel-section-to-the-about-page-using-existing-generated-images-and-english-user-facing-copy",
+      "title": "Add a text+image carousel section to the About page using existing generated images and English user-facing copy.",
       "reqIds": [
         "REQ-10"
       ],
       "version": 1
     },
     {
-      "id": "feature-implement-the-certificate-verification-page-with-a-verification-form-e-g-certificate-id-code-input-that-checks-validity-and-displays-a-clear-result-state-valid-invalid-provide-a-minimal-backend-data-model-for-certificates-and-a-backend-query-method-to-verify-a-certificate-by-its-id-code",
-      "title": "Implement the Certificate Verification page with a verification form (e.g., certificate ID/code input) that checks validity and displays a clear result state (Valid/Invalid). Provide a minimal backend data model for certificates and a backend query method to verify a certificate by its ID/code.",
+      "id": "feature-extend-the-courses-data-model-to-include-a-course-price-and-ensure-it-can-be-displayed-in-indian-rupees-inr-across-the-ui",
+      "title": "Extend the courses data model to include a course price and ensure it can be displayed in Indian Rupees (INR) across the UI.",
       "reqIds": [
         "REQ-11"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-a-global-footer-including-quick-links-home-courses-articles-resources-about-contact-social-media-icons-youtube-instagram-linkedin-telegram-twitter-terms-conditions-link-privacy-policy-link-and-copyright-text-copyright-year-cybermindspace",
-      "title": "Add a global footer including: quick links (Home, Courses, Articles, Resources, About, Contact), social media icons (YouTube, Instagram, LinkedIn, Telegram, Twitter), Terms & Conditions link, Privacy Policy link, and copyright text “Copyright © Year CyberMindspace”.",
+      "id": "feature-create-a-course-detail-page-that-shows-the-full-details-for-a-selected-course-including-the-course-price-displayed-in-inr-and-provide-a-clear-way-to-navigate-back-to-the-courses-list",
+      "title": "Create a Course Detail page that shows the full details for a selected course, including the course price displayed in INR, and provide a clear way to navigate back to the courses list.",
       "reqIds": [
         "REQ-12"
       ],
       "version": 1
     },
     {
-      "id": "feature-apply-a-consistent-modern-cybersecurity-visual-theme-across-the-entire-site-using-the-specified-palette-primary-0a1a2f-accent-1f51ff-highlight-00ffab-light-gray-white-text-tech-textures-patterns-matrix-circuit-security-code-visual-motifs-lock-shield-terminal-code-brackets-tools-and-subtle-hover-animations-for-buttons-and-cards",
-      "title": "Apply a consistent, modern cybersecurity visual theme across the entire site using the specified palette (Primary #0A1A2F, Accent #1F51FF, Highlight #00FFAB, light gray/white text), tech textures/patterns (matrix/circuit), security/code visual motifs (lock/shield/terminal/code brackets/tools), and subtle hover animations for buttons and cards.",
+      "id": "feature-update-the-courses-page-so-the-enroll-now-button-opens-the-selected-course-s-detail-view-and-show-the-course-price-in-inr-in-the-course-card-ui",
+      "title": "Update the Courses page so the \"Enroll Now\" button opens the selected course’s detail view, and show the course price in INR in the course card UI.",
       "reqIds": [
         "REQ-13"
       ],
       "version": 1
     },
     {
-      "id": "feature-set-global-seo-metadata-using-seo-title-cybersecurity-courses-ethical-hacking-training-cybermindspace-meta-description-join-cybermindspace-for-hands-on-cybersecurity-training-ethical-hacking-courses-real-world-tools-and-expert-resources-learn-practice-and-advance-your-cyber-skills-and-keywords-cybersecurity-training-ethical-hacking-courses-penetration-testing-cybersecurity-resources-security-toolkit",
-      "title": "Set global SEO metadata using: SEO Title “Cybersecurity Courses & Ethical Hacking Training | CyberMindspace”, Meta Description “Join CyberMindspace for hands-on cybersecurity training, ethical hacking courses, real-world tools, and expert resources. Learn, practice, and advance your cyber skills.”, and Keywords “cybersecurity training, ethical hacking courses, penetration testing, cybersecurity resources, security toolkit”.",
+      "id": "feature-ensure-the-courses-page-enroll-now-action-always-navigates-to-the-selected-course-s-full-detail-view-at-courses-courseid-and-that-the-detail-view-displays-the-course-price-formatted-in-indian-rupees-inr",
+      "title": "Ensure the Courses page \"Enroll Now\" action always navigates to the selected course’s full detail view at /courses/$courseId and that the detail view displays the course price formatted in Indian Rupees (INR).",
       "reqIds": [
         "REQ-14"
       ],
       "version": 1
     },
     {
-      "id": "feature-add-generated-static-image-assets-required-by-the-design-hero-background-founder-portrait-placeholder-course-article-thumbnails-and-simple-security-tool-icons-and-render-them-from-frontend-static-assets-at-frontend-public-assets-generated",
-      "title": "Add generated static image assets required by the design (hero background, founder portrait placeholder, course/article thumbnails, and simple security/tool icons) and render them from frontend static assets at `frontend/public/assets/generated`.",
+      "id": "feature-update-the-course-detail-page-layout-to-be-fully-responsive-with-a-medium-density-reading-experience-and-ensure-the-full-course-description-is-always-visible-no-truncation-clamping-or-hidden-overflow",
+      "title": "Update the Course Detail page layout to be fully responsive with a medium-density reading experience and ensure the full course description is always visible (no truncation/clamping or hidden overflow).",
       "reqIds": [
         "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-course-description-shown-on-the-courses-page-cards-is-not-visually-hidden-truncated-and-remains-readable-across-responsive-breakpoints",
+      "title": "Ensure the course description shown on the Courses page cards is not visually hidden/truncated and remains readable across responsive breakpoints.",
+      "reqIds": [
+        "REQ-16"
       ],
       "version": 1
     }
@@ -127,191 +311,36 @@
   "new_feature_requests": [
     {
       "id": "AR-1",
-      "summary": "Create site IA/navigation with pages: Home, Courses, Articles, Resources, About, Contact, Certificate Verification",
+      "summary": "Add a new Gallery page that displays images in a grid.",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-2",
-      "summary": "Homepage hero section with headline/subheadline, CTAs (Explore Courses/Read Articles), and dark tech grid/circuit background styling",
+      "summary": "Add a logo to the website (site branding in header/footer as appropriate).",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-3",
-      "summary": "Homepage featured courses section with course cards (Ethical Hacking, Pen Testing, Bug Bounty, Security Research, Cert Prep) and View All Courses CTA",
+      "summary": "Add a text+image carousel component/section to both the Home and About pages.",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-4",
-      "summary": "Homepage 'Meet the Founder' section for Almadad Ali with circular portrait and short bio",
+      "summary": "In Courses section, add an “Enroll Now” action that opens the full course detail view and display the course price in Indian Rupees (INR).",
       "reqIds": [],
       "status": "pending"
     },
     {
       "id": "AR-5",
-      "summary": "Homepage 'Free Ethical Hacking Toolkit' section with categories, Explore Toolkit CTA, and legal note disclaimer",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-6",
-      "summary": "Courses page with grid/card layout including title, description, skill level, duration, and enroll button",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-7",
-      "summary": "Articles/blog page with featured image, headline, preview text, and Read More CTA",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-8",
-      "summary": "Resources page highlighting toolkits, cheat sheets, security utilities, and external resources with icons/graphics",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-9",
-      "summary": "About page with mission/vision, company story, values, founder expertise, and optional testimonials",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-10",
-      "summary": "Contact page with inquiry form, email (support/contact@example.com), optional phone, and social links",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-11",
-      "summary": "Certificate Verification page/feature for validating certificates",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-12",
-      "summary": "Global footer with quick links, social icons, Terms & Conditions, Privacy Policy, and copyright",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-13",
-      "summary": "Apply global design system: dark blue/electric blue palette, neon green highlights, security icons, modern fonts, and subtle hover animations",
-      "reqIds": [],
-      "status": "pending"
-    },
-    {
-      "id": "AR-14",
-      "summary": "Add SEO metadata (SEO title, meta description, keywords)",
+      "summary": "Ensure Course Detail view is responsive (medium sizing) and shows the full course description without truncation/hiding, while displaying the course price in INR.",
       "reqIds": [],
       "status": "pending"
     }
   ],
-  "architectural_notes": [
-    "Branding/content references include \"Hackroot Organization\" (site title) and \"CyberMindspace\" (SEO title/footer); confirm the canonical brand name to use consistently.",
-    "Design theme: dark/blue gradients with tech/circuit/matrix textures and security/code-style visuals; use vector security icons and subtle hover animations.",
-    "Typography suggestion: modern sans for headings (Montserrat/Poppins) and clean sans for body (Open Sans/Roboto)."
-  ],
-  "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Dark circuit-board / tech grid hero background with subtle code-line motif (hero-bg.dim_1920x1080.png)\n- Founder portrait illustration, professional tech/cyber style, centered subject, neutral background, suitable for circular crop (founder-portrait.dim_800x800.png)\n- Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-ethical-hacking.dim_1200x675.png)\n- Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-penetration-testing.dim_1200x675.png)\n- Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-bug-bounty.dim_1200x675.png)\n- Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-security-research.dim_1200x675.png)\n- Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-cert-prep.dim_1200x675.png)\n- Article featured image, cybersecurity tips theme, dark tech style (article-cyber-tips.dim_1200x675.png)\n- Article featured image, hacking fundamentals theme, dark tech style (article-hacking-fundamentals.dim_1200x675.png)\n- Article featured image, security research trends theme, dark tech style (article-research-trends.dim_1200x675.png)\n- Minimal vector-style shield icon, neon/tech style on transparent background (icon-shield.dim_256x256.png)\n- Minimal vector-style lock icon, neon/tech style on transparent background (icon-lock.dim_256x256.png)\n- Minimal vector-style laptop icon, neon/tech style on transparent background (icon-laptop.dim_256x256.png)\n- Minimal vector-style code brackets icon, neon/tech style on transparent background (icon-code-brackets.dim_256x256.png)\n- Minimal vector-style tools icon, neon/tech style on transparent background (icon-tools.dim_256x256.png)",
-  "generatedImages": [
-    {
-      "filename": "hero-bg.dim_1920x1080.png",
-      "description": "Dark circuit-board / tech grid hero background with subtle code-line motif",
-      "targetWidth": 1920,
-      "targetHeight": 1080
-    },
-    {
-      "filename": "founder-portrait.dim_800x800.png",
-      "description": "Founder portrait illustration, professional tech/cyber style, centered subject, neutral background, suitable for circular crop",
-      "targetWidth": 800,
-      "targetHeight": 800
-    },
-    {
-      "filename": "course-ethical-hacking.dim_1200x675.png",
-      "description": "Course category thumbnail set: five distinct tech/cyber themed images with consistent style",
-      "targetWidth": 1200,
-      "targetHeight": 675
-    },
-    {
-      "filename": "course-penetration-testing.dim_1200x675.png",
-      "description": "Course category thumbnail set: five distinct tech/cyber themed images with consistent style",
-      "targetWidth": 1200,
-      "targetHeight": 675
-    },
-    {
-      "filename": "course-bug-bounty.dim_1200x675.png",
-      "description": "Course category thumbnail set: five distinct tech/cyber themed images with consistent style",
-      "targetWidth": 1200,
-      "targetHeight": 675
-    },
-    {
-      "filename": "course-security-research.dim_1200x675.png",
-      "description": "Course category thumbnail set: five distinct tech/cyber themed images with consistent style",
-      "targetWidth": 1200,
-      "targetHeight": 675
-    },
-    {
-      "filename": "course-cert-prep.dim_1200x675.png",
-      "description": "Course category thumbnail set: five distinct tech/cyber themed images with consistent style",
-      "targetWidth": 1200,
-      "targetHeight": 675
-    },
-    {
-      "filename": "article-cyber-tips.dim_1200x675.png",
-      "description": "Article featured image, cybersecurity tips theme, dark tech style",
-      "targetWidth": 1200,
-      "targetHeight": 675
-    },
-    {
-      "filename": "article-hacking-fundamentals.dim_1200x675.png",
-      "description": "Article featured image, hacking fundamentals theme, dark tech style",
-      "targetWidth": 1200,
-      "targetHeight": 675
-    },
-    {
-      "filename": "article-research-trends.dim_1200x675.png",
-      "description": "Article featured image, security research trends theme, dark tech style",
-      "targetWidth": 1200,
-      "targetHeight": 675
-    },
-    {
-      "filename": "icon-shield.dim_256x256.png",
-      "description": "Minimal vector-style shield icon, neon/tech style on transparent background",
-      "targetWidth": 256,
-      "targetHeight": 256
-    },
-    {
-      "filename": "icon-lock.dim_256x256.png",
-      "description": "Minimal vector-style lock icon, neon/tech style on transparent background",
-      "targetWidth": 256,
-      "targetHeight": 256
-    },
-    {
-      "filename": "icon-laptop.dim_256x256.png",
-      "description": "Minimal vector-style laptop icon, neon/tech style on transparent background",
-      "targetWidth": 256,
-      "targetHeight": 256
-    },
-    {
-      "filename": "icon-code-brackets.dim_256x256.png",
-      "description": "Minimal vector-style code brackets icon, neon/tech style on transparent background",
-      "targetWidth": 256,
-      "targetHeight": 256
-    },
-    {
-      "filename": "icon-tools.dim_256x256.png",
-      "description": "Minimal vector-style tools icon, neon/tech style on transparent background",
-      "targetWidth": 256,
-      "targetHeight": 256
-    }
-  ],
-  "gameProjectType": "none",
-  "projectName": "Hackroot Organization cybersecurity training website with courses, articles, resources, contact, and certificate verification",
+  "projectName": "Add a new Gallery page with an image grid",
   "clarification_mode": "instant",
   "clarification_rounds": 0
 }

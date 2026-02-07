@@ -5,12 +5,14 @@ import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
 import HomePage from './pages/HomePage';
 import CoursesPage from './pages/CoursesPage';
+import CourseDetailPage from './pages/CourseDetailPage';
 import ArticlesPage from './pages/ArticlesPage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import ResourcesPage from './pages/ResourcesPage';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import CertificateVerificationPage from './pages/CertificateVerificationPage';
+import GalleryPage from './pages/GalleryPage';
 import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import { Toaster } from '@/components/ui/sonner';
@@ -44,6 +46,12 @@ const coursesRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/courses',
   component: CoursesPage,
+});
+
+const courseDetailRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/courses/$courseId',
+  component: CourseDetailPage,
 });
 
 const articlesRoute = createRoute({
@@ -82,6 +90,12 @@ const certificateRoute = createRoute({
   component: CertificateVerificationPage,
 });
 
+const galleryRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/gallery',
+  component: GalleryPage,
+});
+
 const termsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/terms',
@@ -97,12 +111,14 @@ const privacyRoute = createRoute({
 const routeTree = rootRoute.addChildren([
   indexRoute,
   coursesRoute,
+  courseDetailRoute,
   articlesRoute,
   articleDetailRoute,
   resourcesRoute,
   aboutRoute,
   contactRoute,
   certificateRoute,
+  galleryRoute,
   termsRoute,
   privacyRoute,
 ]);

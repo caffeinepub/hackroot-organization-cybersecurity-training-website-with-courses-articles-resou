@@ -9,6 +9,7 @@ export interface Course {
   duration: string;
   image: string;
   icon: typeof Shield;
+  price: number;
 }
 
 export const courses: Course[] = [
@@ -21,6 +22,7 @@ export const courses: Course[] = [
     duration: '8 weeks',
     image: '/assets/generated/course-ethical-hacking.dim_1200x675.png',
     icon: Shield,
+    price: 15999,
   },
   {
     id: 'penetration-testing',
@@ -31,6 +33,7 @@ export const courses: Course[] = [
     duration: '10 weeks',
     image: '/assets/generated/course-penetration-testing.dim_1200x675.png',
     icon: Target,
+    price: 19999,
   },
   {
     id: 'bug-bounty',
@@ -41,6 +44,7 @@ export const courses: Course[] = [
     duration: '6 weeks',
     image: '/assets/generated/course-bug-bounty.dim_1200x675.png',
     icon: Bug,
+    price: 12999,
   },
   {
     id: 'security-research',
@@ -51,6 +55,7 @@ export const courses: Course[] = [
     duration: '12 weeks',
     image: '/assets/generated/course-security-research.dim_1200x675.png',
     icon: Search,
+    price: 24999,
   },
   {
     id: 'certification-prep',
@@ -61,5 +66,6 @@ export const courses: Course[] = [
     duration: '8 weeks',
     image: '/assets/generated/course-cert-prep.dim_1200x675.png',
     icon: Award,
+    price: 17999,
   },
 ];

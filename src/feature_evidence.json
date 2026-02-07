@@ -2,266 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-implement-the-site-wide-navigation-and-routing-with-top-level-pages-home-courses-articles-resources-about-contact-and-certificate-verification-ensure-the-site-title-displays-as-hackroot-organization-cybersecurity-training-resources-and-the-tagline-is-available-on-the-home-page",
-      "featureTitle": "Implement the site-wide navigation and routing with top-level pages: Home, Courses, Articles, Resources, About, Contact, and Certificate Verification. Ensure the site title displays as “Hackroot Organization— Cybersecurity Training & Resources” and the tagline is available on the Home page.",
+      "featureId": "feature-ensure-the-courses-page-enroll-now-action-always-navigates-to-the-selected-course-s-full-detail-view-at-courses-courseid-and-that-the-detail-view-displays-the-course-price-formatted-in-indian-rupees-inr",
+      "featureTitle": "Ensure the Courses page \"Enroll Now\" action always navigates to the selected course’s full detail view at /courses/$courseId and that the detail view displays the course price formatted in Indian Rupees (INR).",
       "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/components/SiteHeader.tsx",
-        "frontend/src/pages/AboutPage.tsx",
-        "frontend/src/pages/ArticlesPage.tsx",
-        "frontend/src/pages/CertificateVerificationPage.tsx",
-        "frontend/src/pages/ContactPage.tsx",
-        "frontend/src/pages/CoursesPage.tsx",
-        "frontend/src/pages/HomePage.tsx",
-        "frontend/src/pages/ResourcesPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-1"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-build-the-home-page-hero-section-with-the-provided-headline-and-subheadline-and-two-primary-cta-buttons-labeled-explore-courses-routes-to-courses-and-read-articles-routes-to-articles-use-a-dark-tech-grid-circuit-board-style-background-with-animated-code-line-accents",
-      "featureTitle": "Build the Home page hero section with the provided headline and subheadline, and two primary CTA buttons labeled “Explore Courses” (routes to Courses) and “Read Articles” (routes to Articles). Use a dark tech grid/circuit-board style background with animated code-line accents.",
-      "files": [
-        "frontend/src/components/HeroCodeLines.tsx",
-        "frontend/src/index.css",
-        "frontend/src/pages/HomePage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-2"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-create-a-featured-courses-section-on-the-home-page-showcasing-these-programs-ethical-hacking-penetration-testing-bug-bounty-hunting-security-research-certification-prep-each-item-must-include-a-title-and-short-description-and-the-section-must-include-a-view-all-courses-button-that-routes-to-the-courses-page",
-      "featureTitle": "Create a Featured Courses section on the Home page showcasing these programs: Ethical Hacking, Penetration Testing, Bug Bounty Hunting, Security Research, Certification Prep. Each item must include a title and short description, and the section must include a “View All Courses” button that routes to the Courses page.",
-      "files": [
-        "frontend/src/data/courses.ts",
-        "frontend/src/pages/HomePage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-3"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-meet-the-founder-section-on-the-home-page-for-name-almadad-ali-role-cybersecurity-expert-educator-and-the-provided-description-include-a-circular-portrait-image-and-a-short-bio-layout-consistent-with-the-site-theme",
-      "featureTitle": "Add a “Meet the Founder” section on the Home page for: Name “Almadad Ali”, Role “Cybersecurity Expert & Educator”, and the provided description. Include a circular portrait image and a short bio layout consistent with the site theme.",
-      "files": [
-        "frontend/src/pages/HomePage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-4"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-home-page-section-titled-free-ethical-hacking-toolkit-that-introduces-categories-reconnaissance-tools-scanners-exploitation-utilities-cryptography-tools-include-a-cta-labeled-explore-toolkit-that-routes-to-the-resources-page-and-display-the-legal-note-tools-are-for-educational-and-authorized-testing-only",
-      "featureTitle": "Add a Home page section titled “Free Ethical Hacking Toolkit” that introduces categories: Reconnaissance Tools, Scanners, Exploitation Utilities, Cryptography Tools. Include a CTA labeled “Explore Toolkit” that routes to the Resources page and display the legal note: “Tools are for educational and authorized testing only.”",
-      "files": [
-        "frontend/src/pages/HomePage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-5"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-the-courses-page-as-a-cards-grid-layout-listing-training-modules-each-course-card-must-show-title-description-skill-level-beginner-to-advanced-duration-and-an-enroll-button-populate-the-page-with-initial-content-that-includes-at-minimum-the-five-featured-course-topics-from-the-home-page",
-      "featureTitle": "Implement the Courses page as a cards/grid layout listing training modules. Each course card must show: Title, Description, Skill level (Beginner to Advanced), Duration, and an “Enroll” button. Populate the page with initial content that includes (at minimum) the five featured course topics from the Home page.",
-      "files": [
-        "frontend/src/data/courses.ts",
+        "frontend/src/pages/CourseDetailPage.tsx",
         "frontend/src/pages/CoursesPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-6"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-the-articles-page-in-a-blog-format-each-article-entry-must-display-a-featured-image-headline-short-preview-text-and-a-read-more-cta-include-initial-article-topics-covering-cybersecurity-tips-hacking-fundamentals-and-security-research-trends",
-      "featureTitle": "Implement the Articles page in a blog format. Each article entry must display a featured image, headline, short preview text, and a “Read More” CTA. Include initial article topics covering: cybersecurity tips, hacking fundamentals, and security research trends.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/data/articles.ts",
-        "frontend/src/pages/ArticleDetailPage.tsx",
-        "frontend/src/pages/ArticlesPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-7"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-the-resources-page-highlighting-toolkits-cheat-sheets-security-utilities-and-external-learning-resources-use-icons-graphics-to-visually-differentiate-each-category-and-provide-clear-structure-for-learners",
-      "featureTitle": "Implement the Resources page highlighting: Toolkits, Cheat sheets, Security utilities, and External learning resources. Use icons/graphics to visually differentiate each category and provide clear structure for learners.",
-      "files": [
-        "frontend/src/pages/ResourcesPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-8"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-the-about-page-with-mission-statement-and-vision-empower-learners-to-become-cybersecurity-professionals-through-practical-training-and-community-support-include-sections-for-company-story-vision-values-founder-s-expertise-and-an-optional-testimonials-section-can-be-present-with-placeholder-testimonials",
-      "featureTitle": "Implement the About page with mission statement and vision: “Empower learners to become cybersecurity professionals through practical training and community support.” Include sections for company story, vision & values, founder’s expertise, and an optional testimonials section (can be present with placeholder testimonials).",
-      "files": [
-        "frontend/src/pages/AboutPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-9"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-the-contact-page-with-an-inquiry-form-name-email-subject-message-display-the-email-address-support-contact-example-com-and-include-social-links-style-the-form-with-secure-tech-themed-input-visuals-and-clear-validation-states",
-      "featureTitle": "Implement the Contact page with an inquiry form (name, email, subject, message), display the email address “support/contact@example.com”, and include social links. Style the form with secure/tech-themed input visuals and clear validation states.",
-      "files": [
-        "frontend/src/lib/validation.ts",
-        "frontend/src/pages/ContactPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-10"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-implement-the-certificate-verification-page-with-a-verification-form-e-g-certificate-id-code-input-that-checks-validity-and-displays-a-clear-result-state-valid-invalid-provide-a-minimal-backend-data-model-for-certificates-and-a-backend-query-method-to-verify-a-certificate-by-its-id-code",
-      "featureTitle": "Implement the Certificate Verification page with a verification form (e.g., certificate ID/code input) that checks validity and displays a clear result state (Valid/Invalid). Provide a minimal backend data model for certificates and a backend query method to verify a certificate by its ID/code.",
-      "files": [
-        "frontend/src/pages/CertificateVerificationPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-11"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-add-a-global-footer-including-quick-links-home-courses-articles-resources-about-contact-social-media-icons-youtube-instagram-linkedin-telegram-twitter-terms-conditions-link-privacy-policy-link-and-copyright-text-copyright-year-cybermindspace",
-      "featureTitle": "Add a global footer including: quick links (Home, Courses, Articles, Resources, About, Contact), social media icons (YouTube, Instagram, LinkedIn, Telegram, Twitter), Terms & Conditions link, Privacy Policy link, and copyright text “Copyright © Year CyberMindspace”.",
-      "files": [
-        "frontend/src/App.tsx",
-        "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/pages/PrivacyPage.tsx",
-        "frontend/src/pages/TermsPage.tsx"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-12"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-apply-a-consistent-modern-cybersecurity-visual-theme-across-the-entire-site-using-the-specified-palette-primary-0a1a2f-accent-1f51ff-highlight-00ffab-light-gray-white-text-tech-textures-patterns-matrix-circuit-security-code-visual-motifs-lock-shield-terminal-code-brackets-tools-and-subtle-hover-animations-for-buttons-and-cards",
-      "featureTitle": "Apply a consistent, modern cybersecurity visual theme across the entire site using the specified palette (Primary #0A1A2F, Accent #1F51FF, Highlight #00FFAB, light gray/white text), tech textures/patterns (matrix/circuit), security/code visual motifs (lock/shield/terminal/code brackets/tools), and subtle hover animations for buttons and cards.",
-      "files": [
-        "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/components/SiteHeader.tsx",
-        "frontend/src/index.css"
-      ],
-      "components": [
-        "core-infrastructure@1.0.2",
-        "shadcn-ui@1.0.0",
-        "build-template-react@1.0.0",
-        "initial-app@1.0.0",
-        "github-export-icp-cli@1.0.0"
-      ],
-      "testIds": [
-        "REQ-13"
-      ],
-      "confidence": "high"
-    },
-    {
-      "featureId": "feature-set-global-seo-metadata-using-seo-title-cybersecurity-courses-ethical-hacking-training-cybermindspace-meta-description-join-cybermindspace-for-hands-on-cybersecurity-training-ethical-hacking-courses-real-world-tools-and-expert-resources-learn-practice-and-advance-your-cyber-skills-and-keywords-cybersecurity-training-ethical-hacking-courses-penetration-testing-cybersecurity-resources-security-toolkit",
-      "featureTitle": "Set global SEO metadata using: SEO Title “Cybersecurity Courses & Ethical Hacking Training | CyberMindspace”, Meta Description “Join CyberMindspace for hands-on cybersecurity training, ethical hacking courses, real-world tools, and expert resources. Learn, practice, and advance your cyber skills.”, and Keywords “cybersecurity training, ethical hacking courses, penetration testing, cybersecurity resources, security toolkit”.",
-      "files": [
-        "frontend/index.html"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -276,11 +21,11 @@
       "confidence": "high"
     },
     {
-      "featureId": "feature-add-generated-static-image-assets-required-by-the-design-hero-background-founder-portrait-placeholder-course-article-thumbnails-and-simple-security-tool-icons-and-render-them-from-frontend-static-assets-at-frontend-public-assets-generated",
-      "featureTitle": "Add generated static image assets required by the design (hero background, founder portrait placeholder, course/article thumbnails, and simple security/tool icons) and render them from frontend static assets at `frontend/public/assets/generated`.",
+      "featureId": "feature-update-the-course-detail-page-layout-to-be-fully-responsive-with-a-medium-density-reading-experience-and-ensure-the-full-course-description-is-always-visible-no-truncation-clamping-or-hidden-overflow",
+      "featureTitle": "Update the Course Detail page layout to be fully responsive with a medium-density reading experience and ensure the full course description is always visible (no truncation/clamping or hidden overflow).",
       "files": [
-        "frontend/src/pages/ArticlesPage.tsx",
-        "frontend/src/pages/CoursesPage.tsx"
+        "frontend/src/index.css",
+        "frontend/src/pages/CourseDetailPage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -291,6 +36,25 @@
       ],
       "testIds": [
         "REQ-15"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-course-description-shown-on-the-courses-page-cards-is-not-visually-hidden-truncated-and-remains-readable-across-responsive-breakpoints",
+      "featureTitle": "Ensure the course description shown on the Courses page cards is not visually hidden/truncated and remains readable across responsive breakpoints.",
+      "files": [
+        "frontend/src/index.css",
+        "frontend/src/pages/CoursesPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-16"
       ],
       "confidence": "high"
     }

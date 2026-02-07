@@ -1,5 +1,5 @@
 import { Link, useNavigate } from '@tanstack/react-router';
-import { Shield, Menu, X } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
 
@@ -11,6 +11,7 @@ export default function SiteHeader() {
     { label: 'Home', path: '/' },
     { label: 'Courses', path: '/courses' },
     { label: 'Articles', path: '/articles' },
+    { label: 'Gallery', path: '/gallery' },
     { label: 'Resources', path: '/resources' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
@@ -21,7 +22,11 @@ export default function SiteHeader() {
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
         <Link to="/" className="flex items-center gap-2 transition-opacity hover:opacity-80">
-          <Shield className="h-7 w-7 text-cyber-accent" />
+          <img 
+            src="/assets/logo.dim_256x256.png" 
+            alt="Hackroot Organization logo" 
+            className="h-8 w-8 object-contain"
+          />
           <div className="flex flex-col">
             <span className="text-lg font-bold leading-none tracking-tight text-foreground">
               Hackroot Organization

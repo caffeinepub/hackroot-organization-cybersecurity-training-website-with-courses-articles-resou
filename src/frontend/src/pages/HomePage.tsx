@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { ArrowRight, Shield, Lock, Laptop, Code, Wrench, AlertTriangle } from 'lucide-react';
 import HeroCodeLines from '@/components/HeroCodeLines';
+import TextImageCarousel, { CarouselSlide } from '@/components/TextImageCarousel';
 import { courses } from '@/data/courses';
 
 export default function HomePage() {
@@ -15,6 +16,30 @@ export default function HomePage() {
     { icon: Laptop, title: 'Scanners', description: 'Vulnerability detection and assessment' },
     { icon: Wrench, title: 'Exploitation Utilities', description: 'Penetration testing frameworks' },
     { icon: Lock, title: 'Cryptography Tools', description: 'Encryption and decryption utilities' },
+  ];
+
+  const carouselSlides: CarouselSlide[] = [
+    {
+      id: 'slide-1',
+      image: '/assets/generated/course-ethical-hacking.dim_1200x675.png',
+      alt: 'Ethical Hacking Course - Learn penetration testing fundamentals',
+      heading: 'Master Ethical Hacking',
+      description: 'Learn the fundamentals of ethical hacking and penetration testing. Gain hands-on experience with real-world scenarios and industry-standard tools.',
+    },
+    {
+      id: 'slide-2',
+      image: '/assets/generated/course-penetration-testing.dim_1200x675.png',
+      alt: 'Penetration Testing Course - Advanced security assessment techniques',
+      heading: 'Advanced Penetration Testing',
+      description: 'Dive deep into advanced penetration testing methodologies. Master vulnerability assessment, exploitation techniques, and security reporting.',
+    },
+    {
+      id: 'slide-3',
+      image: '/assets/generated/hero-bg.dim_1920x1080.png',
+      alt: 'Cybersecurity Training Platform - Professional development',
+      heading: 'Professional Cybersecurity Training',
+      description: 'Join thousands of students worldwide in our comprehensive cybersecurity training programs. Build your career with industry-recognized certifications.',
+    },
   ];
 
   return (
@@ -56,6 +81,20 @@ export default function HomePage() {
         </div>
 
         <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-cyber-accent to-transparent" />
+      </section>
+
+      {/* Carousel Section */}
+      <section className="container py-16 md:py-24">
+        <div className="mb-12 text-center">
+          <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground md:text-4xl">
+            Discover Our Training Programs
+          </h2>
+          <p className="text-lg text-muted-foreground">
+            Explore our comprehensive cybersecurity courses and training materials
+          </p>
+        </div>
+
+        <TextImageCarousel slides={carouselSlides} />
       </section>
 
       {/* Featured Courses */}

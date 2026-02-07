@@ -1,383 +1,65 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-04T15:04:26.173Z",
+  "generatedAt": "2026-02-07T04:59:10.828Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 15,
-    "implemented": 15,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-1",
-        "summary": "Implement the site-wide navigation and routing with top-level pages: Home, Courses, Articles, Resources, About, Contact, and Certificate Verification. Ensure the site title displays as “Hackroot Organization— Cybersecurity Training & Resources” and the tagline is available on the Home page.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/pages/ArticlesPage.tsx",
-          "frontend/src/pages/ResourcesPage.tsx",
-          "frontend/src/pages/AboutPage.tsx",
-          "frontend/src/pages/ContactPage.tsx",
-          "frontend/src/pages/CertificateVerificationPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/App.tsx",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/pages/ArticlesPage.tsx",
-          "frontend/src/pages/ResourcesPage.tsx",
-          "frontend/src/pages/AboutPage.tsx",
-          "frontend/src/pages/ContactPage.tsx",
-          "frontend/src/pages/CertificateVerificationPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-10",
-        "summary": "Implement the Contact page with an inquiry form (name, email, subject, message), display the email address “support/contact@example.com”, and include social links. Style the form with secure/tech-themed input visuals and clear validation states.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/ContactPage.tsx",
-          "frontend/src/lib/validation.ts"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/ContactPage.tsx",
-          "frontend/src/lib/validation.ts"
-        ]
-      },
-      {
-        "id": "REQ-11",
-        "summary": "Implement the Certificate Verification page with a verification form (e.g., certificate ID/code input) that checks validity and displays a clear result state (Valid/Invalid). Provide a minimal backend data model for certificates and a backend query method to verify a certificate by its ID/code.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/CertificateVerificationPage.tsx",
-          "frontend/src/lib/certificates.ts"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/CertificateVerificationPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-12",
-        "summary": "Add a global footer including: quick links (Home, Courses, Articles, Resources, About, Contact), social media icons (YouTube, Instagram, LinkedIn, Telegram, Twitter), Terms & Conditions link, Privacy Policy link, and copyright text “Copyright © Year CyberMindspace”.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/TermsPage.tsx",
-          "frontend/src/pages/PrivacyPage.tsx",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/TermsPage.tsx",
-          "frontend/src/pages/PrivacyPage.tsx",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-13",
-        "summary": "Apply a consistent, modern cybersecurity visual theme across the entire site using the specified palette (Primary #0A1A2F, Accent #1F51FF, Highlight #00FFAB, light gray/white text), tech textures/patterns (matrix/circuit), security/code visual motifs (lock/shield/terminal/code brackets/tools), and subtle hover animations for buttons and cards.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/index.css",
-          "frontend/src/components/SiteHeader.tsx",
-          "frontend/src/components/SiteFooter.tsx"
-        ]
-      },
-      {
         "id": "REQ-14",
-        "summary": "Set global SEO metadata using: SEO Title “Cybersecurity Courses & Ethical Hacking Training | CyberMindspace”, Meta Description “Join CyberMindspace for hands-on cybersecurity training, ethical hacking courses, real-world tools, and expert resources. Learn, practice, and advance your cyber skills.”, and Keywords “cybersecurity training, ethical hacking courses, penetration testing, cybersecurity resources, security toolkit”.",
+        "summary": "Ensure the Courses page \"Enroll Now\" action always navigates to the selected course’s full detail view at /courses/$courseId and that the detail view displays the course price formatted in Indian Rupees (INR).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/index.html"
+          "frontend/src/pages/CoursesPage.tsx",
+          "frontend/src/pages/CourseDetailPage.tsx",
+          "frontend/src/lib/currency.ts"
         ],
         "matchedFiles": [
-          "frontend/index.html"
+          "frontend/src/pages/CoursesPage.tsx",
+          "frontend/src/pages/CourseDetailPage.tsx"
         ]
       },
       {
         "id": "REQ-15",
-        "summary": "Add generated static image assets required by the design (hero background, founder portrait placeholder, course/article thumbnails, and simple security/tool icons) and render them from frontend static assets at `frontend/public/assets/generated`.",
+        "summary": "Update the Course Detail page layout to be fully responsive with a medium-density reading experience and ensure the full course description is always visible (no truncation/clamping or hidden overflow).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/public/assets/generated/hero-bg.dim_1920x1080.png",
-          "frontend/public/assets/generated/founder-portrait.dim_800x800.png",
-          "frontend/public/assets/generated/course-ethical-hacking.dim_1200x675.png",
-          "frontend/public/assets/generated/course-penetration-testing.dim_1200x675.png",
-          "frontend/public/assets/generated/course-bug-bounty.dim_1200x675.png",
-          "frontend/public/assets/generated/course-security-research.dim_1200x675.png",
-          "frontend/public/assets/generated/course-cert-prep.dim_1200x675.png",
-          "frontend/public/assets/generated/article-cyber-tips.dim_1200x675.png",
-          "frontend/public/assets/generated/article-hacking-fundamentals.dim_1200x675.png",
-          "frontend/public/assets/generated/article-research-trends.dim_1200x675.png",
-          "frontend/public/assets/generated/icon-shield.dim_256x256.png",
-          "frontend/public/assets/generated/icon-lock.dim_256x256.png",
-          "frontend/public/assets/generated/icon-laptop.dim_256x256.png",
-          "frontend/public/assets/generated/icon-code-brackets.dim_256x256.png",
-          "frontend/public/assets/generated/icon-tools.dim_256x256.png",
-          "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/pages/ArticlesPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/public/assets/generated/hero-bg.dim_1920x1080.png",
-          "frontend/public/assets/generated/founder-portrait.dim_800x800.png",
-          "frontend/public/assets/generated/course-ethical-hacking.dim_1200x675.png",
-          "frontend/public/assets/generated/course-penetration-testing.dim_1200x675.png",
-          "frontend/public/assets/generated/course-bug-bounty.dim_1200x675.png",
-          "frontend/public/assets/generated/course-security-research.dim_1200x675.png",
-          "frontend/public/assets/generated/course-cert-prep.dim_1200x675.png",
-          "frontend/public/assets/generated/article-cyber-tips.dim_1200x675.png",
-          "frontend/public/assets/generated/article-hacking-fundamentals.dim_1200x675.png",
-          "frontend/public/assets/generated/article-research-trends.dim_1200x675.png",
-          "frontend/public/assets/generated/icon-shield.dim_256x256.png",
-          "frontend/public/assets/generated/icon-lock.dim_256x256.png",
-          "frontend/public/assets/generated/icon-laptop.dim_256x256.png",
-          "frontend/public/assets/generated/icon-code-brackets.dim_256x256.png",
-          "frontend/public/assets/generated/icon-tools.dim_256x256.png",
-          "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/pages/ArticlesPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-2",
-        "summary": "Build the Home page hero section with the provided headline and subheadline, and two primary CTA buttons labeled “Explore Courses” (routes to Courses) and “Read Articles” (routes to Articles). Use a dark tech grid/circuit-board style background with animated code-line accents.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/components/HeroCodeLines.tsx",
+          "frontend/src/pages/CourseDetailPage.tsx",
           "frontend/src/index.css"
         ],
         "matchedFiles": [
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/components/HeroCodeLines.tsx",
+          "frontend/src/pages/CourseDetailPage.tsx",
           "frontend/src/index.css"
         ]
       },
       {
-        "id": "REQ-3",
-        "summary": "Create a Featured Courses section on the Home page showcasing these programs: Ethical Hacking, Penetration Testing, Bug Bounty Hunting, Security Research, Certification Prep. Each item must include a title and short description, and the section must include a “View All Courses” button that routes to the Courses page.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/data/courses.ts"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/HomePage.tsx",
-          "frontend/src/data/courses.ts"
-        ]
-      },
-      {
-        "id": "REQ-4",
-        "summary": "Add a “Meet the Founder” section on the Home page for: Name “Almadad Ali”, Role “Cybersecurity Expert & Educator”, and the provided description. Include a circular portrait image and a short bio layout consistent with the site theme.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/HomePage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/HomePage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-5",
-        "summary": "Add a Home page section titled “Free Ethical Hacking Toolkit” that introduces categories: Reconnaissance Tools, Scanners, Exploitation Utilities, Cryptography Tools. Include a CTA labeled “Explore Toolkit” that routes to the Resources page and display the legal note: “Tools are for educational and authorized testing only.”",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/HomePage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/HomePage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-6",
-        "summary": "Implement the Courses page as a cards/grid layout listing training modules. Each course card must show: Title, Description, Skill level (Beginner to Advanced), Duration, and an “Enroll” button. Populate the page with initial content that includes (at minimum) the five featured course topics from the Home page.",
+        "id": "REQ-16",
+        "summary": "Ensure the course description shown on the Courses page cards is not visually hidden/truncated and remains readable across responsive breakpoints.",
         "status": "implemented",
         "plannedFiles": [
           "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/data/courses.ts"
+          "frontend/src/index.css"
         ],
         "matchedFiles": [
           "frontend/src/pages/CoursesPage.tsx",
-          "frontend/src/data/courses.ts"
-        ]
-      },
-      {
-        "id": "REQ-7",
-        "summary": "Implement the Articles page in a blog format. Each article entry must display a featured image, headline, short preview text, and a “Read More” CTA. Include initial article topics covering: cybersecurity tips, hacking fundamentals, and security research trends.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/ArticlesPage.tsx",
-          "frontend/src/pages/ArticleDetailPage.tsx",
-          "frontend/src/data/articles.ts",
-          "frontend/src/App.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/ArticlesPage.tsx",
-          "frontend/src/pages/ArticleDetailPage.tsx",
-          "frontend/src/data/articles.ts",
-          "frontend/src/App.tsx"
-        ]
-      },
-      {
-        "id": "REQ-8",
-        "summary": "Implement the Resources page highlighting: Toolkits, Cheat sheets, Security utilities, and External learning resources. Use icons/graphics to visually differentiate each category and provide clear structure for learners.",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/ResourcesPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/ResourcesPage.tsx"
-        ]
-      },
-      {
-        "id": "REQ-9",
-        "summary": "Implement the About page with mission statement and vision: “Empower learners to become cybersecurity professionals through practical training and community support.” Include sections for company story, vision & values, founder’s expertise, and an optional testimonials section (can be present with placeholder testimonials).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/src/pages/AboutPage.tsx"
-        ],
-        "matchedFiles": [
-          "frontend/src/pages/AboutPage.tsx"
+          "frontend/src/index.css"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
     "build-request.json",
-    "build-template/Dockerfile",
-    "build-template/LICENSE",
-    "build-template/README.md",
-    "build-template/deploy.sh",
-    "build-template/icp.yaml",
-    "build-template/package.json",
-    "build-template/pnpm-lock.yaml",
-    "build-template/pnpm-workspace.yaml",
-    "build-template/scripts/prune-unused-images.js",
-    "build-template/scripts/resize-images.js",
-    "build-template/src/backend/canister.yaml",
-    "build-template/src/backend/system-idl/aaaaa-aa.did",
-    "build-template/src/frontend/canister.yaml",
-    "build-template/src/frontend/components.json",
-    "build-template/src/frontend/env.json",
-    "build-template/src/frontend/eslint-rules/no-bigint-in-query-keys.js",
-    "build-template/src/frontend/eslint-rules/require-internet-identity-provider.js",
-    "build-template/src/frontend/eslint.config.js",
-    "build-template/src/frontend/package.json",
-    "build-template/src/frontend/postcss.config.js",
-    "build-template/src/frontend/src/components/ui/accordion.tsx",
-    "build-template/src/frontend/src/components/ui/alert-dialog.tsx",
-    "build-template/src/frontend/src/components/ui/alert.tsx",
-    "build-template/src/frontend/src/components/ui/aspect-ratio.tsx",
-    "build-template/src/frontend/src/components/ui/avatar.tsx",
-    "build-template/src/frontend/src/components/ui/badge.tsx",
-    "build-template/src/frontend/src/components/ui/breadcrumb.tsx",
-    "build-template/src/frontend/src/components/ui/button.tsx",
-    "build-template/src/frontend/src/components/ui/calendar.tsx",
-    "build-template/src/frontend/src/components/ui/card.tsx",
-    "build-template/src/frontend/src/components/ui/carousel.tsx",
-    "build-template/src/frontend/src/components/ui/chart.tsx",
-    "build-template/src/frontend/src/components/ui/checkbox.tsx",
-    "build-template/src/frontend/src/components/ui/collapsible.tsx",
-    "build-template/src/frontend/src/components/ui/command.tsx",
-    "build-template/src/frontend/src/components/ui/context-menu.tsx",
-    "build-template/src/frontend/src/components/ui/dialog.tsx",
-    "build-template/src/frontend/src/components/ui/drawer.tsx",
-    "build-template/src/frontend/src/components/ui/dropdown-menu.tsx",
-    "build-template/src/frontend/src/components/ui/form.tsx",
-    "build-template/src/frontend/src/components/ui/hover-card.tsx",
-    "build-template/src/frontend/src/components/ui/input-otp.tsx",
-    "build-template/src/frontend/src/components/ui/input.tsx",
-    "build-template/src/frontend/src/components/ui/label.tsx",
-    "build-template/src/frontend/src/components/ui/menubar.tsx",
-    "build-template/src/frontend/src/components/ui/navigation-menu.tsx",
-    "build-template/src/frontend/src/components/ui/pagination.tsx",
-    "build-template/src/frontend/src/components/ui/popover.tsx",
-    "build-template/src/frontend/src/components/ui/progress.tsx",
-    "build-template/src/frontend/src/components/ui/radio-group.tsx",
-    "build-template/src/frontend/src/components/ui/resizable.tsx",
-    "build-template/src/frontend/src/components/ui/scroll-area.tsx",
-    "build-template/src/frontend/src/components/ui/select.tsx",
-    "build-template/src/frontend/src/components/ui/separator.tsx",
-    "build-template/src/frontend/src/components/ui/sheet.tsx",
-    "build-template/src/frontend/src/components/ui/sidebar.tsx",
-    "build-template/src/frontend/src/components/ui/skeleton.tsx",
-    "build-template/src/frontend/src/components/ui/slider.tsx",
-    "build-template/src/frontend/src/components/ui/sonner.tsx",
-    "build-template/src/frontend/src/components/ui/switch.tsx",
-    "build-template/src/frontend/src/components/ui/table.tsx",
-    "build-template/src/frontend/src/components/ui/tabs.tsx",
-    "build-template/src/frontend/src/components/ui/textarea.tsx",
-    "build-template/src/frontend/src/components/ui/toggle-group.tsx",
-    "build-template/src/frontend/src/components/ui/toggle.tsx",
-    "build-template/src/frontend/src/components/ui/tooltip.tsx",
-    "build-template/src/frontend/src/hooks/use-mobile.tsx",
-    "build-template/src/frontend/src/lib/utils.ts",
-    "build-template/src/frontend/tsconfig.json",
-    "build-template/src/frontend/vite.config.js",
-    "build-template/tsconfig.json",
-    "caffeine.lock.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/index.css",
-    "frontend/index.html",
-    "frontend/public/assets/generated/article-cyber-tips.dim_1200x675.png",
-    "frontend/public/assets/generated/article-hacking-fundamentals.dim_1200x675.png",
-    "frontend/public/assets/generated/article-research-trends.dim_1200x675.png",
-    "frontend/public/assets/generated/course-bug-bounty.dim_1200x675.png",
-    "frontend/public/assets/generated/course-cert-prep.dim_1200x675.png",
-    "frontend/public/assets/generated/course-ethical-hacking.dim_1200x675.png",
-    "frontend/public/assets/generated/course-penetration-testing.dim_1200x675.png",
-    "frontend/public/assets/generated/course-security-research.dim_1200x675.png",
-    "frontend/public/assets/generated/founder-portrait.dim_800x800.png",
-    "frontend/public/assets/generated/hero-bg.dim_1920x1080.png",
-    "frontend/public/assets/generated/icon-code-brackets.dim_256x256.png",
-    "frontend/public/assets/generated/icon-laptop.dim_256x256.png",
-    "frontend/public/assets/generated/icon-lock.dim_256x256.png",
-    "frontend/public/assets/generated/icon-shield.dim_256x256.png",
-    "frontend/public/assets/generated/icon-tools.dim_256x256.png",
-    "frontend/src/App.tsx",
-    "frontend/src/backend.d.ts",
-    "frontend/src/backend.ts",
-    "frontend/src/components/HeroCodeLines.tsx",
-    "frontend/src/components/SiteFooter.tsx",
-    "frontend/src/components/SiteHeader.tsx",
-    "frontend/src/config.ts",
-    "frontend/src/data/articles.ts",
-    "frontend/src/data/courses.ts",
-    "frontend/src/declarations/backend.did.d.ts",
-    "frontend/src/declarations/backend.did.js",
-    "frontend/src/hooks/useActor.ts",
-    "frontend/src/hooks/useInternetIdentity.ts",
     "frontend/src/index.css",
-    "frontend/src/lib/validation.ts",
-    "frontend/src/main.tsx",
-    "frontend/src/pages/AboutPage.tsx",
-    "frontend/src/pages/ArticleDetailPage.tsx",
-    "frontend/src/pages/ArticlesPage.tsx",
-    "frontend/src/pages/CertificateVerificationPage.tsx",
-    "frontend/src/pages/ContactPage.tsx",
+    "frontend/src/pages/CourseDetailPage.tsx",
     "frontend/src/pages/CoursesPage.tsx",
-    "frontend/src/pages/HomePage.tsx",
-    "frontend/src/pages/PrivacyPage.tsx",
-    "frontend/src/pages/ResourcesPage.tsx",
-    "frontend/src/pages/TermsPage.tsx",
-    "frontend/src/ui-summary.json",
-    "frontend/src/utils/StorageClient.ts",
-    "frontend/tailwind.config.js",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

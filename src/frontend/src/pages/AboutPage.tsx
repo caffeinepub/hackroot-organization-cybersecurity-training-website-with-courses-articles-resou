@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Shield, Target, Users, Award } from 'lucide-react';
+import TextImageCarousel, { CarouselSlide } from '@/components/TextImageCarousel';
 
 export default function AboutPage() {
   const values = [
@@ -43,6 +44,30 @@ export default function AboutPage() {
     },
   ];
 
+  const carouselSlides: CarouselSlide[] = [
+    {
+      id: 'about-slide-1',
+      image: '/assets/generated/founder-portrait.dim_800x800.png',
+      alt: 'Almadad Ali - Founder of Hackroot Organization',
+      heading: 'Meet Our Founder',
+      description: 'Almadad Ali brings over a decade of cybersecurity expertise, specializing in ethical hacking and penetration testing. His passion for education drives our mission to make quality training accessible to everyone.',
+    },
+    {
+      id: 'about-slide-2',
+      image: '/assets/generated/article-cyber-tips.dim_1200x675.png',
+      alt: 'Cybersecurity best practices and tips',
+      heading: 'Our Mission',
+      description: 'We empower learners to become cybersecurity professionals through practical training, real-world scenarios, and a supportive community. Our commitment to ethical practices shapes every aspect of our curriculum.',
+    },
+    {
+      id: 'about-slide-3',
+      image: '/assets/generated/article-research-trends.dim_1200x675.png',
+      alt: 'Security research and industry trends',
+      heading: 'Cutting-Edge Curriculum',
+      description: 'Stay ahead with our constantly updated courses covering the latest security research, industry trends, and emerging threats. We prepare you for real-world challenges in the ever-evolving cybersecurity landscape.',
+    },
+  ];
+
   return (
     <div className="container py-12 md:py-16">
       {/* Mission Section */}
@@ -54,6 +79,11 @@ export default function AboutPage() {
           Empower learners to become cybersecurity professionals through practical training and community support.
         </p>
       </div>
+
+      {/* Carousel Section */}
+      <section className="mb-16">
+        <TextImageCarousel slides={carouselSlides} />
+      </section>
 
       {/* Story Section */}
       <section className="mb-16">

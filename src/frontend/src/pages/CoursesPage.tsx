@@ -1,10 +1,14 @@
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Clock, BarChart } from 'lucide-react';
 import { courses } from '@/data/courses';
+import { formatINR } from '@/lib/currency';
+import { useNavigate } from '@tanstack/react-router';
 
 export default function CoursesPage() {
+  const navigate = useNavigate();
+
   return (
     <div className="container py-12 md:py-16">
       <div className="mb-12 text-center">
@@ -33,7 +37,9 @@ export default function CoursesPage() {
                 </Badge>
               </div>
               <CardTitle className="text-xl">{course.title}</CardTitle>
-              <CardDescription>{course.description}</CardDescription>
+              <p className="mt-2 text-sm text-muted-foreground leading-relaxed whitespace-normal">
+                {course.description}
+              </p>
             </CardHeader>
             <CardContent className="mt-auto">
               <div className="mb-4 flex items-center gap-4 text-sm text-muted-foreground">
@@ -46,7 +52,15 @@ export default function CoursesPage() {
                   <span>{course.level}</span>
                 </div>
               </div>
-              <Button className="cyber-button w-full">Enroll Now</Button>
+              <div className="mb-4 text-2xl font-bold text-cyber-accent">
+                {formatINR(course.price)}
+              </div>
+              <Button 
+                className="cyber-button w-full"
+                onClick={() => navigate({ to: '/courses/$courseId', params: { courseId: course.id } })}
+              >
+                Enroll Now
+              </Button>
             </CardContent>
           </Card>
         ))}

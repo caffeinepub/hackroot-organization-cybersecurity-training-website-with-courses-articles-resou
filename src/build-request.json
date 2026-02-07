@@ -1,318 +1,84 @@
 {
   "kind": "build_request",
-  "title": "Hackroot Organization cybersecurity training website with courses, articles, resources, contact, and certificate verification",
+  "title": "Ensure course details open from Enroll Now and show full description with INR price in a responsive medium layout",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-1",
-      "text": "Implement the site-wide navigation and routing with top-level pages: Home, Courses, Articles, Resources, About, Contact, and Certificate Verification. Ensure the site title displays as “Hackroot Organization— Cybersecurity Training & Resources” and the tagline is available on the Home page.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Website Structure & Navigation\n\nHome\n\nCourses\n\nArticles\n\nResources\n\nAbout\n\nContact\n\nCertificate Verification",
-          "Site Title:\nHackroot Organization— Cybersecurity Training & Resources\n\nTagline / Slogan:\nUnlock the future of digital security with real-world cybersecurity training, ethical hacking, and expert tools."
-        ]
-      },
-      "acceptanceCriteria": [
-        "A persistent header/nav provides links to all listed pages",
-        "Each nav link routes to a distinct page without reload",
-        "The Home page visibly includes the provided title and tagline text"
-      ]
-    },
-    {
-      "id": "REQ-2",
-      "text": "Build the Home page hero section with the provided headline and subheadline, and two primary CTA buttons labeled “Explore Courses” (routes to Courses) and “Read Articles” (routes to Articles). Use a dark tech grid/circuit-board style background with animated code-line accents.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Homepage Hero Section\n\nHeadline:\nSecure Your Digital Future — Learn Ethical Hacking & Cybersecurity\n\nSubheadline:\nHands-on training, real-world scenarios, expert community, and certification prep for cybersecurity professionals.\n\nPrimary CTA Buttons:\n➡️ Explore Courses\n➡️ Read Articles\n\nBackground Style:\nDark tech grid / circuit board imagery with animated code lines."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Hero displays the exact headline and subheadline text",
-        "CTA buttons are prominent, accessible, and navigate to the correct pages",
-        "Hero background is dark, tech-themed, and includes subtle animation (non-distracting)"
-      ]
-    },
-    {
-      "id": "REQ-3",
-      "text": "Create a Featured Courses section on the Home page showcasing these programs: Ethical Hacking, Penetration Testing, Bug Bounty Hunting, Security Research, Certification Prep. Each item must include a title and short description, and the section must include a “View All Courses” button that routes to the Courses page.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "🎓 Featured Courses\n\nShowcase programs like:\n\nEthical Hacking\n\nPenetration Testing\n\nBug Bounty Hunting\n\nSecurity Research\n\nCertification Prep\n\nEach with:\n\nTitle\n\nShort description\n\n“View All Courses” button"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Five course cards/tiles are displayed with titles and short descriptions",
-        "A “View All Courses” control navigates to the Courses page",
-        "Course cards have hover/focus states consistent with the site theme"
-      ]
-    },
-    {
-      "id": "REQ-4",
-      "text": "Add a “Meet the Founder” section on the Home page for: Name “Almadad Ali”, Role “Cybersecurity Expert & Educator”, and the provided description. Include a circular portrait image and a short bio layout consistent with the site theme.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "👨‍🏫 Meet the Founder\n\nName: Almadad Ali\nRole: Cybersecurity Expert & Educator\nDescription: Experienced ethical hacking trainer dedicated to accessible cybersecurity education.\nInclude a circular portrait and short bio."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Section displays the exact founder name, role, and description text",
-        "A portrait image is rendered in a circular frame and is responsive",
-        "Layout works on mobile and desktop"
-      ]
-    },
-    {
-      "id": "REQ-5",
-      "text": "Add a Home page section titled “Free Ethical Hacking Toolkit” that introduces categories: Reconnaissance Tools, Scanners, Exploitation Utilities, Cryptography Tools. Include a CTA labeled “Explore Toolkit” that routes to the Resources page and display the legal note: “Tools are for educational and authorized testing only.”",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Headline: Free Ethical Hacking Toolkit\nCTA: Explore Toolkit\nLegal Note: Tools are for educational and authorized testing only.",
-          "Reconnaissance Tools\n\nScanners\n\nExploitation Utilities\n\nCryptography Tools"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Toolkit section lists the four categories clearly",
-        "“Explore Toolkit” routes to Resources",
-        "Legal note is visible and styled as a disclaimer"
-      ]
-    },
-    {
-      "id": "REQ-6",
-      "text": "Implement the Courses page as a cards/grid layout listing training modules. Each course card must show: Title, Description, Skill level (Beginner to Advanced), Duration, and an “Enroll” button. Populate the page with initial content that includes (at minimum) the five featured course topics from the Home page.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Courses Page\n\nList all training modules with:\n\nTitle\n\nDescription\n\nSkill level (Beginner to Advanced)\n\nDuration\n\nEnroll button\n\nVisual layout: Cards or grid of courses."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Courses page renders a grid/list of course cards with all required fields",
-        "Each card has an “Enroll” button with a consistent UI state (even if it is non-functional initially)",
-        "Courses page is responsive and readable on mobile"
-      ]
-    },
-    {
-      "id": "REQ-7",
-      "text": "Implement the Articles page in a blog format. Each article entry must display a featured image, headline, short preview text, and a “Read More” CTA. Include initial article topics covering: cybersecurity tips, hacking fundamentals, and security research trends.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Articles Page\n\nBlog format with:\n\nFeatured image\n\nHeadline\n\nShort preview text\n\n“Read More” CTA\n\nTopics could include:\n\nCybersecurity tips\n\nHacking fundamentals\n\nSecurity research trends"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Articles page shows multiple article cards/rows with image + headline + preview + CTA",
-        "Each “Read More” CTA has a defined behavior (route to an article detail view or a placeholder detail page)",
-        "Images are optimized for consistent aspect ratio and layout stability"
-      ]
-    },
-    {
-      "id": "REQ-8",
-      "text": "Implement the Resources page highlighting: Toolkits, Cheat sheets, Security utilities, and External learning resources. Use icons/graphics to visually differentiate each category and provide clear structure for learners.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Resources Page\n\nHighlight:\n\nToolkits\n\nCheat sheets\n\nSecurity utilities\n\nExternal learning resources\n\nUse icons and graphics for each category for clarity."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Resources page contains the four specified categories",
-        "Each category has an icon/graphic and a short descriptive blurb",
-        "Page layout remains accessible (contrast, keyboard focus, headings)"
-      ]
-    },
-    {
-      "id": "REQ-9",
-      "text": "Implement the About page with mission statement and vision: “Empower learners to become cybersecurity professionals through practical training and community support.” Include sections for company story, vision & values, founder’s expertise, and an optional testimonials section (can be present with placeholder testimonials).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "About Page\n\nMission statement and vision:\nEmpower learners to become cybersecurity professionals through practical training and community support. Include:\n\nCompany story\n\nVision & Values\n\nFounder’s expertise\n\nTestimonials (optional)"
-        ]
-      },
-      "acceptanceCriteria": [
-        "About page includes the exact mission/vision sentence",
-        "Company story, values, and founder expertise sections are visible and structured with headings",
-        "If testimonials are included, they are clearly labeled as testimonials and visually consistent"
-      ]
-    },
-    {
-      "id": "REQ-10",
-      "text": "Implement the Contact page with an inquiry form (name, email, subject, message), display the email address “support/contact@example.com”, and include social links. Style the form with secure/tech-themed input visuals and clear validation states.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Contact Page\n\nInclude:\n\nInquiry form\n\nEmail: support/contact@example.com\n\nOptional phone number\n\nSocial links\n\nStyling: Simple form with secure input graphics."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Contact page displays the email address exactly as provided",
-        "Form validates required fields client-side and shows accessible error messages",
-        "Submitting the form stores the inquiry (or shows a clear success state tied to a backend call)"
-      ]
-    },
-    {
-      "id": "REQ-11",
-      "text": "Implement the Certificate Verification page with a verification form (e.g., certificate ID/code input) that checks validity and displays a clear result state (Valid/Invalid). Provide a minimal backend data model for certificates and a backend query method to verify a certificate by its ID/code.",
-      "target": "both",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "Certificate Verification"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Certificate Verification page exists and is reachable from navigation",
-        "User can input a certificate code and submit",
-        "UI displays a deterministic result for known sample certificate codes and an Invalid result for unknown codes",
-        "Backend exposes a query-style method to verify a certificate code without requiring authentication"
-      ]
-    },
-    {
-      "id": "REQ-12",
-      "text": "Add a global footer including: quick links (Home, Courses, Articles, Resources, About, Contact), social media icons (YouTube, Instagram, LinkedIn, Telegram, Twitter), Terms & Conditions link, Privacy Policy link, and copyright text “Copyright © Year CyberMindspace”.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "🤝 Footer Section\n\nInclude:\n\nQuick links (Home, Courses, Articles, Resources, About, Contact)\n\nSocial media icons (YouTube, Instagram, LinkedIn, Telegram, Twitter)\n\nTerms & Conditions\n\nPrivacy Policy\n\nCopyright © Year CyberMindspace"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Footer appears site-wide (all pages) and contains all specified elements",
-        "Social icons are visually consistent and accessible (aria-labels)",
-        "Terms & Conditions and Privacy Policy links route to pages or placeholders that render content"
-      ]
-    },
-    {
-      "id": "REQ-13",
-      "text": "Apply a consistent, modern cybersecurity visual theme across the entire site using the specified palette (Primary #0A1A2F, Accent #1F51FF, Highlight #00FFAB, light gray/white text), tech textures/patterns (matrix/circuit), security/code visual motifs (lock/shield/terminal/code brackets/tools), and subtle hover animations for buttons and cards.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-2"
-        ],
-        "quotes": [
-          "The design should be modern, secure, and tech-themed with dark/blue gradients, security icons, and code-style visuals.",
-          "Color Palette:\n\nPrimary: Dark Blue #0A1A2F\n\nAccent: Electric Blue #1F51FF\n\nSecondary: White / Light Gray for text\n\nHighlight: Neon Green #00FFAB",
-          "Add subtle hover animations on buttons and cards."
-        ]
-      },
-      "acceptanceCriteria": [
-        "All primary UI surfaces use the specified palette with readable contrast",
-        "Buttons/cards have consistent hover/focus styles site-wide",
-        "Icons/motifs are used throughout without cluttering readability"
-      ]
-    },
-    {
       "id": "REQ-14",
-      "text": "Set global SEO metadata using: SEO Title “Cybersecurity Courses & Ethical Hacking Training | CyberMindspace”, Meta Description “Join CyberMindspace for hands-on cybersecurity training, ethical hacking courses, real-world tools, and expert resources. Learn, practice, and advance your cyber skills.”, and Keywords “cybersecurity training, ethical hacking courses, penetration testing, cybersecurity resources, security toolkit”.",
+      "text": "Ensure the Courses page \"Enroll Now\" action always navigates to the selected course’s full detail view at /courses/$courseId and that the detail view displays the course price formatted in Indian Rupees (INR).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-2"
+          "msg-1"
         ],
         "quotes": [
-          "SEO Title:\nCybersecurity Courses & Ethical Hacking Training | CyberMindspace\n\nMeta Description:\nJoin CyberMindspace for hands-on cybersecurity training, ethical hacking courses, real-world tools, and expert resources. Learn, practice, and advance your cyber skills.\n\nKeywords:\ncybersecurity training, ethical hacking courses, penetration testing, cybersecurity resources, security toolkit"
+          "in courses section there teh enroll  now option when usere click on it then course full detail open and course prise sho in rupees"
         ]
       },
       "acceptanceCriteria": [
-        "The app sets the document title to the provided SEO title",
-        "Meta description and keywords are present in the rendered document head",
-        "Metadata remains consistent across routes (or is set globally if per-route is not implemented)"
+        "From the Courses page, clicking \"Enroll Now\" on any course opens that course’s detail page (URL matches /courses/<courseId>).",
+        "The Course Detail page displays the selected course’s price using INR formatting (₹ and Indian digit grouping), consistent with the Courses list.",
+        "If an invalid courseId is visited, a user-friendly \"Course Not Found\" state is shown with a working \"Back to Courses\" action."
       ]
     },
     {
       "id": "REQ-15",
-      "text": "Add generated static image assets required by the design (hero background, founder portrait placeholder, course/article thumbnails, and simple security/tool icons) and render them from frontend static assets at `frontend/public/assets/generated`.",
+      "text": "Update the Course Detail page layout to be fully responsive with a medium-density reading experience and ensure the full course description is always visible (no truncation/clamping or hidden overflow).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-2"
+          "msg-1"
         ],
         "quotes": [
-          "Background Style:\nDark tech grid / circuit board imagery with animated code lines.",
-          "Include a circular portrait",
-          "Use vector icons for:\n\nShield\n\nLaptop\n\nLock\n\nCode brackets\n\nTools"
+          "responsive and size midiam and discription show no any one hide"
         ]
       },
       "acceptanceCriteria": [
-        "Generated images are present under `frontend/public/assets/generated` and are referenced by the UI",
-        "Images are sized appropriately (no obvious stretching/pixelation) and are responsive",
-        "Hero background uses a static image layer plus CSS/animation overlays for “code lines”"
+        "On mobile and tablet widths, the Course Detail page content stacks cleanly without overlapping or horizontal scrolling.",
+        "The course description text on the Course Detail page renders fully without line-clamp, truncation, or hidden overflow (all text remains readable).",
+        "Typography and spacing on the Course Detail page feel “medium” density (not oversized like a hero, not cramped like small print), including the description and key metadata blocks."
+      ]
+    },
+    {
+      "id": "REQ-16",
+      "text": "Ensure the course description shown on the Courses page cards is not visually hidden/truncated and remains readable across responsive breakpoints.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-1"
+        ],
+        "quotes": [
+          "discription show no any one hide"
+        ]
+      },
+      "acceptanceCriteria": [
+        "On the Courses page, each course card’s description is fully readable (no ellipsis truncation or CSS line-clamp).",
+        "The course card layout remains responsive and visually consistent even when descriptions vary in length.",
+        "No course card content (price, buttons, metadata) is pushed off-screen or becomes inaccessible due to longer descriptions."
       ]
     }
   ],
   "constraints": [
-    "Backend must remain a single Motoko actor with all logic in `backend/main.mo` (no additional backend services).",
-    "Do not edit files under `frontend/src/components/ui` (compose them instead).",
-    "Do not modify any paths listed as immutable: `frontend/src/hooks/useInternetIdentity.ts`, `frontend/src/hooks/useInternetIdentity.tsx`, `frontend/src/hooks/useActor.ts`, `frontend/src/main.tsx`, `frontend/src/components/ui`.",
-    "Use English for all user-facing text.",
-    "No third-party authentication providers (only Internet Identity is allowed if authentication is later added).",
-    "Do not integrate external email/SMS/push/WebSocket services."
+    "Do not modify files under frontend/src/components/ui (shadcn/ui components are read-only); adjust styling/behavior by composing or via page/component-level classNames only.",
+    "Keep backend unchanged (no new Motoko methods or state migrations) since this request is UI behavior/presentation only.",
+    "Use English for any user-facing text."
   ],
   "nonGoals": [
-    "Implementing real payments, subscriptions, or paid course enrollment flows",
-    "Issuing certificates or building a full certificate lifecycle/administration portal (verification only as specified)",
-    "Sending emails from the contact form (store inquiries in-app and/or show success state only)",
-    "Building a real community/forum or real-time chat"
+    "Adding a real enrollment workflow (forms, payments, confirmations) beyond navigating to the course detail view.",
+    "Changing course content copy or creating new courses."
   ],
   "imageRequirements": {
-    "required": [
-      "Dark circuit-board / tech grid hero background with subtle code-line motif (hero-bg.dim_1920x1080.png)",
-      "Founder portrait illustration, professional tech/cyber style, centered subject, neutral background, suitable for circular crop (founder-portrait.dim_800x800.png)",
-      "Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-ethical-hacking.dim_1200x675.png)",
-      "Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-penetration-testing.dim_1200x675.png)",
-      "Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-bug-bounty.dim_1200x675.png)",
-      "Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-security-research.dim_1200x675.png)",
-      "Course category thumbnail set: five distinct tech/cyber themed images with consistent style (course-cert-prep.dim_1200x675.png)",
-      "Article featured image, cybersecurity tips theme, dark tech style (article-cyber-tips.dim_1200x675.png)",
-      "Article featured image, hacking fundamentals theme, dark tech style (article-hacking-fundamentals.dim_1200x675.png)",
-      "Article featured image, security research trends theme, dark tech style (article-research-trends.dim_1200x675.png)",
-      "Minimal vector-style shield icon, neon/tech style on transparent background (icon-shield.dim_256x256.png)",
-      "Minimal vector-style lock icon, neon/tech style on transparent background (icon-lock.dim_256x256.png)",
-      "Minimal vector-style laptop icon, neon/tech style on transparent background (icon-laptop.dim_256x256.png)",
-      "Minimal vector-style code brackets icon, neon/tech style on transparent background (icon-code-brackets.dim_256x256.png)",
-      "Minimal vector-style tools icon, neon/tech style on transparent background (icon-tools.dim_256x256.png)"
-    ],
+    "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

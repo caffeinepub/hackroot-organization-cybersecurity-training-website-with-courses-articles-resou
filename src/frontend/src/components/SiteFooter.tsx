@@ -7,6 +7,7 @@ export default function SiteFooter() {
     { label: 'Home', path: '/' },
     { label: 'Courses', path: '/courses' },
     { label: 'Articles', path: '/articles' },
+    { label: 'Gallery', path: '/gallery' },
     { label: 'Resources', path: '/resources' },
     { label: 'About', path: '/about' },
     { label: 'Contact', path: '/contact' },
@@ -26,7 +27,14 @@ export default function SiteFooter() {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-bold text-foreground">Hackroot Organization</h3>
+            <div className="flex items-center gap-2">
+              <img 
+                src="/assets/logo.dim_256x256.png" 
+                alt="Hackroot Organization logo" 
+                className="h-10 w-10 object-contain"
+              />
+              <h3 className="text-lg font-bold text-foreground">Hackroot Organization</h3>
+            </div>
             <p className="text-sm text-muted-foreground">
               Unlock the future of digital security with real-world cybersecurity training, ethical hacking, and expert tools.
             </p>
