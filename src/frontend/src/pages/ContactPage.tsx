@@ -76,14 +76,14 @@ export default function ContactPage() {
       });
       localStorage.setItem('inquiries', JSON.stringify(inquiries));
 
-      toast.success('Message sent successfully!', {
-        description: 'We\'ll get back to you as soon as possible.',
+      toast.success('Message received!', {
+        description: 'Thank you for reaching out. Your inquiry has been recorded.',
       });
 
       // Reset form
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
-      toast.error('Failed to send message', {
+      toast.error('Failed to submit message', {
         description: 'Please try again later.',
       });
     } finally {
@@ -108,7 +108,7 @@ export default function ContactPage() {
           <CardHeader>
             <CardTitle className="text-2xl">Send us a Message</CardTitle>
             <CardDescription>
-              Fill out the form below and we'll respond within 24 hours
+              Fill out the form below to submit your inquiry
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -205,10 +205,10 @@ export default function ContactPage() {
                 <div>
                   <p className="font-medium text-foreground">Email</p>
                   <a
-                    href="mailto:support@example.com"
+                    href="mailto:hackrootorg82@gmail.com"
                     className="text-sm text-muted-foreground hover:text-cyber-accent"
                   >
-                    support/contact@example.com
+                    hackrootorg82@gmail.com
                   </a>
                 </div>
               </div>

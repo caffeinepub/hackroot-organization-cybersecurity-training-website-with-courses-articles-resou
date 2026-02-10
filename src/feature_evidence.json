@@ -2,11 +2,11 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-site-connect-social-icon-links-to-use-the-provided-urls-youtube-linkedin-instagram-telegram-instead-of-placeholder-links-wherever-the-connect-social-icons-are-rendered-including-the-footer-connect-section-and-the-contact-page-follow-us-section",
-      "featureTitle": "Update the site \"Connect\" social icon links to use the provided URLs (YouTube, LinkedIn, Instagram, Telegram) instead of placeholder \"#\" links wherever the \"Connect\"/social icons are rendered (including the footer \"Connect\" section and the Contact page \"Follow Us\" section).",
+      "featureId": "feature-identify-the-root-cause-of-the-current-build-network-deployment-failure-and-implement-the-minimal-code-config-changes-required-so-the-project-can-successfully-build-and-deploy-again-frontend-backend",
+      "featureTitle": "Identify the root cause of the current build/network deployment failure and implement the minimal code/config changes required so the project can successfully build and deploy again (frontend + backend).",
       "files": [
-        "frontend/src/components/SiteFooter.tsx",
-        "frontend/src/pages/ContactPage.tsx"
+        "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
+        "frontend/vite.config.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -16,7 +16,46 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-17"
+        "REQ-32"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-clear-user-actionable-error-output-for-deployment-failures-so-that-when-deployment-fails-again-logs-include-the-failing-step-and-the-underlying-error-not-just-a-generic-failure-message",
+      "featureTitle": "Add clear, user-actionable error output for deployment failures so that when deployment fails again, logs include the failing step and the underlying error (not just a generic failure message).",
+      "files": [
+        "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
+        "frontend/scripts/deploy-runner.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-33"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-build-deploy-process-is-resilient-to-transient-network-issues-by-adding-a-bounded-retry-strategy-to-the-deployment-workflow-for-network-dependent-steps-without-changing-the-app-s-runtime-behavior",
+      "featureTitle": "Ensure the build/deploy process is resilient to transient network issues by adding a bounded retry strategy to the deployment workflow for network-dependent steps (without changing the app’s runtime behavior).",
+      "files": [
+        "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
+        "frontend/scripts/deploy-runner.ts",
+        "frontend/scripts/retry.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-34"
       ],
       "confidence": "high"
     }

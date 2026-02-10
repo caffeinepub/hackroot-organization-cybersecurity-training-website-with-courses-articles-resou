@@ -1,8 +1,10 @@
-import { Link } from '@tanstack/react-router';
+import { Link, useLocation } from '@tanstack/react-router';
 import { SiYoutube, SiInstagram, SiLinkedin, SiTelegram, SiX } from 'react-icons/si';
 import { Heart } from 'lucide-react';
 
 export default function SiteFooter() {
+  const location = useLocation();
+
   const quickLinks = [
     { label: 'Home', path: '/' },
     { label: 'Courses', path: '/courses' },
@@ -20,6 +22,14 @@ export default function SiteFooter() {
     { icon: SiTelegram, label: 'Telegram', href: 'https://t.me/hackrootorg' },
     { icon: SiX, label: 'X (Twitter)', href: '#' },
   ];
+
+  const handleQuickLinkClick = (path: string, e: React.MouseEvent) => {
+    // If clicking the current route, scroll to top
+    if (location.pathname === path) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  };
 
   return (
     <footer className="border-t border-border/40 bg-card">
@@ -48,6 +58,7 @@ export default function SiteFooter() {
                 <li key={link.path}>
                   <Link
                     to={link.path}
+                    onClick={(e) => handleQuickLinkClick(link.path, e)}
                     className="text-sm text-muted-foreground transition-colors hover:text-cyber-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                   >
                     {link.label}
@@ -105,7 +116,7 @@ export default function SiteFooter() {
 
         <div className="mt-8 border-t border-border/40 pt-8 text-center text-sm text-muted-foreground">
           <p>
-            © 2026 CyberMindspace. Built with <Heart className="inline h-4 w-4 text-cyber-highlight" /> using{' '}
+            © 2026 Hackroot Organization. Built with <Heart className="inline h-4 w-4 text-cyber-highlight" /> using{' '}
             <a
               href="https://caffeine.ai"
               target="_blank"

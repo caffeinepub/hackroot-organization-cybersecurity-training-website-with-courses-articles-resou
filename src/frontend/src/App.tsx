@@ -1,11 +1,14 @@
 import { RouterProvider, createRouter, createRoute, createRootRoute, Outlet } from '@tanstack/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'next-themes';
+import TopContactStrip from './components/TopContactStrip';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
+import ScrollToTopOnRouteChange from './components/ScrollToTopOnRouteChange';
 import HomePage from './pages/HomePage';
 import CoursesPage from './pages/CoursesPage';
 import CourseDetailPage from './pages/CourseDetailPage';
+import EnrollmentSuccessPage from './pages/EnrollmentSuccessPage';
 import ArticlesPage from './pages/ArticlesPage';
 import ArticleDetailPage from './pages/ArticleDetailPage';
 import ResourcesPage from './pages/ResourcesPage';
@@ -22,12 +25,14 @@ const queryClient = new QueryClient();
 function Layout() {
   return (
     <div className="flex min-h-screen flex-col">
+      <TopContactStrip />
       <SiteHeader />
       <main className="flex-1">
         <Outlet />
       </main>
       <SiteFooter />
       <Toaster />
+      <ScrollToTopOnRouteChange />
     </div>
   );
 }
@@ -52,6 +57,12 @@ const courseDetailRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/courses/$courseId',
   component: CourseDetailPage,
+});
+
+const enrollmentSuccessRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/courses/$courseId/enrollment-success',
+  component: EnrollmentSuccessPage,
 });
 
 const articlesRoute = createRoute({
@@ -112,6 +123,7 @@ const routeTree = rootRoute.addChildren([
   indexRoute,
   coursesRoute,
   courseDetailRoute,
+  enrollmentSuccessRoute,
   articlesRoute,
   articleDetailRoute,
   resourcesRoute,

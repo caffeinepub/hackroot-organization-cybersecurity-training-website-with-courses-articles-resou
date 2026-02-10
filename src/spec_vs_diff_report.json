@@ -1,34 +1,55 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-07T05:12:11.831Z",
-  "summary": "REQ-17 is partially evidenced: both SiteFooter.tsx and ContactPage.tsx show the YouTube/Instagram/LinkedIn/Telegram hrefs updated from placeholders to the provided real URLs. However, the diff is truncated at the anchor tag rendering, so it’s not fully verifiable that all external links open in a new tab with rel=\"noopener noreferrer\" in both locations, nor that no remaining \"#\" hrefs exist for those four icons in the rendered output.",
+  "generatedAt": "2026-02-10T14:14:51.628Z",
+  "summary": "Diff adds frontend build configuration (Vite/TS configs), a deployment runner with step-labeled error reporting and secret redaction, a bounded retry helper with backoff, and a deployment troubleshooting doc. Backend `main.mo` is modified with certificate/enrollment logic unrelated to deployment reliability. Evidence is insufficient that the new deploy runner is actually integrated into the project’s normal deploy workflow or that backend build/deploy failures were addressed.",
   "missing_requirements": [
     {
-      "id": "REQ-17",
-      "requirement": "All external social links open in a new tab and include rel=\"noopener noreferrer\" (footer Connect section and Contact page Follow Us section).",
-      "reason": "In SiteFooter.tsx the <a> tag is truncated at `target=\"_blank` so `rel=\"noopener noreferrer\"` cannot be confirmed; ContactPage.tsx rendering of the social icons is also truncated so target/rel attributes can’t be verified from the provided diff summary.",
+      "id": "REQ-32",
+      "requirement": "Ensure the project can successfully build and deploy again (frontend + backend) with minimal changes, and document the fix.",
+      "reason": "While a troubleshooting doc and frontend build configs were added, the diff does not show any changes that explicitly fix or validate backend build/deploy issues, nor any project-level wiring that makes the new deployment runner the default path for a successful deployment attempt.",
       "evidence": [
-        "frontend/src/components/SiteFooter.tsx (truncated at anchor tag: `target=\"_blank`...)",
-        "frontend/src/pages/ContactPage.tsx (rendering section truncated; social links usage not shown)"
+        "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
+        "frontend/vite.config.ts",
+        "frontend/tsconfig.node.json",
+        "backend/main.mo"
       ]
     },
     {
-      "id": "REQ-17",
-      "requirement": "No social icon uses \"#\" for the four provided networks after the change (wherever Connect/social icons are rendered).",
-      "reason": "The arrays shown use correct URLs for the four networks, but because both files are truncated before the full render, it’s not possible to verify there aren’t additional occurrences of those icons still using \"#\" elsewhere in the same components/pages.",
+      "id": "REQ-33",
+      "requirement": "Add clear, user-actionable error output for deployment failures indicating which step failed and the underlying error.",
+      "reason": "The deploy runner prints step headers and errors, but network-retry failures handled in `retryWithBackoff` print errors/stacks without applying the deploy runner’s `redactSecrets()` filtering. The acceptance criteria requires enhanced output to be safe to share (no secrets).",
       "evidence": [
-        "frontend/src/components/SiteFooter.tsx (file truncated; only one socialLinks array segment shown)",
-        "frontend/src/pages/ContactPage.tsx (file truncated; only one socialLinks array segment shown)"
+        "frontend/scripts/deploy-runner.ts",
+        "frontend/scripts/retry.ts"
       ]
     }
   ],
-  "hallucinated_features": [],
-  "confidence": 0.62,
+  "hallucinated_features": [
+    {
+      "description": "Backend canister logic changes adding certificate management and course enrollment APIs (verify/add/remove certificate, enroll/isEnrolled).",
+      "reason": "BuildRequest focuses on deployment/build/network reliability fixes and explicitly lists non-goals as adding new product features unrelated to deployment reliability. These backend functional changes appear unrelated to the requested deployment retry work.",
+      "evidence": [
+        "backend/main.mo"
+      ]
+    },
+    {
+      "description": "Frontend build optimization and chunking strategy (manualChunks for vendor/router/query) and dev server proxy configuration.",
+      "reason": "Not explicitly requested by the BuildRequest; could be incidental, but it goes beyond minimal deployment failure remediation based solely on the diff evidence.",
+      "evidence": [
+        "frontend/vite.config.ts"
+      ]
+    }
+  ],
+  "confidence": 0.63,
   "changed_files": [
+    "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/src/components/SiteFooter.tsx",
-    "frontend/src/pages/ContactPage.tsx",
+    "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
+    "frontend/scripts/deploy-runner.ts",
+    "frontend/scripts/retry.ts",
+    "frontend/tsconfig.node.json",
+    "frontend/vite.config.ts",
     "project_state.json"
   ]
 }

@@ -1,37 +1,85 @@
 {
   "kind": "build_request",
-  "title": "Add YouTube, LinkedIn, Instagram, and Telegram links to the Connect section",
-  "priority": "normal",
+  "title": "Retry deployment by diagnosing and fixing build/network deployment failure",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-17",
-      "text": "Update the site \"Connect\" social icon links to use the provided URLs (YouTube, LinkedIn, Instagram, Telegram) instead of placeholder \"#\" links wherever the \"Connect\"/social icons are rendered (including the footer \"Connect\" section and the Contact page \"Follow Us\" section).",
-      "target": "frontend",
+      "id": "REQ-32",
+      "text": "Identify the root cause of the current build/network deployment failure and implement the minimal code/config changes required so the project can successfully build and deploy again (frontend + backend).",
+      "target": "both",
       "source": {
         "messageIds": [
-          "msg-6"
+          "msg-1",
+          "msg-2"
         ],
         "quotes": [
-          "https://youtube.com/@hackrootorg2.0?si=SCyY3YuqXwv9OusU  , https://www.linkedin.com/in/bablu-kumar-8bb7b3257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app  ,  https://www.instagram.com/hackrootorg.in?igsh=ZHpwemQzbDFza2I3   , https://t.me/hackrootorg  add links  in Connect"
+          "retry"
         ]
       },
       "acceptanceCriteria": [
-        "In the footer \"Connect\" section (frontend/src/components/SiteFooter.tsx), the YouTube icon links to https://youtube.com/@hackrootorg2.0?si=SCyY3YuqXwv9OusU, the LinkedIn icon links to https://www.linkedin.com/in/bablu-kumar-8bb7b3257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app, the Instagram icon links to https://www.instagram.com/hackrootorg.in?igsh=ZHpwemQzbDFza2I3, and the Telegram icon links to https://t.me/hackrootorg.",
-        "On the Contact page \"Follow Us\" section (frontend/src/pages/ContactPage.tsx), the same four icons link to the same provided URLs.",
-        "All external social links open in a new tab and include rel=\"noopener noreferrer\".",
-        "No social icon uses \"#\" for the four provided networks after the change."
+        "A clean build completes for both frontend and backend without errors.",
+        "A deployment attempt completes successfully without the previously observed build/network failure.",
+        "Any fix is documented in a short note (what broke, what changed, how to verify) in the repository documentation (e.g., README or a dedicated troubleshooting section)."
+      ]
+    },
+    {
+      "id": "REQ-33",
+      "text": "Add clear, user-actionable error output for deployment failures so that when deployment fails again, logs include the failing step and the underlying error (not just a generic failure message).",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-2"
+        ],
+        "quotes": [
+          "retry"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When a deployment fails, the output includes which step failed (e.g., build frontend, build backend, deploy canisters) and the original error message/stack where available.",
+        "The enhanced error output does not expose secrets (no tokens/keys) and is safe to share in support requests."
+      ]
+    },
+    {
+      "id": "REQ-34",
+      "text": "Ensure the build/deploy process is resilient to transient network issues by adding a bounded retry strategy to the deployment workflow for network-dependent steps (without changing the app’s runtime behavior).",
+      "target": "unknown",
+      "source": {
+        "messageIds": [
+          "msg-1",
+          "msg-2"
+        ],
+        "quotes": [
+          "retry"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Network-dependent deployment steps have automatic retries with a clear maximum attempt count.",
+        "If all retries fail, the workflow exits with a non-zero status and prints the final underlying error plus a brief next-step hint (in English)."
       ]
     }
   ],
   "constraints": [
-    "Do not modify any files under frontend/src/components/ui or any other frontend immutablePaths listed in SYSTEM_CONTEXT."
+    "Respect the Internet Computer single-actor backend architecture; keep Motoko logic in backend/main.mo and only add backend/migration.mo if an actual state migration is required.",
+    "Do not edit frontend immutable paths: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, and any files under frontend/src/components/ui.",
+    "Use English for any user-facing text."
   ],
   "nonGoals": [
-    "Adding new social networks not provided by the user.",
-    "Changing site navigation structure, routes, or backend canister logic."
+    "Adding new product features or UI changes unrelated to fixing deployment reliability.",
+    "Changing the app’s visual design, routes, or content as part of the deployment retry work."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
+  },
+  "userProfileUpdate": {
+    "goalsToAdd": [],
+    "goalsToRemove": [],
+    "preferencesToAdd": [],
+    "preferencesToRemove": [],
+    "miscToAdd": [],
+    "miscToRemove": [],
+    "fieldsToSet": {},
+    "fieldsToDelete": []
   }
 }

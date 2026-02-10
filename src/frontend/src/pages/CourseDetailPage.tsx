@@ -1,16 +1,29 @@
+import { useState } from 'react';
 import { useParams, useNavigate } from '@tanstack/react-router';
 import { courses } from '@/data/courses';
 import { formatINR } from '@/lib/currency';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Clock, BarChart } from 'lucide-react';
+import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group';
+import { Label } from '@/components/ui/label';
+import { ArrowLeft, Clock, BarChart, CreditCard, Smartphone, X, CheckCircle2 } from 'lucide-react';
+import { useInternetIdentity } from '@/hooks/useInternetIdentity';
+import { useIsEnrolledInCourse, useEnrollInCourse } from '@/hooks/useQueries';
+import { toast } from 'sonner';
 
 export default function CourseDetailPage() {
   const { courseId } = useParams({ from: '/courses/$courseId' });
   const navigate = useNavigate();
+  const { identity, login } = useInternetIdentity();
+  const [showPayment, setShowPayment] = useState(false);
+  const [paymentMethod, setPaymentMethod] = useState<'upi' | 'card'>('upi');
   
   const course = courses.find((c) => c.id === courseId);
+  const { data: isEnrolled, isLoading: isCheckingEnrollment } = useIsEnrolledInCourse(courseId);
+  const enrollMutation = useEnrollInCourse();
+
+  const isAnonymous = !identity || identity.getPrincipal().isAnonymous();
 
   if (!course) {
     return (
@@ -37,6 +50,53 @@ export default function CourseDetailPage() {
   }
 
   const Icon = course.icon;
+
+  const handleEnrollClick = () => {
+    if (isAnonymous) {
+      toast.error('Please sign in to enroll in courses', {
+        description: 'You need to be logged in to enroll in a course.',
+        action: {
+          label: 'Sign In',
+          onClick: () => login(),
+        },
+      });
+      return;
+    }
+
+    if (isEnrolled) {
+      return;
+    }
+
+    setShowPayment(true);
+  };
+
+  const handlePaymentSubmit = async () => {
+    try {
+      // Simulate payment processing
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+      
+      // Enroll in course via backend
+      await enrollMutation.mutateAsync(courseId);
+      
+      // Navigate to success page with course details
+      navigate({
+        to: '/courses/$courseId/enrollment-success',
+        params: { courseId },
+        search: { amount: course.price },
+      });
+    } catch (error) {
+      toast.error('Enrollment failed', {
+        description: error instanceof Error ? error.message : 'Please try again later.',
+      });
+    }
+  };
+
+  const handleCancelPayment = () => {
+    setShowPayment(false);
+    setPaymentMethod('upi');
+  };
+
+  const isProcessing = enrollMutation.isPending;
 
   return (
     <div className="container py-8 md:py-12 lg:py-16">
@@ -117,10 +177,98 @@ export default function CourseDetailPage() {
                 <div className="mb-4 text-2xl sm:text-3xl font-bold text-cyber-accent">
                   {formatINR(course.price)}
                 </div>
-                <Button className="cyber-button w-full">
-                  Enroll Now
-                </Button>
+                
+                {isEnrolled ? (
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 rounded-lg bg-green-500/10 p-3 text-green-600 dark:text-green-400">
+                      <CheckCircle2 className="h-5 w-5" />
+                      <span className="font-medium">You are enrolled</span>
+                    </div>
+                    <Button
+                      className="cyber-button w-full"
+                      disabled
+                    >
+                      Enrolled
+                    </Button>
+                  </div>
+                ) : (
+                  <Button
+                    className="cyber-button w-full"
+                    onClick={handleEnrollClick}
+                    disabled={isCheckingEnrollment || isProcessing}
+                  >
+                    {isCheckingEnrollment ? 'Checking...' : 'Enroll Now'}
+                  </Button>
+                )}
               </div>
+
+              {showPayment && !isEnrolled && (
+                <div className="border-t border-border pt-5 space-y-4">
+                  <div className="flex items-center justify-between">
+                    <h3 className="text-lg font-semibold">Payment Details</h3>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={handleCancelPayment}
+                      disabled={isProcessing}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Course</p>
+                    <p className="font-medium">{course.title}</p>
+                  </div>
+
+                  <div className="space-y-2">
+                    <p className="text-sm text-muted-foreground">Amount</p>
+                    <p className="text-xl font-bold text-cyber-accent">{formatINR(course.price)}</p>
+                  </div>
+
+                  <div className="space-y-3">
+                    <Label className="text-sm font-medium">Select Payment Method</Label>
+                    <RadioGroup
+                      value={paymentMethod}
+                      onValueChange={(value) => setPaymentMethod(value as 'upi' | 'card')}
+                      disabled={isProcessing}
+                    >
+                      <div className="flex items-center space-x-3 rounded-lg border border-border p-3 hover:bg-accent/50 transition-colors">
+                        <RadioGroupItem value="upi" id="upi" />
+                        <Label htmlFor="upi" className="flex items-center gap-2 cursor-pointer flex-1">
+                          <Smartphone className="h-5 w-5 text-cyber-accent" />
+                          <span>UPI</span>
+                        </Label>
+                      </div>
+                      <div className="flex items-center space-x-3 rounded-lg border border-border p-3 hover:bg-accent/50 transition-colors">
+                        <RadioGroupItem value="card" id="card" />
+                        <Label htmlFor="card" className="flex items-center gap-2 cursor-pointer flex-1">
+                          <CreditCard className="h-5 w-5 text-cyber-accent" />
+                          <span>Credit/Debit Card</span>
+                        </Label>
+                      </div>
+                    </RadioGroup>
+                  </div>
+
+                  <div className="flex gap-2 pt-2">
+                    <Button
+                      variant="outline"
+                      onClick={handleCancelPayment}
+                      disabled={isProcessing}
+                      className="flex-1"
+                    >
+                      Cancel
+                    </Button>
+                    <Button
+                      className="cyber-button flex-1"
+                      onClick={handlePaymentSubmit}
+                      disabled={isProcessing}
+                    >
+                      {isProcessing ? 'Processing...' : 'Pay and Enroll'}
+                    </Button>
+                  </div>
+                </div>
+              )}
             </CardContent>
           </Card>
         </div>

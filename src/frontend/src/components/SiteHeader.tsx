@@ -1,4 +1,4 @@
-import { Link, useNavigate } from '@tanstack/react-router';
+import { Link, useNavigate, useLocation } from '@tanstack/react-router';
 import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -6,6 +6,7 @@ import { useState } from 'react';
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const navLinks = [
     { label: 'Home', path: '/' },
@@ -17,6 +18,23 @@ export default function SiteHeader() {
     { label: 'Contact', path: '/contact' },
     { label: 'Verify Certificate', path: '/certificate-verification' },
   ];
+
+  const handleNavClick = (path: string, e: React.MouseEvent) => {
+    // If clicking the current route, scroll to top
+    if (location.pathname === path) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  };
+
+  const handleMobileNavClick = (path: string, e: React.MouseEvent) => {
+    setMobileMenuOpen(false);
+    // If clicking the current route, scroll to top
+    if (location.pathname === path) {
+      e.preventDefault();
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    }
+  };
 
   return (
     <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -41,6 +59,7 @@ export default function SiteHeader() {
             <Link
               key={link.path}
               to={link.path}
+              onClick={(e) => handleNavClick(link.path, e)}
               className="nav-link px-3 py-2 text-sm font-medium transition-colors hover:text-cyber-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               activeProps={{ className: 'text-cyber-accent' }}
             >
@@ -71,7 +90,7 @@ export default function SiteHeader() {
                 to={link.path}
                 className="nav-link rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-cyber-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 activeProps={{ className: 'text-cyber-accent bg-accent' }}
-                onClick={() => setMobileMenuOpen(false)}
+                onClick={(e) => handleMobileNavClick(link.path, e)}
               >
                 {link.label}
               </Link>

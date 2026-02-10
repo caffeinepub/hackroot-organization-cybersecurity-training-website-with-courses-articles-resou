@@ -1,27 +1,76 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Replace placeholder Connect social icon URLs (footer + contact page)",
+  "title": "Diagnose and harden build/deploy workflow with actionable logging and bounded retries (frontend-only changes)",
   "requirements": [
     {
-      "id": "REQ-17",
-      "summary": "Replace placeholder \"#\" Connect social icon links with the provided YouTube, LinkedIn, Instagram, and Telegram URLs wherever rendered (footer and Contact page Follow Us).",
+      "id": "REQ-32",
+      "summary": "Fix frontend build configuration issues preventing successful build/deploy and document the minimal remediation and verification steps.",
       "acceptanceCriteria": [
-        "In the footer \"Connect\" section (frontend/src/components/SiteFooter.tsx), the YouTube icon links to https://youtube.com/@hackrootorg2.0?si=SCyY3YuqXwv9OusU, the LinkedIn icon links to https://www.linkedin.com/in/bablu-kumar-8bb7b3257?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app, the Instagram icon links to https://www.instagram.com/hackrootorg.in?igsh=ZHpwemQzbDFza2I3, and the Telegram icon links to https://t.me/hackrootorg.",
-        "On the Contact page \"Follow Us\" section (frontend/src/pages/ContactPage.tsx), the same four icons link to the same provided URLs.",
-        "All external social links open in a new tab and include rel=\"noopener noreferrer\".",
-        "No social icon uses \"#\" for the four provided networks after the change."
+        "A clean build completes for both frontend and backend without errors.",
+        "A deployment attempt completes successfully without the previously observed build/network failure.",
+        "Any fix is documented in a short note (what broke, what changed, how to verify) in the repository documentation (e.g., README or a dedicated troubleshooting section)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/components/SiteFooter.tsx",
-          "operation": "modify",
-          "description": "Update the footer Connect socialLinks entries for YouTube/LinkedIn/Instagram/Telegram to the provided URLs (no \"#\"), and ensure their rendered <a> tags include target=\"_blank\" and rel=\"noopener noreferrer\" for external navigation."
+          "path": "frontend/vite.config.ts",
+          "operation": "create",
+          "description": "Add/standardize Vite configuration needed for reliable frontend builds (including path alias compatibility for imports like \"@/...\") and any required build-time settings that unblock deployment packaging. Use the build-template-react and core-infrastructure conventions as reference. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/pages/ContactPage.tsx",
+          "path": "frontend/tsconfig.json",
+          "operation": "create",
+          "description": "Add TypeScript configuration consistent with the frontend codebase and build tooling, including path mapping aligned with the Vite alias to prevent build-time module resolution failures. Use the build-template-react conventions as reference. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
+          "operation": "create",
+          "description": "Document a short troubleshooting note: what broke (root cause summary), what changed (config/script files touched), and how to verify locally/CI (commands to run and expected outcomes). Keep text in English and focused on build/deploy reliability only."
+        }
+      ]
+    },
+    {
+      "id": "REQ-33",
+      "summary": "Provide user-actionable deployment failure output showing the failing step and underlying error without exposing secrets.",
+      "acceptanceCriteria": [
+        "When a deployment fails, the output includes which step failed (e.g., build frontend, build backend, deploy canisters) and the original error message/stack where available.",
+        "The enhanced error output does not expose secrets (no tokens/keys) and is safe to share in support requests."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/scripts/deploy-runner.ts",
+          "operation": "create",
+          "description": "Create a Node/TS deploy runner utility that executes the deployment steps with structured step labels (e.g., \"Build frontend\", \"Build backend\", \"Deploy\") and prints the original error/stack for the failing step. Ensure output redacts common secret patterns and avoids printing environment variables. Use the github-export-icp-cli template as behavioral reference for deployment flow, but keep implementation self-contained in frontend/. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
           "operation": "modify",
-          "description": "Update the Contact page Follow Us socialLinks entries for YouTube/LinkedIn/Instagram/Telegram to the provided URLs (no \"#\"), and ensure their rendered <a> tags include target=\"_blank\" and rel=\"noopener noreferrer\" for external navigation."
+          "description": "Add a section explaining the new error output format, what information to include when asking for support, and what information must be redacted (tokens/keys). Keep wording in English."
+        }
+      ]
+    },
+    {
+      "id": "REQ-34",
+      "summary": "Add bounded retry logic for network-dependent deployment steps without changing runtime app behavior.",
+      "acceptanceCriteria": [
+        "Network-dependent deployment steps have automatic retries with a clear maximum attempt count.",
+        "If all retries fail, the workflow exits with a non-zero status and prints the final underlying error plus a brief next-step hint (in English)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/scripts/retry.ts",
+          "operation": "create",
+          "description": "Implement a small reusable bounded-retry helper (max attempts, backoff, and clear logging) intended for network-dependent deploy steps (e.g., tool invocations that fetch/build/publish). Ensure final failure prints the last underlying error and a brief English next-step hint, and returns a failing process exit code. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/scripts/deploy-runner.ts",
+          "operation": "modify",
+          "description": "Wrap network-dependent steps in the bounded retry helper with a clear maximum attempt count and consistent step labeling; ensure overall process exits non-zero after exhausting retries while printing the final underlying error and an English next-step hint. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
+          "operation": "modify",
+          "description": "Document the retry behavior (which steps retry, max attempts, how to disable/adjust if applicable) and clarify that it does not change app runtime behavior—only build/deploy workflow resilience."
         }
       ]
     }

@@ -10,6 +10,8 @@ import { IDL } from '@icp-sdk/core/candid';
 
 export const idlService = IDL.Service({
   'addCertificate' : IDL.Func([IDL.Text], [], []),
+  'enrollInCourse' : IDL.Func([IDL.Text], [], []),
+  'isEnrolledInCourse' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
   'removeCertificate' : IDL.Func([IDL.Text], [], []),
   'verifyCertificate' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
 });
@@ -19,6 +21,8 @@ export const idlInitArgs = [];
 export const idlFactory = ({ IDL }) => {
   return IDL.Service({
     'addCertificate' : IDL.Func([IDL.Text], [], []),
+    'enrollInCourse' : IDL.Func([IDL.Text], [], []),
+    'isEnrolledInCourse' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
     'removeCertificate' : IDL.Func([IDL.Text], [], []),
     'verifyCertificate' : IDL.Func([IDL.Text], [IDL.Bool], ['query']),
   });

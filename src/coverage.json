@@ -1,37 +1,70 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-07T05:12:11.833Z",
+  "generatedAt": "2026-02-10T14:14:51.631Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 1,
-    "implemented": 1,
+    "total": 3,
+    "implemented": 3,
     "items": [
       {
-        "id": "REQ-17",
-        "summary": "Update the site \"Connect\" social icon links to use the provided URLs (YouTube, LinkedIn, Instagram, Telegram) instead of placeholder \"#\" links wherever the \"Connect\"/social icons are rendered (including the footer \"Connect\" section and the Contact page \"Follow Us\" section).",
+        "id": "REQ-32",
+        "summary": "Identify the root cause of the current build/network deployment failure and implement the minimal code/config changes required so the project can successfully build and deploy again (frontend + backend).",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/ContactPage.tsx"
+          "frontend/vite.config.ts",
+          "frontend/tsconfig.json",
+          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
         ],
         "matchedFiles": [
-          "frontend/src/components/SiteFooter.tsx",
-          "frontend/src/pages/ContactPage.tsx"
+          "frontend/vite.config.ts",
+          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
+        ]
+      },
+      {
+        "id": "REQ-33",
+        "summary": "Add clear, user-actionable error output for deployment failures so that when deployment fails again, logs include the failing step and the underlying error (not just a generic failure message).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/scripts/deploy-runner.ts",
+          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
+        ],
+        "matchedFiles": [
+          "frontend/scripts/deploy-runner.ts",
+          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
+        ]
+      },
+      {
+        "id": "REQ-34",
+        "summary": "Ensure the build/deploy process is resilient to transient network issues by adding a bounded retry strategy to the deployment workflow for network-dependent steps (without changing the app’s runtime behavior).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/scripts/retry.ts",
+          "frontend/scripts/deploy-runner.ts",
+          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
+        ],
+        "matchedFiles": [
+          "frontend/scripts/retry.ts",
+          "frontend/scripts/deploy-runner.ts",
+          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
         ]
       }
     ]
   },
   "changedFiles": [
+    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/src/components/SiteFooter.tsx",
-    "frontend/src/pages/ContactPage.tsx",
+    "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
+    "frontend/scripts/deploy-runner.ts",
+    "frontend/scripts/retry.ts",
+    "frontend/tsconfig.node.json",
+    "frontend/vite.config.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

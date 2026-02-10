@@ -12,6 +12,8 @@ import type { Principal } from '@icp-sdk/core/principal';
 
 export interface _SERVICE {
   'addCertificate' : ActorMethod<[string], undefined>,
+  'enrollInCourse' : ActorMethod<[string], undefined>,
+  'isEnrolledInCourse' : ActorMethod<[string], boolean>,
   'removeCertificate' : ActorMethod<[string], undefined>,
   'verifyCertificate' : ActorMethod<[string], boolean>,
 }

@@ -1,15 +1,18 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 17,
+  "projectStateVersion": 31,
   "summary": "ICP dapp scaffolded with a Motoko backend and a React (Vite + Tailwind + shadcn/ui) frontend featuring marketing pages, courses/articles content, Internet Identity auth hooks, and certificate verification UI.",
   "architectural_notes": [
     "Frontend uses React + Vite with Tailwind and shadcn/ui component primitives.",
     "Internet Identity authentication is encapsulated in reusable hooks (useInternetIdentity/useActor).",
     "ICP canister configuration included for backend and frontend (canister.yaml + DID bindings).",
-    "Build-template includes scripts for pruning/resizing images and a standardized deployment workflow."
+    "Build-template includes scripts for pruning/resizing images and a standardized deployment workflow.",
+    "Contact form should support sending messages to hackrootorg82@gmail.com, but email delivery will be enabled later; implement UI/layout now with a placeholder/no-op submission handler."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
+  "known_issues": [
+    "Build/network deployment is failing (deployment failed); user requested retry."
+  ],
+  "isFixRequest": true,
   "generatedImages": [
     {
       "filename": "frontend/public/assets/generated/article-cyber-tips.dim_1200x675.png",
@@ -314,6 +317,134 @@
         "REQ-17"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-contact-page-contact-information-email-address-to-use-hackrootorg82-gmail-com-including-the-visible-email-text-and-the-mailto-link-target",
+      "title": "Update the Contact page \"Contact Information\" email address to use hackrootorg82@gmail.com, including the visible email text and the mailto: link target.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-keep-the-send-us-a-message-form-as-a-working-layout-only-submission-no-outbound-email-sending-and-update-the-user-facing-copy-so-it-does-not-imply-that-messages-are-sent-to-email-or-that-a-24-hour-response-is-guaranteed",
+      "title": "Keep the \"Send us a Message\" form as a working layout-only submission (no outbound email sending), and update the user-facing copy so it does not imply that messages are sent to email or that a 24-hour response is guaranteed.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-replace-every-occurrence-of-the-brand-text-cybermidesoace-including-any-case-typo-variants-such-as-cybermindspace-across-the-frontend-with-hackroot-organization-including-visible-ui-text-and-html-metadata-page-title-description-where-applicable",
+      "title": "Replace every occurrence of the brand text \"cybermidesoace\" (including any case/typo variants such as \"CyberMindspace\") across the frontend with \"Hackroot Organization\", including visible UI text and HTML metadata (page title/description) where applicable.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-automatic-scroll-to-top-behavior-whenever-the-route-changes-so-that-navigating-to-pages-like-home-courses-articles-resources-about-gallery-contact-and-other-site-routes-always-lands-the-user-at-the-top-of-the-new-page",
+      "title": "Implement automatic scroll-to-top behavior whenever the route changes so that navigating to pages like Home, Courses, Articles, Resources, About, Gallery, Contact (and other site routes) always lands the user at the top of the new page.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-an-enrollment-payment-flow-on-the-course-detail-page-so-that-when-a-user-clicks-the-course-detail-enroll-now-button-they-are-prompted-to-choose-a-payment-method-and-complete-a-simulated-payment-step-before-enrollment-is-confirmed",
+      "title": "Add an enrollment payment flow on the Course Detail page so that when a user clicks the course detail \"Enroll Now\" button, they are prompted to choose a payment method and complete a simulated payment step before enrollment is confirmed.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-wire-the-course-detail-page-enrollment-flow-to-the-backend-enrollment-methods-using-the-existing-actor-hook-and-reflect-enrollment-state-in-the-ui-e-g-disable-enrollment-or-show-enrolled",
+      "title": "Wire the Course Detail page enrollment flow to the backend enrollment methods using the existing actor hook, and reflect enrollment state in the UI (e.g., disable enrollment or show \"Enrolled\").",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-dedicated-enrollment-success-view-either-a-new-route-or-a-reusable-success-card-that-can-be-shown-after-successful-enrollment-including-course-title-paid-amount-in-inr-and-a-clear-next-action",
+      "title": "Add a dedicated enrollment success view (either a new route or a reusable success card) that can be shown after successful enrollment, including course title, paid amount in INR, and a clear next action.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-slim-top-strip-above-the-existing-siteheader-navigation-that-displays-a-social-media-icon-links-b-an-email-address-c-a-phone-number-and-d-the-message-start-your-career-with-us",
+      "title": "Add a slim top strip above the existing SiteHeader navigation that displays (a) social media icon links, (b) an email address, (c) a phone number, and (d) the message \"Start Your Career With Us !!\".",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-use-the-existing-site-social-urls-already-used-in-the-footer-contact-for-the-top-strip-social-icons-youtube-instagram-linkedin-telegram-and-do-not-include-placeholder-social-links-e-g-href-in-the-top-strip",
+      "title": "Use the existing site social URLs already used in the footer/contact for the top-strip social icons (YouTube, Instagram, LinkedIn, Telegram), and do not include placeholder social links (e.g., href=\"#\") in the top strip.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-set-the-top-strip-email-address-to-hackrootorg82-gmail-com-consistent-with-the-contact-page-unless-an-alternate-email-is-explicitly-provided-later",
+      "title": "Set the top-strip email address to \"hackrootorg82@gmail.com\" (consistent with the Contact page) unless an alternate email is explicitly provided later.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-cyber-related-background-video-to-the-home-page-hero-section-the-top-hero-area-on-the-home-page-so-that-it-appears-as-a-full-bleed-background-behind-the-existing-hero-content-headline-buttons-and-animated-code-lines",
+      "title": "Add a cyber-related background video to the Home page hero section (the top hero area on the Home page) so that it appears as a full-bleed background behind the existing hero content (headline, buttons, and animated code lines).",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-an-accessibility-performance-fallback-for-the-home-hero-background-video-when-the-user-prefers-reduced-motion-or-if-the-video-cannot-load-display-the-existing-static-hero-background-image-instead-keeping-the-current-hero-styling-and-layout",
+      "title": "Implement an accessibility/performance fallback for the Home hero background video: when the user prefers reduced motion, or if the video cannot load, display the existing static hero background image instead (keeping the current hero styling and layout).",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-cyber-themed-background-video-file-as-a-static-frontend-asset-and-reference-it-from-the-home-page-hero-do-not-serve-video-through-the-backend",
+      "title": "Add the cyber-themed background video file as a static frontend asset and reference it from the Home page hero (do not serve video through the backend).",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-identify-the-root-cause-of-the-current-build-network-deployment-failure-and-implement-the-minimal-code-config-changes-required-so-the-project-can-successfully-build-and-deploy-again-frontend-backend",
+      "title": "Identify the root cause of the current build/network deployment failure and implement the minimal code/config changes required so the project can successfully build and deploy again (frontend + backend).",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-clear-user-actionable-error-output-for-deployment-failures-so-that-when-deployment-fails-again-logs-include-the-failing-step-and-the-underlying-error-not-just-a-generic-failure-message",
+      "title": "Add clear, user-actionable error output for deployment failures so that when deployment fails again, logs include the failing step and the underlying error (not just a generic failure message).",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-build-deploy-process-is-resilient-to-transient-network-issues-by-adding-a-bounded-retry-strategy-to-the-deployment-workflow-for-network-dependent-steps-without-changing-the-app-s-runtime-behavior",
+      "title": "Ensure the build/deploy process is resilient to transient network issues by adding a bounded retry strategy to the deployment workflow for network-dependent steps (without changing the app’s runtime behavior).",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -350,6 +481,50 @@
     {
       "id": "AR-6",
       "summary": "Add social/profile links (YouTube, LinkedIn, Instagram, Telegram) to the site \"Connect\" section.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Update Contact page to use email hackrootorg82@gmail.com and prepare a working contact form layout now, with message-to-email sending to be enabled later.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Replace all occurrences of \"cybermidesoace\" across the website with \"Hackroot Organization\" (site-wide branding text update).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Ensure navigating via header links (Home, About, Courses, Articles, Resources, Gallery, Contact, etc.) scrolls the page to the top on route change.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Add a payment gateway flow for course enrollment: from Course Detail \"Enroll\" initiate payment and show successful enrollment confirmation after payment.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Persist course enrollments in the Motoko backend by principal and courseId, and expose backend methods to enroll and to query whether the current caller is enrolled in a given course.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Add social media icons plus email and phone number (7527050563) to the top navbar, and display the message \"Start Your Career With Us !!\" in the navbar/top bar.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Add a cyber-related background video section on the Home page (background video on/near hero).",
       "reqIds": [],
       "status": "pending"
     }

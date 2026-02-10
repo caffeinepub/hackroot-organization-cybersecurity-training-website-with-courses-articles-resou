@@ -91,6 +91,8 @@ export class ExternalBlob {
 }
 export interface backendInterface {
     addCertificate(id: string): Promise<void>;
+    enrollInCourse(courseId: string): Promise<void>;
+    isEnrolledInCourse(courseId: string): Promise<boolean>;
     removeCertificate(id: string): Promise<void>;
     verifyCertificate(id: string): Promise<boolean>;
 }
@@ -107,6 +109,34 @@ export class Backend implements backendInterface {
             }
         } else {
             const result = await this.actor.addCertificate(arg0);
+            return result;
+        }
+    }
+    async enrollInCourse(arg0: string): Promise<void> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.enrollInCourse(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.enrollInCourse(arg0);
+            return result;
+        }
+    }
+    async isEnrolledInCourse(arg0: string): Promise<boolean> {
+        if (this.processError) {
+            try {
+                const result = await this.actor.isEnrolledInCourse(arg0);
+                return result;
+            } catch (e) {
+                this.processError(e);
+                throw new Error("unreachable");
+            }
+        } else {
+            const result = await this.actor.isEnrolledInCourse(arg0);
             return result;
         }
     }

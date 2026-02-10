@@ -1,11 +1,12 @@
 # Specification
 
 ## Summary
-**Goal:** Replace placeholder social links in the site “Connect” areas with the provided YouTube, LinkedIn, Instagram, and Telegram URLs.
+**Goal:** Restore reliable frontend+backend build and deployment by diagnosing and fixing the current build/network deployment failure, with clearer failure logs and bounded retries for network-dependent steps.
 
 **Planned changes:**
-- Update the footer “Connect” social icon hrefs to the provided YouTube, LinkedIn, Instagram, and Telegram URLs.
-- Update the Contact page “Follow Us” social icon hrefs to the same provided URLs.
-- Ensure all four external links open in a new tab and include `rel="noopener noreferrer"`, and none of these four icons use `#`.
+- Identify the root cause of the current build/deploy failure and apply minimal code/config fixes so both frontend and backend build cleanly and deployment completes.
+- Improve deployment failure output to clearly indicate the failing step and include the underlying error/stack where available (without exposing secrets).
+- Add a bounded retry strategy for network-dependent deployment steps, exiting non-zero after max attempts and printing the final error plus a brief next-step hint in English.
+- Document the fix in repository documentation (what broke, what changed, how to verify).
 
-**User-visible outcome:** Users can click the YouTube, LinkedIn, Instagram, and Telegram icons in the footer and on the Contact page to open the correct social profiles in a new tab.
+**User-visible outcome:** The project builds and deploys successfully again; if deployment fails, logs clearly show which step failed and why, and transient network issues are automatically retried up to a defined limit.
