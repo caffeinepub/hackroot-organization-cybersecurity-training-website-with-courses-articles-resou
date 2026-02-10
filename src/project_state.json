@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 31,
+  "projectStateVersion": 33,
   "summary": "ICP dapp scaffolded with a Motoko backend and a React (Vite + Tailwind + shadcn/ui) frontend featuring marketing pages, courses/articles content, Internet Identity auth hooks, and certificate verification UI.",
   "architectural_notes": [
     "Frontend uses React + Vite with Tailwind and shadcn/ui component primitives.",
@@ -12,7 +12,7 @@
   "known_issues": [
     "Build/network deployment is failing (deployment failed); user requested retry."
   ],
-  "isFixRequest": true,
+  "isFixRequest": false,
   "generatedImages": [
     {
       "filename": "frontend/public/assets/generated/article-cyber-tips.dim_1200x675.png",
@@ -445,6 +445,22 @@
         "REQ-34"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-update-the-articles-content-data-so-the-additional-articles-requested-by-the-user-are-included-in-the-articles-list-and-can-be-opened-in-the-article-detail-view-add-each-new-article-to-frontend-src-data-articles-ts-with-a-unique-slug-english-title-preview-full-content-author-date-and-a-valid-image-path",
+      "title": "Update the Articles content data so the additional articles requested by the user are included in the Articles list and can be opened in the Article Detail view. Add each new article to frontend/src/data/articles.ts with a unique slug, English title, preview, full content, author, date, and a valid image path.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-if-any-of-the-newly-added-articles-require-new-images-add-those-image-files-as-static-frontend-assets-under-frontend-public-assets-or-frontend-public-assets-generated-if-generated-and-reference-them-via-the-article-image-field-so-images-load-correctly-on-both-the-articles-list-and-article-detail-pages",
+      "title": "If any of the newly added articles require new images, add those image files as static frontend assets under frontend/public/assets/ (or frontend/public/assets/generated if generated) and reference them via the Article.image field so images load correctly on both the Articles list and Article Detail pages.",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -525,6 +541,12 @@
     {
       "id": "AR-14",
       "summary": "Add a cyber-related background video section on the Home page (background video on/near hero).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Add the requested additional articles to the Articles page (update articles data/content so they appear in the list/detail views).",
       "reqIds": [],
       "status": "pending"
     }

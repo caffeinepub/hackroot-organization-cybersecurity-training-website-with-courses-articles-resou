@@ -14,7 +14,7 @@
   "frontend/src/pages/TermsPage.tsx": "Terms & Conditions page with structured sections covering acceptance, use of services, intellectual property, user conduct, liability, and changes to terms.",
   "frontend/src/pages/PrivacyPage.tsx": "Privacy Policy page detailing information collection, usage, sharing, security measures, user rights, cookies, and contact information.",
   "frontend/src/data/courses.ts": "Course data module defining the Course interface with added price field (in INR) and five featured courses with all metadata including pricing.",
-  "frontend/src/data/articles.ts": "Article data module containing three initial articles (cybersecurity tips, hacking fundamentals, security research trends) with full content and metadata.",
+  "frontend/src/data/articles.ts": "Article data module containing six cybersecurity articles (original three plus three new articles on Aircrack-ng, wireless network security, and network penetration testing) with full content, metadata, and image references including the newly added WhatsApp image asset.",
   "frontend/src/lib/validation.ts": "Form validation utility functions for required field and email format validation used in the contact form.",
   "frontend/src/index.css": "Global styles with cybersecurity-themed OKLCH color system, component classes for cyber-themed buttons and cards, and utility classes including no-truncate helper to ensure full text visibility.",
   "frontend/index.html": "HTML entry point with SEO metadata for cybersecurity training platform, updated to reference \"Hackroot Organization\" in title and meta description, including favicon and Apple touch icon references.",

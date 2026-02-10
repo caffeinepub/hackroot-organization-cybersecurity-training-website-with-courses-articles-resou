@@ -1,76 +1,42 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Diagnose and harden build/deploy workflow with actionable logging and bounded retries (frontend-only changes)",
+  "title": "Add additional articles and any required images to Articles pages",
   "requirements": [
     {
-      "id": "REQ-32",
-      "summary": "Fix frontend build configuration issues preventing successful build/deploy and document the minimal remediation and verification steps.",
+      "id": "REQ-35",
+      "summary": "Add the user-requested additional articles to the static Articles dataset so they appear on /articles and render correctly on /articles/$slug.",
       "acceptanceCriteria": [
-        "A clean build completes for both frontend and backend without errors.",
-        "A deployment attempt completes successfully without the previously observed build/network failure.",
-        "Any fix is documented in a short note (what broke, what changed, how to verify) in the repository documentation (e.g., README or a dedicated troubleshooting section)."
+        "New article objects exist in frontend/src/data/articles.ts and follow the existing Article interface shape (slug, title, preview, content, image, date, author).",
+        "Each new article has a unique slug and does not break existing routes or article lookup by slug.",
+        "The /articles page renders cards for the newly added articles alongside existing ones.",
+        "Navigating to /articles/$slug for each newly added article shows the correct title, image, metadata, and full content without runtime errors."
       ],
       "file_operations": [
         {
-          "path": "frontend/vite.config.ts",
-          "operation": "create",
-          "description": "Add/standardize Vite configuration needed for reliable frontend builds (including path alias compatibility for imports like \"@/...\") and any required build-time settings that unblock deployment packaging. Use the build-template-react and core-infrastructure conventions as reference. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/tsconfig.json",
-          "operation": "create",
-          "description": "Add TypeScript configuration consistent with the frontend codebase and build tooling, including path mapping aligned with the Vite alias to prevent build-time module resolution failures. Use the build-template-react conventions as reference. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
-          "operation": "create",
-          "description": "Document a short troubleshooting note: what broke (root cause summary), what changed (config/script files touched), and how to verify locally/CI (commands to run and expected outcomes). Keep text in English and focused on build/deploy reliability only."
+          "path": "frontend/src/data/articles.ts",
+          "operation": "modify",
+          "description": "Append the additional user-requested article objects to the exported articles array, ensuring each includes slug/title/preview/content/author/date/image (English text only), uses unique slugs, and that image paths point to valid static assets."
         }
       ]
     },
     {
-      "id": "REQ-33",
-      "summary": "Provide user-actionable deployment failure output showing the failing step and underlying error without exposing secrets.",
+      "id": "REQ-36",
+      "summary": "Ensure every newly added article references a valid static image asset and add any missing image files under frontend/public/assets (or frontend/public/assets/generated if generated).",
       "acceptanceCriteria": [
-        "When a deployment fails, the output includes which step failed (e.g., build frontend, build backend, deploy canisters) and the original error message/stack where available.",
-        "The enhanced error output does not expose secrets (no tokens/keys) and is safe to share in support requests."
+        "For every newly added article, the Article.image field points to an existing static file path that loads successfully in the browser.",
+        "No broken image links appear on /articles or on any /articles/$slug page for the newly added articles."
       ],
       "file_operations": [
         {
-          "path": "frontend/scripts/deploy-runner.ts",
+          "path": "frontend/public/assets/whatsapp-image-2026-01-17-94554.jpeg",
           "operation": "create",
-          "description": "Create a Node/TS deploy runner utility that executes the deployment steps with structured step labels (e.g., \"Build frontend\", \"Build backend\", \"Deploy\") and prints the original error/stack for the failing step. Ensure output redacts common secret patterns and avoids printing environment variables. Use the github-export-icp-cli template as behavioral reference for deployment flow, but keep implementation self-contained in frontend/. Verify the component's usage instructions before implementing."
+          "description": "Add the new static image asset (from the provided workspace asset \"WhatsApp Image 2026-01-17 at 9.45.54 AM.jpeg\") under frontend/public/assets/ so it can be referenced by new Article.image fields."
         },
         {
-          "path": "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
+          "path": "frontend/src/data/articles.ts",
           "operation": "modify",
-          "description": "Add a section explaining the new error output format, what information to include when asking for support, and what information must be redacted (tokens/keys). Keep wording in English."
-        }
-      ]
-    },
-    {
-      "id": "REQ-34",
-      "summary": "Add bounded retry logic for network-dependent deployment steps without changing runtime app behavior.",
-      "acceptanceCriteria": [
-        "Network-dependent deployment steps have automatic retries with a clear maximum attempt count.",
-        "If all retries fail, the workflow exits with a non-zero status and prints the final underlying error plus a brief next-step hint (in English)."
-      ],
-      "file_operations": [
-        {
-          "path": "frontend/scripts/retry.ts",
-          "operation": "create",
-          "description": "Implement a small reusable bounded-retry helper (max attempts, backoff, and clear logging) intended for network-dependent deploy steps (e.g., tool invocations that fetch/build/publish). Ensure final failure prints the last underlying error and a brief English next-step hint, and returns a failing process exit code. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/scripts/deploy-runner.ts",
-          "operation": "modify",
-          "description": "Wrap network-dependent steps in the bounded retry helper with a clear maximum attempt count and consistent step labeling; ensure overall process exits non-zero after exhausting retries while printing the final underlying error and an English next-step hint. Verify the component's usage instructions before implementing."
-        },
-        {
-          "path": "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
-          "operation": "modify",
-          "description": "Document the retry behavior (which steps retry, max attempts, how to disable/adjust if applicable) and clarify that it does not change app runtime behavior—only build/deploy workflow resilience."
+          "description": "Set/adjust the Article.image field for any newly added articles that require new images to reference the added static asset(s) under frontend/public/assets (or existing assets under frontend/public/assets/generated), ensuring no broken images on list/detail views."
         }
       ]
     }

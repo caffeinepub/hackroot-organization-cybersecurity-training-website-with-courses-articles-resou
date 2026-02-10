@@ -1,12 +1,11 @@
 # Specification
 
 ## Summary
-**Goal:** Restore reliable frontend+backend build and deployment by diagnosing and fixing the current build/network deployment failure, with clearer failure logs and bounded retries for network-dependent steps.
+**Goal:** Add additional requested articles to the Articles page so they appear in the list and can be opened in the Article Detail view.
 
 **Planned changes:**
-- Identify the root cause of the current build/deploy failure and apply minimal code/config fixes so both frontend and backend build cleanly and deployment completes.
-- Improve deployment failure output to clearly indicate the failing step and include the underlying error/stack where available (without exposing secrets).
-- Add a bounded retry strategy for network-dependent deployment steps, exiting non-zero after max attempts and printing the final error plus a brief next-step hint in English.
-- Document the fix in repository documentation (what broke, what changed, how to verify).
+- Add new article entries to `frontend/src/data/articles.ts` with unique slugs, English title, preview, full content, author, date, and a valid image path following the existing Article shape.
+- Ensure the existing `/articles` list and `/articles/$slug` detail pages correctly resolve and render each newly added article without route or lookup conflicts.
+- Add any required static image assets under `frontend/public/assets/` (or `frontend/public/assets/generated`) and reference them via each new article’s `image` field to avoid broken images.
 
-**User-visible outcome:** The project builds and deploys successfully again; if deployment fails, logs clearly show which step failed and why, and transient network issues are automatically retried up to a defined limit.
+**User-visible outcome:** The Articles page shows additional new articles, and users can click each one to view its full details page with correct metadata and images.

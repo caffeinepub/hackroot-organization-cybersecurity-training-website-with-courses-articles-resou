@@ -1,70 +1,46 @@
 {
   "kind": "coverage_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T14:14:51.631Z",
+  "generatedAt": "2026-02-10T14:29:23.273Z",
   "sources": {
     "buildRequest": true,
     "implementationPlan": true
   },
   "requirements": {
-    "total": 3,
-    "implemented": 3,
+    "total": 2,
+    "implemented": 2,
     "items": [
       {
-        "id": "REQ-32",
-        "summary": "Identify the root cause of the current build/network deployment failure and implement the minimal code/config changes required so the project can successfully build and deploy again (frontend + backend).",
+        "id": "REQ-35",
+        "summary": "Update the Articles content data so the additional articles requested by the user are included in the Articles list and can be opened in the Article Detail view. Add each new article to frontend/src/data/articles.ts with a unique slug, English title, preview, full content, author, date, and a valid image path.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/vite.config.ts",
-          "frontend/tsconfig.json",
-          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
+          "frontend/src/data/articles.ts"
         ],
         "matchedFiles": [
-          "frontend/vite.config.ts",
-          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
+          "frontend/src/data/articles.ts"
         ]
       },
       {
-        "id": "REQ-33",
-        "summary": "Add clear, user-actionable error output for deployment failures so that when deployment fails again, logs include the failing step and the underlying error (not just a generic failure message).",
+        "id": "REQ-36",
+        "summary": "If any of the newly added articles require new images, add those image files as static frontend assets under frontend/public/assets/ (or frontend/public/assets/generated if generated) and reference them via the Article.image field so images load correctly on both the Articles list and Article Detail pages.",
         "status": "implemented",
         "plannedFiles": [
-          "frontend/scripts/deploy-runner.ts",
-          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
+          "frontend/public/assets/whatsapp-image-2026-01-17-94554.jpeg",
+          "frontend/src/data/articles.ts"
         ],
         "matchedFiles": [
-          "frontend/scripts/deploy-runner.ts",
-          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
-        ]
-      },
-      {
-        "id": "REQ-34",
-        "summary": "Ensure the build/deploy process is resilient to transient network issues by adding a bounded retry strategy to the deployment workflow for network-dependent steps (without changing the app’s runtime behavior).",
-        "status": "implemented",
-        "plannedFiles": [
-          "frontend/scripts/retry.ts",
-          "frontend/scripts/deploy-runner.ts",
-          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
-        ],
-        "matchedFiles": [
-          "frontend/scripts/retry.ts",
-          "frontend/scripts/deploy-runner.ts",
-          "frontend/DEPLOYMENT_TROUBLESHOOTING.md"
+          "frontend/src/data/articles.ts"
         ]
       }
     ]
   },
   "changedFiles": [
-    "backend/main.mo",
     "build-request.json",
     "feature_evidence.json",
     "frontend-file-summaries.txt",
     "frontend-implementation-plan.json",
-    "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
-    "frontend/scripts/deploy-runner.ts",
-    "frontend/scripts/retry.ts",
-    "frontend/tsconfig.node.json",
-    "frontend/vite.config.ts",
+    "frontend/src/data/articles.ts",
     "project_state.json",
     "scratch/component-selection.json",
     "spec.md",

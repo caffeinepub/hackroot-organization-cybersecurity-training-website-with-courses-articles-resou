@@ -1,55 +1,29 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T14:14:51.628Z",
-  "summary": "Diff adds frontend build configuration (Vite/TS configs), a deployment runner with step-labeled error reporting and secret redaction, a bounded retry helper with backoff, and a deployment troubleshooting doc. Backend `main.mo` is modified with certificate/enrollment logic unrelated to deployment reliability. Evidence is insufficient that the new deploy runner is actually integrated into the project’s normal deploy workflow or that backend build/deploy failures were addressed.",
-  "missing_requirements": [
-    {
-      "id": "REQ-32",
-      "requirement": "Ensure the project can successfully build and deploy again (frontend + backend) with minimal changes, and document the fix.",
-      "reason": "While a troubleshooting doc and frontend build configs were added, the diff does not show any changes that explicitly fix or validate backend build/deploy issues, nor any project-level wiring that makes the new deployment runner the default path for a successful deployment attempt.",
-      "evidence": [
-        "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
-        "frontend/vite.config.ts",
-        "frontend/tsconfig.node.json",
-        "backend/main.mo"
-      ]
-    },
-    {
-      "id": "REQ-33",
-      "requirement": "Add clear, user-actionable error output for deployment failures indicating which step failed and the underlying error.",
-      "reason": "The deploy runner prints step headers and errors, but network-retry failures handled in `retryWithBackoff` print errors/stacks without applying the deploy runner’s `redactSecrets()` filtering. The acceptance criteria requires enhanced output to be safe to share (no secrets).",
-      "evidence": [
-        "frontend/scripts/deploy-runner.ts",
-        "frontend/scripts/retry.ts"
-      ]
-    }
-  ],
+  "generatedAt": "2026-02-10T14:29:23.270Z",
+  "summary": "The diff clearly adds new static article entries to `frontend/src/data/articles.ts` (meeting the core intent of adding articles), but the provided diff does not include any added/modified static image assets, so image availability for the new `Article.image` paths cannot be verified from the diff alone. Two non-functional/meta files were also modified.",
+  "missing_requirements": [],
   "hallucinated_features": [
     {
-      "description": "Backend canister logic changes adding certificate management and course enrollment APIs (verify/add/remove certificate, enroll/isEnrolled).",
-      "reason": "BuildRequest focuses on deployment/build/network reliability fixes and explicitly lists non-goals as adding new product features unrelated to deployment reliability. These backend functional changes appear unrelated to the requested deployment retry work.",
+      "description": "Modified project metadata/state file without an explicit request in the BuildRequest.",
+      "reason": "BuildRequest only asks to add articles (and possibly images). Updating project state/versioning metadata is not requested.",
       "evidence": [
-        "backend/main.mo"
+        "project_state.json (modified)"
       ]
     },
     {
-      "description": "Frontend build optimization and chunking strategy (manualChunks for vendor/router/query) and dev server proxy configuration.",
-      "reason": "Not explicitly requested by the BuildRequest; could be incidental, but it goes beyond minimal deployment failure remediation based solely on the diff evidence.",
+      "description": "Modified documentation/summary file describing many unrelated UI/page changes not requested in this BuildRequest.",
+      "reason": "BuildRequest scope is limited to adding articles and (if needed) images; the diff shows updates to a summary file that references unrelated features (e.g., header/footer/home/about/contact changes).",
       "evidence": [
-        "frontend/vite.config.ts"
+        "frontend-file-summaries.txt (modified)"
       ]
     }
   ],
-  "confidence": 0.63,
+  "confidence": 0.62,
   "changed_files": [
-    "backend/main.mo",
     "frontend-file-summaries.txt",
-    "frontend/DEPLOYMENT_TROUBLESHOOTING.md",
-    "frontend/scripts/deploy-runner.ts",
-    "frontend/scripts/retry.ts",
-    "frontend/tsconfig.node.json",
-    "frontend/vite.config.ts",
+    "frontend/src/data/articles.ts",
     "project_state.json"
   ]
 }
