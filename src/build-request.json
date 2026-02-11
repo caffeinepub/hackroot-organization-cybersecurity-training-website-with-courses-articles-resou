@@ -1,66 +1,114 @@
 {
   "kind": "build_request",
-  "title": "Add requested additional articles to the Articles page",
+  "title": "Add Internet Identity login/logout UI and a protected User Dashboard route",
   "priority": "normal",
   "requirements": [
     {
-      "id": "REQ-35",
-      "text": "Update the Articles content data so the additional articles requested by the user are included in the Articles list and can be opened in the Article Detail view. Add each new article to frontend/src/data/articles.ts with a unique slug, English title, preview, full content, author, date, and a valid image path.",
+      "id": "REQ-43",
+      "text": "Add a new protected User Dashboard page at route \"/dashboard\" that is only accessible when the user is authenticated via Internet Identity.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-4",
+          "msg-6"
         ],
         "quotes": [
-          "add this articles in articles page"
+          "in website add login and sing up  and when user login then show user dasbord",
+          "yes"
         ]
       },
       "acceptanceCriteria": [
-        "New article objects exist in frontend/src/data/articles.ts and follow the existing Article interface shape (slug, title, preview, content, image, date, author).",
-        "Each new article has a unique slug and does not break existing routes or article lookup by slug.",
-        "The /articles page renders cards for the newly added articles alongside existing ones.",
-        "Navigating to /articles/$slug for each newly added article shows the correct title, image, metadata, and full content without runtime errors."
+        "Navigating to /dashboard while authenticated via Internet Identity renders the dashboard page.",
+        "Navigating to /dashboard while not authenticated does not show dashboard content and instead redirects the user to a public page (e.g., Home) with a clear on-screen message indicating login is required.",
+        "The dashboard route is registered in the TanStack Router route tree (frontend/src/App.tsx)."
       ]
     },
     {
-      "id": "REQ-36",
-      "text": "If any of the newly added articles require new images, add those image files as static frontend assets under frontend/public/assets/ (or frontend/public/assets/generated if generated) and reference them via the Article.image field so images load correctly on both the Articles list and Article Detail pages.",
+      "id": "REQ-44",
+      "text": "Implement a reusable client-side auth guard component for TanStack Router pages that require Internet Identity authentication, and use it to protect the Dashboard page.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-1"
+          "msg-4"
         ],
         "quotes": [
-          "add this articles in articles page"
+          "when user login then show user dasbord"
         ]
       },
       "acceptanceCriteria": [
-        "For every newly added article, the Article.image field points to an existing static file path that loads successfully in the browser.",
-        "No broken image links appear on /articles or on any /articles/$slug page for the newly added articles."
+        "Auth guard determines authentication state using the existing Internet Identity context (useInternetIdentity).",
+        "Protected content never briefly flashes for logged-out users (no unauthenticated content render before redirect)."
+      ]
+    },
+    {
+      "id": "REQ-45",
+      "text": "Update the site header to support authentication actions using Internet Identity: show a \"Log in\" button when logged out, show a \"Log out\" button when logged in, and show a \"Dashboard\" navigation link only when logged in.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "add login and sing up  and when user login then show user dasbord"
+        ]
+      },
+      "acceptanceCriteria": [
+        "When logged out, the header displays a \"Log in\" action that triggers Internet Identity login via the existing hook.",
+        "When logged in, the header displays a \"Log out\" action that clears the identity via the existing hook.",
+        "When logged in, the header displays a \"Dashboard\" link that navigates to /dashboard; when logged out, the \"Dashboard\" link is hidden.",
+        "Mobile and desktop navigation both reflect the same auth-aware behavior."
+      ]
+    },
+    {
+      "id": "REQ-46",
+      "text": "Ensure the login flow results in the user being able to reach the dashboard immediately after successful Internet Identity authentication.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4",
+          "msg-6"
+        ],
+        "quotes": [
+          "when user login then show user dasbord",
+          "yes"
+        ]
+      },
+      "acceptanceCriteria": [
+        "After a successful Internet Identity login, the user can reach the dashboard with no additional manual steps (either automatic navigation to /dashboard or a clearly visible dashboard entry point).",
+        "If the user is already authenticated and attempts to log in again, the UI handles it gracefully (no broken state)."
+      ]
+    },
+    {
+      "id": "REQ-47",
+      "text": "Add basic Dashboard page content using English user-facing text: show a \"User Dashboard\" heading and display the logged-in user's Principal in a readable format.",
+      "target": "frontend",
+      "source": {
+        "messageIds": [
+          "msg-4"
+        ],
+        "quotes": [
+          "show user dasbord"
+        ]
+      },
+      "acceptanceCriteria": [
+        "Dashboard shows a clear page title: \"User Dashboard\".",
+        "Dashboard displays the authenticated Principal (from the Internet Identity identity) and does not show \"anonymous\" when authenticated.",
+        "All dashboard user-facing copy is in English."
       ]
     }
   ],
   "constraints": [
-    "Do not edit files under frontend/src/components/ui (shadcn/ui).",
-    "Do not edit frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx (immutable paths).",
-    "Keep all user-facing text for the newly added articles in English."
+    "Do not implement phone-number login, email-password login, OTP, SMS login, or email-based signup; authentication must use Internet Identity only.",
+    "Do not modify any files under frontend/src/hooks/useInternetIdentity.ts(x) or frontend/src/hooks/useActor.ts (immutable paths).",
+    "Keep backend architecture as a single Motoko actor; no additional backend services."
   ],
   "nonGoals": [
-    "No backend changes or persistence for articles (articles remain frontend static content).",
-    "No new routing patterns; continue using the existing /articles and /articles/$slug routes."
+    "Implementing a real \"Sign up\" flow with email/phone/password credentials.",
+    "Storing or managing user profiles (name, email, phone) in the backend.",
+    "Adding third-party authentication providers (Google, Facebook, GitHub, Auth0)."
   ],
   "imageRequirements": {
     "required": [],
     "edits": []
-  },
-  "userProfileUpdate": {
-    "goalsToAdd": [],
-    "goalsToRemove": [],
-    "preferencesToAdd": [],
-    "preferencesToRemove": [],
-    "miscToAdd": [],
-    "miscToRemove": [],
-    "fieldsToSet": {},
-    "fieldsToDelete": []
   }
 }

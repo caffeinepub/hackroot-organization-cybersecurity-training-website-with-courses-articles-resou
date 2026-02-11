@@ -1,12 +1,18 @@
 import { Link, useNavigate, useLocation } from '@tanstack/react-router';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, LogIn, LogOut, LayoutDashboard } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useInternetIdentity } from '@/hooks/useInternetIdentity';
+import { getAndClearPostLoginRedirect } from '@/lib/authRedirect';
+import { toast } from 'sonner';
 
 export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+  const { identity, login, clear, isLoggingIn, isLoginSuccess, isInitializing } = useInternetIdentity();
+
+  const isAuthenticated = identity && !identity.getPrincipal().isAnonymous();
 
   const navLinks = [
     { label: 'Home', path: '/' },
@@ -18,6 +24,18 @@ export default function SiteHeader() {
     { label: 'Contact', path: '/contact' },
     { label: 'Verify Certificate', path: '/certificate-verification' },
   ];
+
+  // Handle post-login navigation
+  useEffect(() => {
+    if (isLoginSuccess && isAuthenticated) {
+      const redirectTarget = getAndClearPostLoginRedirect();
+      if (redirectTarget) {
+        navigate({ to: redirectTarget });
+      } else {
+        navigate({ to: '/dashboard' });
+      }
+    }
+  }, [isLoginSuccess, isAuthenticated, navigate]);
 
   const handleNavClick = (path: string, e: React.MouseEvent) => {
     // If clicking the current route, scroll to top
@@ -34,6 +52,20 @@ export default function SiteHeader() {
       e.preventDefault();
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
     }
+  };
+
+  const handleLogin = () => {
+    if (isAuthenticated) {
+      toast.info('You are already logged in');
+      return;
+    }
+    login();
+  };
+
+  const handleLogout = () => {
+    clear();
+    toast.success('Logged out successfully');
+    navigate({ to: '/' });
   };
 
   return (
@@ -66,6 +98,43 @@ export default function SiteHeader() {
               {link.label}
             </Link>
           ))}
+          {isAuthenticated && (
+            <Link
+              to="/dashboard"
+              onClick={(e) => handleNavClick('/dashboard', e)}
+              className="nav-link px-3 py-2 text-sm font-medium transition-colors hover:text-cyber-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              activeProps={{ className: 'text-cyber-accent' }}
+            >
+              <LayoutDashboard className="mr-1.5 inline-block h-4 w-4" />
+              Dashboard
+            </Link>
+          )}
+          {!isInitializing && (
+            <>
+              {isAuthenticated ? (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={handleLogout}
+                  className="ml-2"
+                >
+                  <LogOut className="mr-1.5 h-4 w-4" />
+                  Log out
+                </Button>
+              ) : (
+                <Button
+                  variant="default"
+                  size="sm"
+                  onClick={handleLogin}
+                  disabled={isLoggingIn}
+                  className="ml-2 cyber-button"
+                >
+                  <LogIn className="mr-1.5 h-4 w-4" />
+                  {isLoggingIn ? 'Logging in...' : 'Log in'}
+                </Button>
+              )}
+            </>
+          )}
         </nav>
 
         {/* Mobile Menu Button */}
@@ -95,6 +164,49 @@ export default function SiteHeader() {
                 {link.label}
               </Link>
             ))}
+            {isAuthenticated && (
+              <Link
+                to="/dashboard"
+                className="nav-link rounded-md px-3 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-cyber-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                activeProps={{ className: 'text-cyber-accent bg-accent' }}
+                onClick={(e) => handleMobileNavClick('/dashboard', e)}
+              >
+                <LayoutDashboard className="mr-1.5 inline-block h-4 w-4" />
+                Dashboard
+              </Link>
+            )}
+            {!isInitializing && (
+              <div className="mt-2 border-t border-border/40 pt-2">
+                {isAuthenticated ? (
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      handleLogout();
+                    }}
+                    className="w-full justify-start"
+                  >
+                    <LogOut className="mr-1.5 h-4 w-4" />
+                    Log out
+                  </Button>
+                ) : (
+                  <Button
+                    variant="default"
+                    size="sm"
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      handleLogin();
+                    }}
+                    disabled={isLoggingIn}
+                    className="w-full cyber-button"
+                  >
+                    <LogIn className="mr-1.5 h-4 w-4" />
+                    {isLoggingIn ? 'Logging in...' : 'Log in'}
+                  </Button>
+                )}
+              </div>
+            )}
           </nav>
         </div>
       )}

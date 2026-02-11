@@ -1,13 +1,20 @@
-import { useNavigate } from '@tanstack/react-router';
+import { useNavigate, useSearch } from '@tanstack/react-router';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { ArrowRight, Shield, Lock, Laptop, Code, Wrench, AlertTriangle } from 'lucide-react';
+import { Alert, AlertDescription, AlertTitle } from '@/components/ui/alert';
+import { ArrowRight, Shield, Lock, Laptop, Code, Wrench, AlertTriangle, Info } from 'lucide-react';
 import HeroCodeLines from '@/components/HeroCodeLines';
 import TextImageCarousel, { CarouselSlide } from '@/components/TextImageCarousel';
+import AccreditationSection from '@/components/AccreditationSection';
 import { courses } from '@/data/courses';
+import { useInternetIdentity } from '@/hooks/useInternetIdentity';
 
 export default function HomePage() {
   const navigate = useNavigate();
+  const search = useSearch({ strict: false }) as { loginRequired?: string };
+  const { login, isLoggingIn } = useInternetIdentity();
+
+  const showLoginRequired = search.loginRequired === 'true';
 
   const featuredCourses = courses.slice(0, 5);
 
@@ -44,6 +51,29 @@ export default function HomePage() {
 
   return (
     <div className="flex flex-col">
+      {/* Login Required Alert */}
+      {showLoginRequired && (
+        <div className="border-b border-border/40 bg-muted/50">
+          <div className="container py-4">
+            <Alert className="border-cyber-accent/50 bg-cyber-accent/10">
+              <Info className="h-4 w-4 text-cyber-accent" />
+              <AlertTitle className="text-cyber-accent">Login Required</AlertTitle>
+              <AlertDescription className="mt-2">
+                You need to log in to access that page. Please log in using the button in the header.
+              </AlertDescription>
+              <Button
+                size="sm"
+                onClick={login}
+                disabled={isLoggingIn}
+                className="mt-3 cyber-button"
+              >
+                {isLoggingIn ? 'Logging in...' : 'Log in now'}
+              </Button>
+            </Alert>
+          </div>
+        </div>
+      )}
+
       {/* Hero Section */}
       <section className="relative overflow-hidden border-b border-border/40 bg-gradient-to-br from-cyber-primary via-background to-background">
         <div className="absolute inset-0 bg-[url('/assets/generated/hero-bg.dim_1920x1080.png')] bg-cover bg-center opacity-20" />
@@ -56,9 +86,13 @@ export default function HomePage() {
               <span className="text-cyber-accent">Ethical Hacking</span> &{' '}
               <span className="text-cyber-highlight">Cybersecurity</span>
             </h1>
-            <p className="mb-8 text-lg text-muted-foreground md:text-xl">
-              Hands-on training, real-world scenarios, expert community, and certification prep for cybersecurity professionals.
-            </p>
+            <div className="mb-8">
+              <p className="whitespace-pre-line break-words text-base font-bold text-muted-foreground/90 md:text-lg">
+                {`यदा यदा हि धर्मस्य ग्लानिर्भवति भारत । अभ्युत्थानमधर्मस्य तदात्मानं सृजाम्यहम् ।।
+
+परित्राणाय साधूनाम् विनाशाय च दुष्कृताम् । धर्मसंस्थापनार्थाय सम्भवामि युगे युगे ।।`}
+              </p>
+            </div>
             <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
               <Button
                 size="lg"
@@ -96,6 +130,9 @@ export default function HomePage() {
 
         <TextImageCarousel slides={carouselSlides} />
       </section>
+
+      {/* Accreditation Section */}
+      <AccreditationSection />
 
       {/* Featured Courses */}
       <section className="container py-16 md:py-24">

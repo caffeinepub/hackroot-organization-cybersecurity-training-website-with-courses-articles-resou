@@ -1,29 +1,19 @@
 {
   "kind": "spec_vs_diff_report",
   "version": "1.0",
-  "generatedAt": "2026-02-10T14:29:23.270Z",
-  "summary": "The diff clearly adds new static article entries to `frontend/src/data/articles.ts` (meeting the core intent of adding articles), but the provided diff does not include any added/modified static image assets, so image availability for the new `Article.image` paths cannot be verified from the diff alone. Two non-functional/meta files were also modified.",
+  "generatedAt": "2026-02-11T16:26:25.756Z",
+  "summary": "Diff adds a protected /dashboard route registered in TanStack Router, introduces a reusable AuthGuard using the existing Internet Identity hook to prevent unauthenticated content flashing, updates the header to support II login/logout and post-login navigation, and adds a Dashboard page that displays the user’s Principal along with a clear login-required message on Home when redirected.",
   "missing_requirements": [],
-  "hallucinated_features": [
-    {
-      "description": "Modified project metadata/state file without an explicit request in the BuildRequest.",
-      "reason": "BuildRequest only asks to add articles (and possibly images). Updating project state/versioning metadata is not requested.",
-      "evidence": [
-        "project_state.json (modified)"
-      ]
-    },
-    {
-      "description": "Modified documentation/summary file describing many unrelated UI/page changes not requested in this BuildRequest.",
-      "reason": "BuildRequest scope is limited to adding articles and (if needed) images; the diff shows updates to a summary file that references unrelated features (e.g., header/footer/home/about/contact changes).",
-      "evidence": [
-        "frontend-file-summaries.txt (modified)"
-      ]
-    }
-  ],
-  "confidence": 0.62,
+  "hallucinated_features": [],
+  "confidence": 0.74,
   "changed_files": [
     "frontend-file-summaries.txt",
-    "frontend/src/data/articles.ts",
+    "frontend/src/App.tsx",
+    "frontend/src/components/AuthGuard.tsx",
+    "frontend/src/components/SiteHeader.tsx",
+    "frontend/src/lib/authRedirect.ts",
+    "frontend/src/pages/DashboardPage.tsx",
+    "frontend/src/pages/HomePage.tsx",
     "project_state.json"
   ]
 }

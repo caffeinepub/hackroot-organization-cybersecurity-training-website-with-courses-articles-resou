@@ -1,13 +1,16 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 33,
+  "projectStateVersion": 45,
   "summary": "ICP dapp scaffolded with a Motoko backend and a React (Vite + Tailwind + shadcn/ui) frontend featuring marketing pages, courses/articles content, Internet Identity auth hooks, and certificate verification UI.",
   "architectural_notes": [
     "Frontend uses React + Vite with Tailwind and shadcn/ui component primitives.",
     "Internet Identity authentication is encapsulated in reusable hooks (useInternetIdentity/useActor).",
     "ICP canister configuration included for backend and frontend (canister.yaml + DID bindings).",
     "Build-template includes scripts for pruning/resizing images and a standardized deployment workflow.",
-    "Contact form should support sending messages to hackrootorg82@gmail.com, but email delivery will be enabled later; implement UI/layout now with a placeholder/no-op submission handler."
+    "Contact form should support sending messages to hackrootorg82@gmail.com, but email delivery will be enabled later; implement UI/layout now with a placeholder/no-op submission handler.",
+    "Homepage hero/subtitle area: at the bottom, display only the provided Sanskrit verse (यदा यदा हि धर्मस्य...); no additional text in that bottom verse block.",
+    "Home page hero subtitle: remove the English subtitle line and replace it with only the provided Sanskrit shloka text, rendered bold, preserving the blank line/line breaks exactly as provided.",
+    "Decision: authentication will use Internet Identity only; do not implement phone-number/password or email/password signup/login flows."
   ],
   "known_issues": [
     "Build/network deployment is failing (deployment failed); user requested retry."
@@ -461,6 +464,94 @@
         "REQ-36"
       ],
       "version": 1
+    },
+    {
+      "id": "feature-add-a-floating-whatsapp-inquiry-contact-button-that-is-always-visible-across-the-site-as-a-top-layer-highest-z-index-ui-element-fixed-to-the-bottom-right-of-the-viewport",
+      "title": "Add a floating WhatsApp inquiry/contact button that is always visible across the site as a top-layer (highest z-index) UI element fixed to the bottom-right of the viewport.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-wire-the-floating-whatsapp-inquiry-button-to-open-whatsapp-chat-in-a-new-tab-using-the-site-phone-number-already-shown-in-the-top-contact-strip-tel-7527050563-using-a-wa-me-link-format",
+      "title": "Wire the floating WhatsApp inquiry button to open WhatsApp chat in a new tab using the site phone number already shown in the top contact strip (tel:7527050563), using a wa.me link format.",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-style-the-floating-whatsapp-inquiry-button-to-match-the-existing-cybersecurity-theme-tailwind-existing-theme-variables-including-hover-focus-visible-states-and-a-touch-friendly-hit-area",
+      "title": "Style the floating WhatsApp inquiry button to match the existing cybersecurity theme (Tailwind + existing theme variables), including hover/focus-visible states and a touch-friendly hit area.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-uploaded-accreditation-banner-image-image-png-as-a-static-frontend-asset-and-render-a-new-we-are-accredited-by-section-on-the-home-page-that-displays-this-image-responsively",
+      "title": "Add the uploaded accreditation banner image (image.png) as a static frontend asset and render a new “We are Accredited by” section on the Home page that displays this image responsively.",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-home-page-hero-subtitle-text-the-paragraph-directly-under-the-main-hero-headline-to-use-the-english-line-unlock-the-future-of-digital-security-with-real-world-cybersecurity-training-ethical-hacking-and-expert-tools-and-then-display-the-provided-sanskrit-verse-directly-beneath-it-with-preserved-line-breaks",
+      "title": "Update the Home page hero subtitle text (the paragraph directly under the main hero headline) to use the English line \"Unlock the future of digital security with real-world cybersecurity training, ethical hacking, and expert tools.\" and then display the provided Sanskrit verse directly beneath it with preserved line breaks.",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-on-the-home-page-hero-section-frontend-src-pages-homepage-tsx-remove-the-english-subtitle-line-unlock-the-future-of-digital-security-with-real-world-cybersecurity-training-ethical-hacking-and-expert-tools-and-display-only-the-provided-sanskrit-verse-in-its-place-rendered-in-bold-while-preserving-the-existing-line-breaks-spacing",
+      "title": "On the Home page hero section (frontend/src/pages/HomePage.tsx), remove the English subtitle line \"Unlock the future of digital security with real-world cybersecurity training, ethical hacking, and expert tools.\" and display only the provided Sanskrit verse in its place, rendered in bold while preserving the existing line breaks/spacing.",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-protected-user-dashboard-page-at-route-dashboard-that-is-only-accessible-when-the-user-is-authenticated-via-internet-identity",
+      "title": "Add a new protected User Dashboard page at route \"/dashboard\" that is only accessible when the user is authenticated via Internet Identity.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-a-reusable-client-side-auth-guard-component-for-tanstack-router-pages-that-require-internet-identity-authentication-and-use-it-to-protect-the-dashboard-page",
+      "title": "Implement a reusable client-side auth guard component for TanStack Router pages that require Internet Identity authentication, and use it to protect the Dashboard page.",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-site-header-to-support-authentication-actions-using-internet-identity-show-a-log-in-button-when-logged-out-show-a-log-out-button-when-logged-in-and-show-a-dashboard-navigation-link-only-when-logged-in",
+      "title": "Update the site header to support authentication actions using Internet Identity: show a \"Log in\" button when logged out, show a \"Log out\" button when logged in, and show a \"Dashboard\" navigation link only when logged in.",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-login-flow-results-in-the-user-being-able-to-reach-the-dashboard-immediately-after-successful-internet-identity-authentication",
+      "title": "Ensure the login flow results in the user being able to reach the dashboard immediately after successful Internet Identity authentication.",
+      "reqIds": [
+        "REQ-46"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-dashboard-page-content-using-english-user-facing-text-show-a-user-dashboard-heading-and-display-the-logged-in-user-s-principal-in-a-readable-format",
+      "title": "Add basic Dashboard page content using English user-facing text: show a \"User Dashboard\" heading and display the logged-in user's Principal in a readable format.",
+      "reqIds": [
+        "REQ-47"
+      ],
+      "version": 1
     }
   ],
   "new_feature_requests": [
@@ -547,6 +638,30 @@
     {
       "id": "AR-15",
       "summary": "Add the requested additional articles to the Articles page (update articles data/content so they appear in the list/detail views).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Add a WhatsApp inquiry/contact icon button floating on the bottom-right (top layer) of the site for quick inquiries.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Ensure the WhatsApp inquiry/contact icon/button is also present on the Home page (in addition to wherever it was already added).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Update the Home page hero subtitle to remove the English line and instead display only the provided Sanskrit shloka text in bold, preserving the line breaks.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-21",
+      "summary": "Add a logged-in User Dashboard page/route that is only accessible/visible when authenticated via Internet Identity (show after login; hide/redirect when logged out).",
       "reqIds": [],
       "status": "pending"
     }

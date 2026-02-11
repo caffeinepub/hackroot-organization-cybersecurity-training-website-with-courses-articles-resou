@@ -2,10 +2,12 @@
   "kind": "feature_evidence_report",
   "features": [
     {
-      "featureId": "feature-update-the-articles-content-data-so-the-additional-articles-requested-by-the-user-are-included-in-the-articles-list-and-can-be-opened-in-the-article-detail-view-add-each-new-article-to-frontend-src-data-articles-ts-with-a-unique-slug-english-title-preview-full-content-author-date-and-a-valid-image-path",
-      "featureTitle": "Update the Articles content data so the additional articles requested by the user are included in the Articles list and can be opened in the Article Detail view. Add each new article to frontend/src/data/articles.ts with a unique slug, English title, preview, full content, author, date, and a valid image path.",
+      "featureId": "feature-add-a-new-protected-user-dashboard-page-at-route-dashboard-that-is-only-accessible-when-the-user-is-authenticated-via-internet-identity",
+      "featureTitle": "Add a new protected User Dashboard page at route \"/dashboard\" that is only accessible when the user is authenticated via Internet Identity.",
       "files": [
-        "frontend/src/data/articles.ts"
+        "frontend/src/App.tsx",
+        "frontend/src/pages/DashboardPage.tsx",
+        "frontend/src/pages/HomePage.tsx"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -15,15 +17,17 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-35"
+        "REQ-43"
       ],
       "confidence": "high"
     },
     {
-      "featureId": "feature-if-any-of-the-newly-added-articles-require-new-images-add-those-image-files-as-static-frontend-assets-under-frontend-public-assets-or-frontend-public-assets-generated-if-generated-and-reference-them-via-the-article-image-field-so-images-load-correctly-on-both-the-articles-list-and-article-detail-pages",
-      "featureTitle": "If any of the newly added articles require new images, add those image files as static frontend assets under frontend/public/assets/ (or frontend/public/assets/generated if generated) and reference them via the Article.image field so images load correctly on both the Articles list and Article Detail pages.",
+      "featureId": "feature-implement-a-reusable-client-side-auth-guard-component-for-tanstack-router-pages-that-require-internet-identity-authentication-and-use-it-to-protect-the-dashboard-page",
+      "featureTitle": "Implement a reusable client-side auth guard component for TanStack Router pages that require Internet Identity authentication, and use it to protect the Dashboard page.",
       "files": [
-        "frontend/src/data/articles.ts"
+        "frontend/src/App.tsx",
+        "frontend/src/components/AuthGuard.tsx",
+        "frontend/src/lib/authRedirect.ts"
       ],
       "components": [
         "core-infrastructure@1.0.2",
@@ -33,7 +37,63 @@
         "github-export-icp-cli@1.0.0"
       ],
       "testIds": [
-        "REQ-36"
+        "REQ-44"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-site-header-to-support-authentication-actions-using-internet-identity-show-a-log-in-button-when-logged-out-show-a-log-out-button-when-logged-in-and-show-a-dashboard-navigation-link-only-when-logged-in",
+      "featureTitle": "Update the site header to support authentication actions using Internet Identity: show a \"Log in\" button when logged out, show a \"Log out\" button when logged in, and show a \"Dashboard\" navigation link only when logged in.",
+      "files": [
+        "frontend/src/components/SiteHeader.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-45"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-ensure-the-login-flow-results-in-the-user-being-able-to-reach-the-dashboard-immediately-after-successful-internet-identity-authentication",
+      "featureTitle": "Ensure the login flow results in the user being able to reach the dashboard immediately after successful Internet Identity authentication.",
+      "files": [
+        "frontend/src/components/AuthGuard.tsx",
+        "frontend/src/components/SiteHeader.tsx",
+        "frontend/src/lib/authRedirect.ts"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-46"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-basic-dashboard-page-content-using-english-user-facing-text-show-a-user-dashboard-heading-and-display-the-logged-in-user-s-principal-in-a-readable-format",
+      "featureTitle": "Add basic Dashboard page content using English user-facing text: show a \"User Dashboard\" heading and display the logged-in user's Principal in a readable format.",
+      "files": [
+        "frontend/src/pages/DashboardPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-47"
       ],
       "confidence": "high"
     }

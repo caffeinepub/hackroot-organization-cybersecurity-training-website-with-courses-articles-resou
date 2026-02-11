@@ -1,5 +1,6 @@
 import { Mail, Phone } from 'lucide-react';
 import { SiYoutube, SiInstagram, SiLinkedin, SiTelegram } from 'react-icons/si';
+import { SITE_PHONE_NUMBER, SITE_EMAIL } from '@/lib/siteContact';
 
 export default function TopContactStrip() {
   const socialLinks = [
@@ -22,20 +23,20 @@ export default function TopContactStrip() {
           <div className="flex flex-wrap items-center gap-4">
             {/* Email */}
             <a
-              href="mailto:hackrootorg82@gmail.com"
+              href={`mailto:${SITE_EMAIL}`}
               className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-cyber-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <Mail className="h-3.5 w-3.5" />
-              <span className="hidden sm:inline">hackrootorg82@gmail.com</span>
+              <span className="hidden sm:inline">{SITE_EMAIL}</span>
             </a>
 
             {/* Phone */}
             <a
-              href="tel:7527050563"
+              href={`tel:${SITE_PHONE_NUMBER}`}
               className="flex items-center gap-1.5 text-muted-foreground transition-colors hover:text-cyber-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <Phone className="h-3.5 w-3.5" />
-              <span>7527050563</span>
+              <span>{SITE_PHONE_NUMBER}</span>
             </a>
 
             {/* Social Icons */}

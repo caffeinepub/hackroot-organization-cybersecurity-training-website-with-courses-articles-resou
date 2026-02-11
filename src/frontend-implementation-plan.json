@@ -1,42 +1,114 @@
 {
   "kind": "implementation_plan",
   "version": "1.0",
-  "title": "Add additional articles and any required images to Articles pages",
+  "title": "Internet Identity auth-aware header + protected /dashboard route",
   "requirements": [
     {
-      "id": "REQ-35",
-      "summary": "Add the user-requested additional articles to the static Articles dataset so they appear on /articles and render correctly on /articles/$slug.",
+      "id": "REQ-43",
+      "summary": "Add a protected /dashboard route that only renders for Internet Identity-authenticated users and redirects logged-out users to a public page with a login-required message.",
       "acceptanceCriteria": [
-        "New article objects exist in frontend/src/data/articles.ts and follow the existing Article interface shape (slug, title, preview, content, image, date, author).",
-        "Each new article has a unique slug and does not break existing routes or article lookup by slug.",
-        "The /articles page renders cards for the newly added articles alongside existing ones.",
-        "Navigating to /articles/$slug for each newly added article shows the correct title, image, metadata, and full content without runtime errors."
+        "Navigating to /dashboard while authenticated via Internet Identity renders the dashboard page.",
+        "Navigating to /dashboard while not authenticated does not show dashboard content and instead redirects the user to a public page (e.g., Home) with a clear on-screen message indicating login is required.",
+        "The dashboard route is registered in the TanStack Router route tree (frontend/src/App.tsx)."
       ],
       "file_operations": [
         {
-          "path": "frontend/src/data/articles.ts",
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "create",
+          "description": "Create the User Dashboard page view (UI only) intended to be wrapped by the auth guard. Display the page heading and the authenticated user's Principal. (Uses existing styling + shadcn/ui primitives where appropriate; verify the component's usage instructions before implementing.)"
+        },
+        {
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Append the additional user-requested article objects to the exported articles array, ensuring each includes slug/title/preview/content/author/date/image (English text only), uses unique slugs, and that image paths point to valid static assets."
+          "description": "Register the /dashboard route in the TanStack Router route tree and render it using the reusable AuthGuard wrapper to ensure it is protected. (Uses TanStack Router patterns already present; verify the component's usage instructions before implementing.)"
+        },
+        {
+          "path": "frontend/src/pages/HomePage.tsx",
+          "operation": "modify",
+          "description": "Add a clear on-screen \"login required\" message on the Home page when redirected from a protected route (e.g., via a search param or router state). Use existing UI primitives (e.g., shadcn/ui Card/Alert styling) to ensure the message is visible and accessible. Verify the component's usage instructions before implementing."
         }
       ]
     },
     {
-      "id": "REQ-36",
-      "summary": "Ensure every newly added article references a valid static image asset and add any missing image files under frontend/public/assets (or frontend/public/assets/generated if generated).",
+      "id": "REQ-44",
+      "summary": "Implement a reusable client-side auth guard for TanStack Router pages using the existing useInternetIdentity context and prevent unauthenticated content flash.",
       "acceptanceCriteria": [
-        "For every newly added article, the Article.image field points to an existing static file path that loads successfully in the browser.",
-        "No broken image links appear on /articles or on any /articles/$slug page for the newly added articles."
+        "Auth guard determines authentication state using the existing Internet Identity context (useInternetIdentity).",
+        "Protected content never briefly flashes for logged-out users (no unauthenticated content render before redirect)."
       ],
       "file_operations": [
         {
-          "path": "frontend/public/assets/whatsapp-image-2026-01-17-94554.jpeg",
+          "path": "frontend/src/components/AuthGuard.tsx",
           "operation": "create",
-          "description": "Add the new static image asset (from the provided workspace asset \"WhatsApp Image 2026-01-17 at 9.45.54 AM.jpeg\") under frontend/public/assets/ so it can be referenced by new Article.image fields."
+          "description": "Create a reusable AuthGuard component that reads auth state from useInternetIdentity (without modifying the hook), blocks rendering while initializing, and redirects logged-out users before protected content renders. Verify the component's usage instructions before implementing."
         },
         {
-          "path": "frontend/src/data/articles.ts",
+          "path": "frontend/src/lib/authRedirect.ts",
+          "operation": "create",
+          "description": "Add small helper utilities to store and retrieve a post-login redirect target (e.g., sessionStorage key) so the app can return users to /dashboard after login. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/App.tsx",
           "operation": "modify",
-          "description": "Set/adjust the Article.image field for any newly added articles that require new images to reference the added static asset(s) under frontend/public/assets (or existing assets under frontend/public/assets/generated), ensuring no broken images on list/detail views."
+          "description": "Adopt the AuthGuard component for the /dashboard route so protection is enforced consistently by the router tree. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-45",
+      "summary": "Update the responsive site header to show Log in/Log out actions and a Dashboard link only when authenticated (desktop + mobile).",
+      "acceptanceCriteria": [
+        "When logged out, the header displays a \"Log in\" action that triggers Internet Identity login via the existing hook.",
+        "When logged in, the header displays a \"Log out\" action that clears the identity via the existing hook.",
+        "When logged in, the header displays a \"Dashboard\" link that navigates to /dashboard; when logged out, the \"Dashboard\" link is hidden.",
+        "Mobile and desktop navigation both reflect the same auth-aware behavior."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Integrate Internet Identity auth state via useInternetIdentity: show a shadcn/ui Button for \"Log in\" when logged out (calls login on click), show \"Log out\" when logged in (calls clear), and conditionally add a \"Dashboard\" Link only for authenticated users. Ensure both desktop nav and mobile menu render the same conditional items. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-46",
+      "summary": "Ensure users can reach the dashboard immediately after successful Internet Identity login and handle redundant login attempts gracefully.",
+      "acceptanceCriteria": [
+        "After a successful Internet Identity login, the user can reach the dashboard with no additional manual steps (either automatic navigation to /dashboard or a clearly visible dashboard entry point).",
+        "If the user is already authenticated and attempts to log in again, the UI handles it gracefully (no broken state)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/SiteHeader.tsx",
+          "operation": "modify",
+          "description": "Add post-login navigation behavior: after login success, automatically navigate to the stored post-login redirect (default /dashboard) or ensure the Dashboard link is prominently available. Handle the hook's \"already authenticated\" case gracefully (e.g., ignore, show a non-blocking message via sonner, or disable login button when authenticated). Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/components/AuthGuard.tsx",
+          "operation": "modify",
+          "description": "When redirecting an unauthenticated user away from /dashboard, store the intended destination for post-login navigation and avoid rendering protected content during the transition. Verify the component's usage instructions before implementing."
+        },
+        {
+          "path": "frontend/src/lib/authRedirect.ts",
+          "operation": "modify",
+          "description": "Implement/adjust helpers to support setting a post-login redirect target when a protected route is attempted, and clearing it after navigation. Verify the component's usage instructions before implementing."
+        }
+      ]
+    },
+    {
+      "id": "REQ-47",
+      "summary": "Add basic English dashboard content: \"User Dashboard\" heading and the logged-in user's Principal in readable format.",
+      "acceptanceCriteria": [
+        "Dashboard shows a clear page title: \"User Dashboard\".",
+        "Dashboard displays the authenticated Principal (from the Internet Identity identity) and does not show \"anonymous\" when authenticated.",
+        "All dashboard user-facing copy is in English."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/pages/DashboardPage.tsx",
+          "operation": "modify",
+          "description": "Render English-only dashboard copy: a \"User Dashboard\" heading and the authenticated Principal string (readable formatting) derived from the Internet Identity identity; ensure it does not display \"anonymous\" when authenticated. Verify the component's usage instructions before implementing."
         }
       ]
     }

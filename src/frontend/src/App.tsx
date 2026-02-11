@@ -1,10 +1,13 @@
 import { RouterProvider, createRouter, createRoute, createRootRoute, Outlet } from '@tanstack/react-router';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ThemeProvider } from 'next-themes';
+import { InternetIdentityProvider } from './hooks/useInternetIdentity';
 import TopContactStrip from './components/TopContactStrip';
 import SiteHeader from './components/SiteHeader';
 import SiteFooter from './components/SiteFooter';
+import FloatingWhatsAppButton from './components/FloatingWhatsAppButton';
 import ScrollToTopOnRouteChange from './components/ScrollToTopOnRouteChange';
+import AuthGuard from './components/AuthGuard';
 import HomePage from './pages/HomePage';
 import CoursesPage from './pages/CoursesPage';
 import CourseDetailPage from './pages/CourseDetailPage';
@@ -16,6 +19,7 @@ import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
 import CertificateVerificationPage from './pages/CertificateVerificationPage';
 import GalleryPage from './pages/GalleryPage';
+import DashboardPage from './pages/DashboardPage';
 import TermsPage from './pages/TermsPage';
 import PrivacyPage from './pages/PrivacyPage';
 import { Toaster } from '@/components/ui/sonner';
@@ -31,6 +35,7 @@ function Layout() {
         <Outlet />
       </main>
       <SiteFooter />
+      <FloatingWhatsAppButton />
       <Toaster />
       <ScrollToTopOnRouteChange />
     </div>
@@ -107,6 +112,16 @@ const galleryRoute = createRoute({
   component: GalleryPage,
 });
 
+const dashboardRoute = createRoute({
+  getParentRoute: () => rootRoute,
+  path: '/dashboard',
+  component: () => (
+    <AuthGuard>
+      <DashboardPage />
+    </AuthGuard>
+  ),
+});
+
 const termsRoute = createRoute({
   getParentRoute: () => rootRoute,
   path: '/terms',
@@ -131,6 +146,7 @@ const routeTree = rootRoute.addChildren([
   contactRoute,
   certificateRoute,
   galleryRoute,
+  dashboardRoute,
   termsRoute,
   privacyRoute,
 ]);
@@ -146,9 +162,11 @@ declare module '@tanstack/react-router' {
 export default function App() {
   return (
     <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
-      <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-      </QueryClientProvider>
+      <InternetIdentityProvider>
+        <QueryClientProvider client={queryClient}>
+          <RouterProvider router={router} />
+        </QueryClientProvider>
+      </InternetIdentityProvider>
     </ThemeProvider>
   );
 }
